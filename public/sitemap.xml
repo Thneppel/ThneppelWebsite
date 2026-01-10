@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1313/commercials/</loc>
+  </url><url>
+    <loc>http://localhost:1313/youtube/</loc>
+  </url><url>
+    <loc>http://localhost:1313/about/</loc>
+  </url><url>
+    <loc>http://localhost:1313/youtube/jimmykimtv/</loc>
+  </url><url>
+    <loc>http://localhost:1313/youtube/nicenraw/</loc>
+  </url><url>
+    <loc>http://localhost:1313/</loc>
+  </url><url>
+    <loc>http://localhost:1313/priv/</loc>
+  </url><url>
+    <loc>http://localhost:1313/terms/</loc>
+  </url>
+</urlset>

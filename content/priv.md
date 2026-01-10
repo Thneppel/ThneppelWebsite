@@ -1,0 +1,39 @@
+---
+title: Privacy and Policy
+rss_ignore: true
+layout: prose
+menu:
+  footer:
+    weight: 3
+---
+
+This Privacy Policy explains how personal data is collected and used on this personal portfolio website, operated by a Brazilian individual and governed by Brazilian law.
+
+## **1. Applicable Law**
+This website complies with the Brazilian General Data Protection Law, **Lei Geral de Proteção de Dados (LGPD)**.
+
+## **2. Data Collection**
+This website may collect the following personal data:
+Name and email address, only when voluntarily provided through a contact form
+Basic technical data such as IP address, browser type, and access logs, automatically collected by the hosting infrastructure
+
+## **3. Purpose of Data Collection**
+Personal data is collected solely to:
+Respond to contact requests
+Ensure the proper functioning and improvement of the website
+
+## **4. Cookies**
+This website does **not use cookies**, unless explicitly stated otherwise.  
+If analytics tools are used, they are limited to basic, non-invasive traffic measurement.
+
+## **5. Data Sharing**
+Personal data is **not shared with third parties**, except when required by law or by a competent legal authority.
+
+## **6. Data Storage and Security**
+Personal data is stored only for the period necessary to fulfill its intended purpose and is protected using reasonable technical and organizational security measures.
+
+## **7. User Rights**
+In accordance with Brazilian law, users have the right to request access, correction, or deletion of their personal data at any time.
+
+## **8. Contact**
+For privacy-related questions or data requests, please contact: [**contact@thneppel.com.br**](mailto:contact@thneppel.com.br)
