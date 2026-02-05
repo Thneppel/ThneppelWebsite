@@ -1,4 +1,12 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://thnepel.com.br/'
 languageCode = 'en-us'
 title = 'Thneppel'
 theme = 'Berenice'
+
+[params]
+  description = "Thiago's portfolio"
+  author = "Thiago Neppel"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
