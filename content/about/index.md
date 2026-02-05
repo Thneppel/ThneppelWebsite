@@ -7,7 +7,7 @@ featured_image: feature.png
 ---
 
 
-I am **Thiago Wagner Neppel**, a designer and creative director with over 9 years of experience in graphic design, branding, and audiovisual production. I work across visual identity, advertising campaigns, digital content, and full audiovisual projects, from concept to final delivery.
+I am **Thiago Wagner Neppel**, a Brazilian designer and creative director with over 9 years of experience in graphic design, branding, and audiovisual production. I work across visual identity, advertising campaigns, digital content, and full audiovisual projects, from concept to final delivery.
 
 Throughout my career, I have worked with agencies, print shops, startups, and independent projects, developing a strategic mindset that connects aesthetics, communication, and results. I have strong proficiency with the Adobe Creative Suite and solid experience in art direction, motion design, video editing, photography, and creative management.
 
