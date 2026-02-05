@@ -4,9 +4,12 @@
   <h1 class="text-3xl font-bold mb-4">{{ .Title }}</h1>
   {{ partial "breadcrumb.html" . }}
 
-  <div class="m-10">
+  <div class="m-5">
 
-    {{.Description}}
+    <section class="prose">
+      {{ .Description }}
+      {{ .Content }}
+    </section>
 
   </div>
 
@@ -45,7 +48,6 @@
           </a>
         {{ end }}
         </div>
-
       {{ end }}
     {{ end }}
   </div>

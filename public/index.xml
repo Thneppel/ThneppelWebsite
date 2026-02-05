@@ -9,18 +9,39 @@
     <copyright>© Thiago Neppel</copyright>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;I am &lt;strong&gt;Thiago Wagner Neppel&lt;/strong&gt;, a designer and creative director with over 9 years of experience in graphic design, branding, and audiovisual production. I work across visual identity, advertising campaigns, digital content, and full audiovisual projects, from concept to final delivery.&lt;/p&gt;&#xA;&lt;p&gt;Throughout my career, I have worked with agencies, print shops, startups, and independent projects, developing a strategic mindset that connects aesthetics, communication, and results. I have strong proficiency with the Adobe Creative Suite and solid experience in art direction, motion design, video editing, photography, and creative management.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Cronic Digital</title>
+      <link>http://localhost:1313/cronicdigital/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/cronicdigital/</guid>
+      <description>&lt;p&gt;Direction, audiovisual production, and post-production developed in collaboration with &lt;a href=&#34;https://cronic.com.br/&#34;&gt;Cronic Digital&lt;/a&gt;, an advertising and marketing agency based in Balneário Camboriú.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Over more than five years of continuous collaboration&lt;/strong&gt;, the work covered advertising campaigns, institutional videos, and commercial content for leading brands across the Vale do Itajaí region.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Acting primarily as Director&lt;/strong&gt;, the role involved defining creative and strategic direction, overseeing production workflows, and leading on-set execution, while also contributing as filmmaker and editor on key campaigns.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Jimmy Kim TV</title>
       <link>http://localhost:1313/youtube/jimmykimtv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/youtube/jimmykimtv/</guid>
-      <description></description>
+      <description>&lt;p&gt;Edited over 27 YouTube videos for &lt;a href=&#34;https://www.youtube.com/@jimmykimtv&#34;&gt;Jimmy Kim TV&lt;/a&gt; in 2025, spanning travel vlogs, food reviews, and experience-based content.&lt;/p&gt;&#xA;&lt;p&gt;The editing workflow was centered in &lt;strong&gt;Adobe Premiere Pro&lt;/strong&gt;, making use of licensed stock footage and sound libraries, with selective application of third-party plugins to refine pacing, transitions, and overall polish.&lt;/p&gt;&#xA;&lt;p&gt;Light motion graphics and minimal animations were produced in &lt;strong&gt;After Effects&lt;/strong&gt; when needed, supporting the narrative without distracting from the vlog-driven, authentic tone of the channel.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Lixo Carmesim</title>
+      <link>http://localhost:1313/lixocarmesim/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/lixocarmesim/</guid>
+      <description>&lt;h3 id=&#34;stop-motion-short-film&#34;&gt;Stop-Motion Short Film&lt;/h3&gt;&#xA;&lt;p&gt;This project is a &lt;strong&gt;stop-motion short film&lt;/strong&gt; funded by the &lt;strong&gt;Paulo Gustavo Audiovisual Grant (2023)&lt;/strong&gt; and produced in 2024 through the &lt;strong&gt;Fundação Cultural de Balneário Camboriú&lt;/strong&gt;, in partnership with the &lt;strong&gt;Ministério da Cultura&lt;/strong&gt; and the &lt;strong&gt;Federal Government of Brazil&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h3 id=&#34;synopsis&#34;&gt;Synopsis&lt;/h3&gt;&#xA;&lt;p&gt;In a city overwhelmed by neglect, an extremely famous yet toxic soft drink brand is discarded along with the urban waste. When the beverage comes into contact with the accumulated trash, it mutates into grotesque monsters that begin attacking and devouring people, exposing the consequences of environmental negligence and unchecked consumption.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Nice N Raw</title>
       <link>http://localhost:1313/youtube/nicenraw/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/youtube/nicenraw/</guid>
-      <description></description>
+      <description>&lt;p&gt;Direction, content production, and video editing for the &lt;a href=&#34;https://www.youtube.com/@NiceNRaw&#34;&gt;Nice N Raw&lt;/a&gt; YouTube channel, with responsibilities spanning creative direction, production planning, and post-production.&lt;/p&gt;&#xA;&lt;p&gt;The production workflow included on-set direction, camera operation, and coordination of audiovisual resources, ensuring visual coherence and a strong narrative foundation across episodes.&lt;/p&gt;&#xA;&lt;p&gt;Editing was primarily handled in &lt;strong&gt;Adobe Premiere Pro&lt;/strong&gt;, with extensive integration of &lt;strong&gt;After Effects&lt;/strong&gt; for motion graphics, visual enhancements, and animated elements that played a significant role in the channel’s visual identity. Licensed stock footage, sound libraries, and third-party plugins were used to refine pacing, transitions, and overall polish.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -8,5 +8,12 @@
     <language>en</language>
     <copyright>© Thiago Neppel</copyright>
     <atom:link href="http://localhost:1313/commercials/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cronic Digital</title>
+      <link>http://localhost:1313/commercials/cronicdigital/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/commercials/cronicdigital/</guid>
+      <description>&lt;p&gt;Direction, audiovisual production, and post-production developed in collaboration with &lt;a href=&#34;https://cronic.com.br/&#34;&gt;Cronic Digital&lt;/a&gt;, an advertising and marketing agency based in Balneário Camboriú.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Over more than five years of continuous collaboration&lt;/strong&gt;, the work covered advertising campaigns, institutional videos, and commercial content for leading brands across the Vale do Itajaí region.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Acting primarily as Director&lt;/strong&gt;, the role involved defining creative and strategic direction, overseeing production workflows, and leading on-set execution, while also contributing as filmmaker and editor on key campaigns.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>
