@@ -1,10 +1,6 @@
 ---
 title: Privacy and Policy
-rss_ignore: true
-layout: prose
-menu:
-  footer:
-    weight: 3
+draft: true
 ---
 
 This Privacy Policy explains how personal data is collected and used on this personal portfolio website, operated by a Brazilian individual and governed by Brazilian law.

@@ -1,12 +1,6 @@
 ---
-layout: prose
-rss_ignore: true
 title: About
-menu:
-  main:
-    weight: 90
-  footer:
-    weight: 1
+draft: true
 ---
 
 I am Thiago Wagner Neppel, a designer and creative director with over 8 years of experience in graphic design, branding, and audiovisual production. I work across visual identity, advertising campaigns, digital content, and full audiovisual projects, from concept to final delivery.

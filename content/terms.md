@@ -1,10 +1,6 @@
 ---
 title: Terms of Use
-rss_ignore: true
-layout: prose
-menu:
-  footer:
-    weight: 2
+draft: true
 ---
 
 Last updated: 01.10.2026

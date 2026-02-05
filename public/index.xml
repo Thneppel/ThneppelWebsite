@@ -1,33 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>PORTFOLIO on Thneppel</title>
+    <title>Thneppel</title>
     <link>http://localhost:1313/</link>
-    <description>Recent content in PORTFOLIO on Thneppel</description>
+    <description>Recent content on Thneppel</description>
     <generator>Hugo</generator>
     <language>en</language>
     <copyright>© Thiago Neppel</copyright>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>http://localhost:1313/about/</link>
+      <title>Jimmy Kim TV</title>
+      <link>http://localhost:1313/youtube/jimmykimtv/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/about/</guid>
-      <description>&lt;p&gt;I am Thiago Wagner Neppel, a designer and creative director with over 8 years of experience in graphic design, branding, and audiovisual production. I work across visual identity, advertising campaigns, digital content, and full audiovisual projects, from concept to final delivery.&lt;/p&gt;&#xA;&lt;p&gt;Throughout my career, I have worked with agencies, print shops, startups, and independent projects, developing a strategic mindset that connects aesthetics, communication, and results. I have strong proficiency with the Adobe Creative Suite and solid experience in art direction, motion design, video editing, photography, and creative management.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/youtube/jimmykimtv/</guid>
+      <description></description>
     </item>
     <item>
-      <title>Privacy and Policy</title>
-      <link>http://localhost:1313/priv/</link>
+      <title>Nice N Raw</title>
+      <link>http://localhost:1313/youtube/nicenraw/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/priv/</guid>
-      <description>&lt;p&gt;This Privacy Policy explains how personal data is collected and used on this personal portfolio website, operated by a Brazilian individual and governed by Brazilian law.&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-applicable-law&#34;&gt;&lt;strong&gt;1. Applicable Law&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;This website complies with the Brazilian General Data Protection Law, &lt;strong&gt;Lei Geral de Proteção de Dados (LGPD)&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;h2 id=&#34;2-data-collection&#34;&gt;&lt;strong&gt;2. Data Collection&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;This website may collect the following personal data:&#xA;Name and email address, only when voluntarily provided through a contact form&#xA;Basic technical data such as IP address, browser type, and access logs, automatically collected by the hosting infrastructure&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Terms of Use</title>
-      <link>http://localhost:1313/terms/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/terms/</guid>
-      <description>&lt;p&gt;Last updated: 01.10.2026&lt;/p&gt;&#xA;&lt;p&gt;This website is a personal portfolio created to showcase professional work, skills, and experience.&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-website-owner&#34;&gt;&lt;strong&gt;1. Website Owner&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;This website is operated by &lt;strong&gt;Thiago Neppel&lt;/strong&gt;.&lt;br&gt;&#xA;For any questions, please contact: &lt;a href=&#34;mailto:contact@thneppel.com.br&#34;&gt;&lt;strong&gt;contact@thneppel.com.br&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;2-purpose-of-the-website&#34;&gt;&lt;strong&gt;2. Purpose of the Website&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;The content provided on this website is for informational and professional presentation purposes only. It does not constitute any form of contractual or professional guarantee.&lt;/p&gt;&#xA;&lt;h2 id=&#34;3-intellectual-property&#34;&gt;&lt;strong&gt;3. Intellectual Property&lt;/strong&gt;&lt;/h2&gt;&#xA;&lt;p&gt;Unless otherwise stated, all content displayed on this website, including but not limited to images, videos, designs, texts, and projects, is the intellectual property of the website owner or used with proper authorization.&lt;br&gt;&#xA;Reproduction, distribution, or use of any content without prior written permission is prohibited.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/youtube/nicenraw/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>
