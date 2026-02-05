@@ -2,7 +2,3 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'Thneppel'
 theme = 'Berenice'
-
-[caches]
-  [caches.images]
-    dir = ':cacheDir/images'
