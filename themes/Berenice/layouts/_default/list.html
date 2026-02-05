@@ -5,14 +5,11 @@
 
   <div class="m-5">
 
-    {{.Description}}
-
-  </div>
-
-  <div class="place-content-center">
     <section class="prose">
+      {{ .Description }}
       {{ .Content }}
     </section>
+
   </div>
 
   <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
@@ -46,13 +43,6 @@
       </div>
     {{ end }}
   </div>
-
-  <div class="prose">
-
-      {{ .Content }}
-
-  </div>
-
 </main>
 {{ end }}
 
