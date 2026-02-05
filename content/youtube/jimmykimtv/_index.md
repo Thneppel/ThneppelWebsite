@@ -6,7 +6,8 @@ title: Jimmy Kim TV
 resources:
   - src: I Ate at the BEST STREET FOOD MARKET in Berlin! (BQ).jpg
     title: I Ate at the BEST STREET FOOD MARKET in Berlin
-    video: https://www.youtube.com/embed/aENyK5dQig0&t
+    params:
+     video: https://www.youtube.com/embed/aENyK5dQig0&t
   - src: $1 VS $100 Food in India Compared! (BQ).jpg
     title: $1 VS $100 Food in India Compared!
 ---
