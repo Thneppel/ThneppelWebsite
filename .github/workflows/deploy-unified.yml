@@ -1,0 +1,61 @@
+name: Deploy Unificado (Portfólio + Blog)
+
+on:
+  # Permite disparo manual
+  workflow_dispatch:
+  # Permite disparo via repository_dispatch vindo dos repositórios Hugo
+  repository_dispatch:
+    types: [trigger-portfolio, trigger-blog]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout do repositório do portfólio (Hugo 1)
+      - name: Checkout Hugo - Portfólio
+        uses: actions/checkout@v4
+        with:
+          repository: Thneppel/HugoPortfolio   # 👈 Nome real do seu repositório do portfólio
+          path: hugo-portfolio
+          token: ${{ secrets.PERSONAL_TOKEN }}
+
+      # 2. Checkout do repositório do blog (Hugo 2)
+      - name: Checkout Hugo - Blog
+        uses: actions/checkout@v4
+        with:
+          repository: Thneppel/HugoBlog        # 👈 Nome real do seu repositório do blog
+          path: hugo-blog
+          token: ${{ secrets.PERSONAL_TOKEN }}
+
+      # 3. Setup Hugo
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+
+      # 4. Build do portfólio
+      - name: Build Portfólio
+        run: hugo --source hugo-portfolio
+
+      # 5. Build do blog
+      - name: Build Blog
+        run: hugo --source hugo-blog
+
+      # 6. Mesclar builds em uma pasta temporária
+      - name: Mesclar builds
+        run: |
+          mkdir deploy-final
+          cp -r hugo-portfolio/public/* deploy-final/
+          mkdir -p deploy-final/blog
+          cp -r hugo-blog/public/* deploy-final/blog/
+          touch deploy-final/.nojekyll   # evita interferência do Jekyll
+          echo "thneppel.com.br" > deploy-final/CNAME   # 👈 adiciona o CNAME
+
+      # 7. Publicar no mesmo repositório (branch main)
+      - name: Publicar no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PERSONAL_TOKEN }}
+          publish_dir: ./deploy-final
+          publish_branch: pages
+          keep_files: false   # substitui completamente
