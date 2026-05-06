@@ -8,8 +8,8 @@
 <title>Thneppel Blog</title>
 
 <meta name="description" content="Pehtheme Hugo Lite: A minimalist Hugo theme, built with TailwindCSS, for efficient performance and minimalism.">
-      <link rel="stylesheet" href="https://thneppel.com.br/blog/css/main.min.9ad071c734beb0fe019a0af6fc75eb4e6b96a16c5b04e5fc1352a4ea61b20ed5.css" integrity="sha256-mtBxxzS&#43;sP4Bmgr2/HXrTmuWoWxbBOX8E1Kk6mGyDtU=" crossorigin="anonymous">
-<link rel="icon" href="https://thneppel.com.br/blog/favicon.ico">
+      <link rel="stylesheet" href="https://thneppel.com.br/blog/css/main.min.6c1311d4a258833b06b06a2f4846d84c1b65d87c78265deb2c14e8501e729ff0.css" integrity="sha256-bBMR1KJYgzsGsGovSEbYTBtl2Hx4Jl3rLBToUB5yn/A=" crossorigin="anonymous">
+<link rel="icon" href="https://thneppel.com.br/blog/favicon.ico"><link rel="stylesheet" href="/blog/css/custom.css">
 </head>
 <body class="bg-stone-950 text-stone-200">
   <header class="py-6"><div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col">
@@ -93,7 +93,7 @@
 
       <h2 class="text-3xl md:text-4xl font-bold mr-auto">Astronomy</h2>
 
-      <a class="border border-2 font-bold border-stone-800 rounded-full py-2 px-4 md:px-6 hover:bg-stone-800" href="https://thneppel.com.br/blog/categoriesastronomy/">View All</a>
+      <a class="border border-2 font-bold border-stone-800 rounded-full py-2 px-4 md:px-6 hover:bg-stone-800" href="https://thneppel.com.br/categories/astronomy/">View All</a>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
@@ -279,7 +279,33 @@
 
     
 
-    <div class="flex items-center mt-10"><a class="border border-2 font-bold border-stone-800 rounded-full py-2 px-4 md:px-6 hover:bg-stone-800" href="/blog/page/2/">Next →</a></div>
+    <div class="flex items-center mt-10"><a class="border border-2 font-bold border-stone-800 rounded-full py-2 px-4 md:px-6 hover:bg-stone-800" href="/blog/page/2/?restore-scroll=true">
+          Next →
+        </a></div>
+    <script>
+    (function() {
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('restore-scroll')) {
+        const saved = sessionStorage.getItem('paginator_scroll');
+        if (saved !== null) {
+          window.scrollTo(0, parseInt(saved, 10));
+          sessionStorage.removeItem('paginator_scroll');
+        }
+        
+        urlParams.delete('restore-scroll');
+        const newUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '') + window.location.hash;
+        window.history.replaceState({}, '', newUrl);
+      }
+
+      
+      document.querySelectorAll('a[href*="restore-scroll=true"]').forEach(link => {
+        link.addEventListener('click', function() {
+          sessionStorage.setItem('paginator_scroll', window.scrollY);
+        });
+      });
+    })();
+    </script>
 
   </section>
 
