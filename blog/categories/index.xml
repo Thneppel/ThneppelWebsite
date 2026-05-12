@@ -6,20 +6,13 @@
     <description>Recent content in Categories on Thneppel Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Oct 2023 22:11:36 +0700</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
     <atom:link href="https://thneppel.com.br/blog/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Astronomy</title>
-      <link>https://thneppel.com.br/blog/categories/astronomy/</link>
-      <pubDate>Wed, 04 Oct 2023 22:11:36 +0700</pubDate>
-      <guid>https://thneppel.com.br/blog/categories/astronomy/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Space</title>
-      <link>https://thneppel.com.br/blog/categories/space/</link>
-      <pubDate>Sun, 24 Sep 2023 11:15:17 +0700</pubDate>
-      <guid>https://thneppel.com.br/blog/categories/space/</guid>
+      <title>Personal</title>
+      <link>https://thneppel.com.br/blog/categories/personal/</link>
+      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+      <guid>https://thneppel.com.br/blog/categories/personal/</guid>
       <description></description>
     </item>
   </channel>

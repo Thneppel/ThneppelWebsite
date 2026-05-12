@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Thneppel Blog</title>
-    <link>https://thneppel.com.br/blog/posts/</link>
-    <description>Recent content in Posts on Thneppel Blog</description>
+    <title>Gamedev on Thneppel Blog</title>
+    <link>https://thneppel.com.br/blog/tags/gamedev/</link>
+    <description>Recent content in Gamedev on Thneppel Blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
-    <atom:link href="https://thneppel.com.br/blog/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://thneppel.com.br/blog/tags/gamedev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>I Hate Marketing. Unfortunately, I’m Good at It.</title>
       <link>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</link>
