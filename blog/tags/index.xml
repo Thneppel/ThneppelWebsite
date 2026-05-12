@@ -9,6 +9,13 @@
     <lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
     <atom:link href="https://thneppel.com.br/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Audiovisual</title>
+      <link>https://thneppel.com.br/blog/tags/audiovisual/</link>
+      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+      <guid>https://thneppel.com.br/blog/tags/audiovisual/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Career</title>
       <link>https://thneppel.com.br/blog/tags/career/</link>
       <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
@@ -34,6 +41,13 @@
       <link>https://thneppel.com.br/blog/tags/gamedev/</link>
       <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
       <guid>https://thneppel.com.br/blog/tags/gamedev/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Graphic Design</title>
+      <link>https://thneppel.com.br/blog/tags/graphic-design/</link>
+      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+      <guid>https://thneppel.com.br/blog/tags/graphic-design/</guid>
       <description></description>
     </item>
   </channel>
