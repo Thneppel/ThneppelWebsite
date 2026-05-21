@@ -69,7 +69,59 @@
 
     <section class="prose">
       
-      <p>This Privacy Policy explains how personal data is collected and used on this personal portfolio website, operated by a Brazilian individual and governed by Brazilian law.</p>
+    </section>
+
+    
+<button
+  id="floating-toggle"
+  class="md:hidden fixed bottom-5 right-5 z-[9999] glass-button text-white flex items-center justify-center"
+  aria-label="Abrir comentário"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="35"
+    height="35"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="white"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M15.5 8.5H15.51M10.5 7.5H10.51M7.5 11.5H7.51M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 13.6569 19.6569 15 18 15H17.4C17.0284 15 16.8426 15 16.6871 15.0246C15.8313 15.1602 15.1602 15.8313 15.0246 16.6871C15 16.8426 15 17.0284 15 17.4V18C15 19.6569 13.6569 21 12 21ZM16 8.5C16 8.77614 15.7761 9 15.5 9C15.2239 9 15 8.77614 15 8.5C15 8.22386 15.2239 8 15.5 8C15.7761 8 16 8.22386 16 8.5ZM11 7.5C11 7.77614 10.7761 8 10.5 8C10.2239 8 10 7.77614 10 7.5C10 7.22386 10.2239 7 10.5 7C10.7761 7 11 7.22386 11 7.5ZM8 11.5C8 11.7761 7.77614 12 7.5 12C7.22386 12 7 11.7761 7 11.5C7 11.2239 7.22386 11 7.5 11C7.77614 11 8 11.2239 8 11.5Z"></path>
+  </svg>
+</button>
+
+
+<div
+  id="floating-comment"
+  class="fixed z-50 w-[90vw] md:w-[420px] select-none pointer-events-none"
+  style="
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+  "
+>
+
+  <div class="glass-card text-white p-4 antialiased flex shadow-2xl pointer-events-auto">
+
+    <img
+      class="rounded-full h-10 w-10 mr-2 mt-1 flex-shrink-0"
+      src="../images/avatar.png"
+      alt="Avatar"
+    />
+
+    <div class="min-w-0">
+
+      <div class="rounded-3xl px-4 pt-2 pb-2.5">
+
+        <div class="font-semibold text-s leading-relaxed mb-2">
+          Thneppel
+        </div>
+
+        <div class="prose prose-sm prose-invert max-w-none text-gray-200 break-normal">
+          <p>This Privacy Policy explains how personal data is collected and used on this personal portfolio website, operated by a Brazilian individual and governed by Brazilian law.</p>
 <h2 id="1-applicable-law"><strong>1. Applicable Law</strong></h2>
 <p>This website complies with the Brazilian General Data Protection Law, <strong>Lei Geral de Proteção de Dados (LGPD)</strong>.</p>
 <h2 id="2-data-collection"><strong>2. Data Collection</strong></h2>
@@ -92,7 +144,199 @@ If analytics tools are used, they are limited to basic, non-invasive traffic mea
 <h2 id="8-contact"><strong>8. Contact</strong></h2>
 <p>For privacy-related questions or data requests, please contact: <a href="mailto:contact@thneppel.com.br"><strong>contact@thneppel.com.br</strong></a></p>
 
-    </section>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+.glass-card,
+.glass-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 0 20px rgba(255, 255, 255, 0.06);
+
+  overflow: hidden;
+}
+
+.glass-card {
+  border-radius: 28px;
+}
+
+.glass-button {
+  width: 52px;
+  height: 52px;
+  border-radius: 9999px;
+}
+</style>
+
+<script>
+
+const floating = document.getElementById("floating-comment");
+const toggle = document.getElementById("floating-toggle");
+
+const isMobile = window.innerWidth <= 768;
+
+
+
+if (isMobile) {
+
+  let isOpen = false;
+
+  toggle.addEventListener("click", () => {
+
+    isOpen = !isOpen;
+
+    floating.style.display = isOpen ? "flex" : "none";
+    floating.style.transform = "translate(-50%, -50%)";
+
+  });
+
+}
+
+
+
+if (!isMobile) {
+
+  let currentX = window.innerWidth * 0.58;
+  let currentY = window.innerHeight * 0.55;
+
+  let targetX = currentX;
+  let targetY = currentY;
+
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+
+  floating.style.display = "block";
+  floating.style.left = `${currentX}px`;
+  floating.style.top = `${currentY}px`;
+  floating.style.transform = "translate(-50%, -50%)";
+
+  function clamp(value, min, max) {
+    return Math.min(Math.max(value, min), max);
+  }
+
+  
+  
+  
+  function runAway(mouseX, mouseY) {
+
+    if (isDragging) return;
+
+    const rect = floating.getBoundingClientRect();
+
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const dx = centerX - mouseX;
+    const dy = centerY - mouseY;
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    const triggerDistance = 140;
+    if (distance > triggerDistance) return;
+
+    const angle = Math.atan2(dy, dx);
+    const intensity = 1 - (distance / triggerDistance);
+
+    const force = 18 * intensity;
+
+    targetX += Math.cos(angle) * force;
+    targetY += Math.sin(angle) * force;
+
+    const padding = 30;
+
+    targetX = clamp(
+      targetX,
+      rect.width / 2 + padding,
+      window.innerWidth - rect.width / 2 - padding
+    );
+
+    targetY = clamp(
+      targetY,
+      rect.height / 2 + padding,
+      window.innerHeight - rect.height / 2 - padding
+    );
+  }
+
+  
+  
+  
+  function animate() {
+
+    currentX += (targetX - currentX) * 0.12;
+    currentY += (targetY - currentY) * 0.12;
+
+    floating.style.left = `${currentX}px`;
+    floating.style.top = `${currentY}px`;
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  
+  
+  
+  floating.addEventListener("mousedown", (e) => {
+
+    isDragging = true;
+
+    const rect = floating.getBoundingClientRect();
+
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+
+    floating.style.transform = "translate(0, 0)";
+    floating.style.cursor = "grabbing";
+  });
+
+  
+  
+  
+  document.addEventListener("mousemove", (e) => {
+
+    if (isDragging) {
+      currentX = e.clientX - offsetX;
+      currentY = e.clientY - offsetY;
+
+      targetX = currentX;
+      targetY = currentY;
+
+      return;
+    }
+
+    runAway(e.clientX, e.clientY);
+  });
+
+  
+  
+  
+  document.addEventListener("mouseup", () => {
+
+    isDragging = false;
+
+    
+    targetX = currentX;
+    targetY = currentY;
+
+    floating.style.cursor = "grab";
+  });
+}
+
+</script>
 
   </div>
 
