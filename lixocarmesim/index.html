@@ -167,7 +167,7 @@
       id="comment-content"
       class="prose prose-sm prose-invert max-w-none text-gray-200"
     >
-      <p>Stop-motion short film funded by the <strong>Paulo Gustavo Audiovisual Grant (2023)</strong> and produced in 2024 by <strong>Studio Ponta</strong> with the <strong>Fundação Cultural de Balneário Camboriú</strong>, in partnership with the <strong>Ministério da Cultura</strong> and the <strong>Federal Government of Brazil</strong>. I worked on <strong>rig removal, cleanup, and post-production</strong> in <strong>Adobe Photoshop</strong> and <strong>After Effects</strong>, going frame by frame across <strong>4,000+ frames</strong> over <strong>three months</strong>.</p>
+      <p>A little different from the usual stuff, but this was a <strong>stop-motion short film</strong> I worked on in 2024, handling <strong>rig removal, cleanup, and post-production</strong> frame by frame across <strong>4,000+ frames</strong> using <strong>Photoshop</strong> and <strong>After Effects</strong> over the course of about <strong>three months</strong>.</p>
 <p><a href="https://www.youtube.com/watch?v=1LQb3svc-uQ">Click here</a> to watch the film.</p>
 
     </div>
@@ -202,6 +202,19 @@
   height: 52px;
   border-radius: 9999px;
 }
+
+#drag-handle {
+  cursor: grab;
+}
+
+#drag-handle:active {
+  cursor: grabbing;
+}
+
+#drag-handle button,
+#drag-handle a {
+  cursor: pointer;
+}
 </style>
 
 <script>
@@ -221,90 +234,66 @@ const mobilePlus = document.getElementById("mobile-icon-plus");
 
 const isMobile = window.innerWidth <= 768;
 
-let isDragging = false;
-let offsetX = 0;
-let offsetY = 0;
-
-let isMinimized = false;
-
-let currentX = window.innerWidth * 0.84;
-let currentY = window.innerHeight * 0.35;
-
-let targetX = currentX;
-let targetY = currentY;
-
 
 
 if (isMobile) {
-
-  let open = false;
-
-  toggle.addEventListener("click", () => {
-
-    open = !open;
-
-    floating.style.display = open ? "flex" : "none";
-
-    mobilePlus.classList.toggle("hidden", open);
-    mobileMinus.classList.toggle("hidden", !open);
-  });
-
-}
-
-if (isMobile) {
-
   const desktopControls = document.getElementById("desktop-controls");
-
   if (desktopControls) {
     desktopControls.style.display = "none";
   }
 
   let open = false;
-
   toggle.addEventListener("click", () => {
-
     open = !open;
-
     floating.style.display = open ? "flex" : "none";
-
     mobilePlus.classList.toggle("hidden", open);
     mobileMinus.classList.toggle("hidden", !open);
   });
-
 }
 
 
 
 if (!isMobile) {
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+  let isMinimized = false;
 
+  
   floating.style.display = "block";
+
+  const rect = floating.getBoundingClientRect();
+  const padding = 20;
+  let currentX = window.innerWidth - rect.width - padding;
+  let currentY = window.innerHeight - rect.height - padding;
+
   floating.style.left = currentX + "px";
   floating.style.top = currentY + "px";
-  floating.style.transform = "translate(-50%, -50%)";
-
-  function clamp(v,min,max){
-    return Math.min(Math.max(v,min),max);
-  }
+  floating.style.transform = "none";
 
   function setMinimized(state){
-
     isMinimized = state;
 
     if(isMinimized){
-
       content.style.display = "none";
       floating.style.width = "210px";
-
       iconMinus.classList.add("hidden");
       iconPlus.classList.remove("hidden");
 
+      
+      currentX += 210;
+      floating.style.left = currentX + "px";
     } else {
-
       content.style.display = "block";
       floating.style.width = "420px";
-
       iconMinus.classList.remove("hidden");
       iconPlus.classList.add("hidden");
+
+      
+      currentX -= 210;
+      const maxX = window.innerWidth - 420;
+      currentX = Math.min(Math.max(currentX, 0), maxX);
+      floating.style.left = currentX + "px";
     }
   }
 
@@ -313,87 +302,38 @@ if (!isMobile) {
     setMinimized(!isMinimized);
   });
 
-  function runAway(mx,my){
-
-    if (isDragging || isMinimized) return;
-
-    const rect = floating.getBoundingClientRect();
-
-    const cx = rect.left + rect.width/2;
-    const cy = rect.top + rect.height/2;
-
-    const dx = cx - mx;
-    const dy = cy - my;
-
-    const dist = Math.sqrt(dx*dx + dy*dy);
-
-    if(dist > 140) return;
-
-    const force = (1 - dist/140) * 18;
-    const angle = Math.atan2(dy,dx);
-
-    targetX += Math.cos(angle) * force;
-    targetY += Math.sin(angle) * force;
-
-    const pad = 30;
-
-    targetX = clamp(targetX, rect.width/2 + pad, window.innerWidth - rect.width/2 - pad);
-    targetY = clamp(targetY, rect.height/2 + pad, window.innerHeight - rect.height/2 - pad);
-  }
-
-  function animate(){
-
-    if(!isDragging){
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-    }
-
-    floating.style.left = currentX + "px";
-    floating.style.top = currentY + "px";
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
   dragHandle.addEventListener("mousedown",(e)=>{
-
     if(e.target.closest("#toggle-minimize")) return;
 
     isDragging = true;
-
-    const rect = floating.getBoundingClientRect();
-
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-
-    floating.style.transform = "translate(0,0)";
+    const currentRect = floating.getBoundingClientRect();
+    offsetX = e.clientX - currentRect.left;
+    offsetY = e.clientY - currentRect.top;
   });
 
   document.addEventListener("mousemove",(e)=>{
-
     if(isDragging){
+      let newX = e.clientX - offsetX;
+      let newY = e.clientY - offsetY;
 
-      currentX = e.clientX - offsetX;
-      currentY = e.clientY - offsetY;
+      
+      const currentRect = floating.getBoundingClientRect();
+      const maxX = window.innerWidth - currentRect.width;
+      const maxY = window.innerHeight - currentRect.height;
 
-      targetX = currentX;
-      targetY = currentY;
+      newX = Math.min(Math.max(newX, 0), maxX);
+      newY = Math.min(Math.max(newY, 0), maxY);
 
-      return;
+      currentX = newX;
+      currentY = newY;
+      floating.style.left = currentX + "px";
+      floating.style.top = currentY + "px";
     }
-
-    runAway(e.clientX,e.clientY);
   });
 
   document.addEventListener("mouseup",()=>{
-
     isDragging = false;
-
-    targetX = currentX;
-    targetY = currentY;
   });
-
 }
 
 </script>

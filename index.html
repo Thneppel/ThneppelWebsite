@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-	<meta name="generator" content="Hugo 0.161.1">
+	<meta name="generator" content="Hugo 0.162.1">
     <head>
   <meta property="og:title" content="Thneppel">
   <meta property="og:description" content="Creative director focused on high-quality design and video production.">
@@ -161,13 +161,14 @@
       id="comment-content"
       class="prose prose-sm prose-invert max-w-none text-gray-200"
     >
-          <p>
-      I work with <strong>direction, audiovisual production, and video editing</strong>, focusing on <strong>storytelling and visual identity</strong> across different types of projects. My workflow combines production and post-production using <strong>Adobe Premiere Pro</strong> and <strong>After Effects</strong>.
-    </p>
+      <p>
+  Hey, welcome to my creative cave... I work with <strong>direction, audiovisual production, design, and video editing</strong>, usually mixing <strong>storytelling, visual identity, and cinematic aesthetics</strong> across all kinds of projects using <strong>Premiere Pro</strong>, <strong>After Effects</strong>, and whatever else helps bring the idea to life.
+</p>
 
-    <p>
-      Feel free to take a look at my projects.
-    </p>
+<p>
+  Feel free to explore the projects around here.
+</p>
+
     </div>
 
   </div>
@@ -200,6 +201,19 @@
   height: 52px;
   border-radius: 9999px;
 }
+
+#drag-handle {
+  cursor: grab;
+}
+
+#drag-handle:active {
+  cursor: grabbing;
+}
+
+#drag-handle button,
+#drag-handle a {
+  cursor: pointer;
+}
 </style>
 
 <script>
@@ -219,90 +233,66 @@ const mobilePlus = document.getElementById("mobile-icon-plus");
 
 const isMobile = window.innerWidth <= 768;
 
-let isDragging = false;
-let offsetX = 0;
-let offsetY = 0;
-
-let isMinimized = false;
-
-let currentX = window.innerWidth * 0.15;
-let currentY = window.innerHeight * 0.72;
-
-let targetX = currentX;
-let targetY = currentY;
-
 
 
 if (isMobile) {
-
-  let open = false;
-
-  toggle.addEventListener("click", () => {
-
-    open = !open;
-
-    floating.style.display = open ? "flex" : "none";
-
-    mobilePlus.classList.toggle("hidden", open);
-    mobileMinus.classList.toggle("hidden", !open);
-  });
-
-}
-
-if (isMobile) {
-
   const desktopControls = document.getElementById("desktop-controls");
-
   if (desktopControls) {
     desktopControls.style.display = "none";
   }
 
   let open = false;
-
   toggle.addEventListener("click", () => {
-
     open = !open;
-
     floating.style.display = open ? "flex" : "none";
-
     mobilePlus.classList.toggle("hidden", open);
     mobileMinus.classList.toggle("hidden", !open);
   });
-
 }
 
 
 
 if (!isMobile) {
+  let isDragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+  let isMinimized = false;
 
+  
   floating.style.display = "block";
+
+  const rect = floating.getBoundingClientRect();
+  const padding = 20;
+  let currentX = window.innerWidth - rect.width - padding;
+  let currentY = window.innerHeight - rect.height - padding;
+
   floating.style.left = currentX + "px";
   floating.style.top = currentY + "px";
-  floating.style.transform = "translate(-50%, -50%)";
-
-  function clamp(v,min,max){
-    return Math.min(Math.max(v,min),max);
-  }
+  floating.style.transform = "none";
 
   function setMinimized(state){
-
     isMinimized = state;
 
     if(isMinimized){
-
       content.style.display = "none";
       floating.style.width = "210px";
-
       iconMinus.classList.add("hidden");
       iconPlus.classList.remove("hidden");
 
+      
+      currentX += 210;
+      floating.style.left = currentX + "px";
     } else {
-
       content.style.display = "block";
       floating.style.width = "420px";
-
       iconMinus.classList.remove("hidden");
       iconPlus.classList.add("hidden");
+
+      
+      currentX -= 210;
+      const maxX = window.innerWidth - 420;
+      currentX = Math.min(Math.max(currentX, 0), maxX);
+      floating.style.left = currentX + "px";
     }
   }
 
@@ -311,87 +301,38 @@ if (!isMobile) {
     setMinimized(!isMinimized);
   });
 
-  function runAway(mx,my){
-
-    if (isDragging || isMinimized) return;
-
-    const rect = floating.getBoundingClientRect();
-
-    const cx = rect.left + rect.width/2;
-    const cy = rect.top + rect.height/2;
-
-    const dx = cx - mx;
-    const dy = cy - my;
-
-    const dist = Math.sqrt(dx*dx + dy*dy);
-
-    if(dist > 140) return;
-
-    const force = (1 - dist/140) * 18;
-    const angle = Math.atan2(dy,dx);
-
-    targetX += Math.cos(angle) * force;
-    targetY += Math.sin(angle) * force;
-
-    const pad = 30;
-
-    targetX = clamp(targetX, rect.width/2 + pad, window.innerWidth - rect.width/2 - pad);
-    targetY = clamp(targetY, rect.height/2 + pad, window.innerHeight - rect.height/2 - pad);
-  }
-
-  function animate(){
-
-    if(!isDragging){
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
-    }
-
-    floating.style.left = currentX + "px";
-    floating.style.top = currentY + "px";
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
   dragHandle.addEventListener("mousedown",(e)=>{
-
     if(e.target.closest("#toggle-minimize")) return;
 
     isDragging = true;
-
-    const rect = floating.getBoundingClientRect();
-
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-
-    floating.style.transform = "translate(0,0)";
+    const currentRect = floating.getBoundingClientRect();
+    offsetX = e.clientX - currentRect.left;
+    offsetY = e.clientY - currentRect.top;
   });
 
   document.addEventListener("mousemove",(e)=>{
-
     if(isDragging){
+      let newX = e.clientX - offsetX;
+      let newY = e.clientY - offsetY;
 
-      currentX = e.clientX - offsetX;
-      currentY = e.clientY - offsetY;
+      
+      const currentRect = floating.getBoundingClientRect();
+      const maxX = window.innerWidth - currentRect.width;
+      const maxY = window.innerHeight - currentRect.height;
 
-      targetX = currentX;
-      targetY = currentY;
+      newX = Math.min(Math.max(newX, 0), maxX);
+      newY = Math.min(Math.max(newY, 0), maxY);
 
-      return;
+      currentX = newX;
+      currentY = newY;
+      floating.style.left = currentX + "px";
+      floating.style.top = currentY + "px";
     }
-
-    runAway(e.clientX,e.clientY);
   });
 
   document.addEventListener("mouseup",()=>{
-
     isDragging = false;
-
-    targetX = currentX;
-    targetY = currentY;
   });
-
 }
 
 </script>
@@ -400,6 +341,32 @@ if (!isMobile) {
 
 
   <div class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4">
+    
+      
+        
+
+        
+          
+          
+            
+            
+          
+        
+
+        <div class="break-inside-avoid mb-4 rounded overflow-hidden shadow hover:shadow-md transition">
+          <a href="./artdirection/" class="relative block group">
+            
+              <img src="./artdirection/undertech_hu_595bba7fe9fed8ac.png" class="w-full h-auto object-cover" alt="Art Direction | Design">
+            
+
+            <div class="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/60 to-transparent p-3">
+              <h2 class="text-white text-lg font-semibold drop-shadow-sm group-hover:underline">
+                Art Direction | Design
+              </h2>
+            </div>
+          </a>
+        </div>
+      
     
       
         

@@ -1,61 +1,66 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Thneppel Blog</title>
-    <link>https://thneppel.com.br/blog/tags/</link>
-    <description>Recent content in Tags on Thneppel Blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
-    <atom:link href="https://thneppel.com.br/blog/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Audiovisual</title>
-      <link>https://thneppel.com.br/blog/tags/audiovisual/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/audiovisual/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Blogging</title>
-      <link>https://thneppel.com.br/blog/tags/blogging/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/blogging/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Career</title>
-      <link>https://thneppel.com.br/blog/tags/career/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/career/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Creativity</title>
-      <link>https://thneppel.com.br/blog/tags/creativity/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/creativity/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Freelancing</title>
-      <link>https://thneppel.com.br/blog/tags/freelancing/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/freelancing/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gamedev</title>
-      <link>https://thneppel.com.br/blog/tags/gamedev/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Graphic Design</title>
-      <link>https://thneppel.com.br/blog/tags/graphic-design/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/tags/graphic-design/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Tags on Thneppel Blog</title>
+		<link>https://thneppel.com.br/blog/tags/</link>
+		<description>Recent content in Tags on Thneppel Blog</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
+		
+			<atom:link href="https://thneppel.com.br/blog/tags/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Audiovisual</title>
+				<link>https://thneppel.com.br/blog/tags/audiovisual/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/audiovisual/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Blogging</title>
+				<link>https://thneppel.com.br/blog/tags/blogging/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/blogging/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Career</title>
+				<link>https://thneppel.com.br/blog/tags/career/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/career/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Creativity</title>
+				<link>https://thneppel.com.br/blog/tags/creativity/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/creativity/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Freelancing</title>
+				<link>https://thneppel.com.br/blog/tags/freelancing/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/freelancing/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Gamedev</title>
+				<link>https://thneppel.com.br/blog/tags/gamedev/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/gamedev/</guid>
+				<description></description>
+			</item>
+			<item>
+				<title>Graphic Design</title>
+				<link>https://thneppel.com.br/blog/tags/graphic-design/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/tags/graphic-design/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>

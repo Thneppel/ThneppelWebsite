@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on Thneppel Blog</title>
-    <link>https://thneppel.com.br/blog/categories/</link>
-    <description>Recent content in Categories on Thneppel Blog</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
-    <atom:link href="https://thneppel.com.br/blog/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Personal</title>
-      <link>https://thneppel.com.br/blog/categories/personal/</link>
-      <pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-      <guid>https://thneppel.com.br/blog/categories/personal/</guid>
-      <description></description>
-    </item>
-  </channel>
+	<channel>
+		<title>Categories on Thneppel Blog</title>
+		<link>https://thneppel.com.br/blog/categories/</link>
+		<description>Recent content in Categories on Thneppel Blog</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 11 May 2026 13:54:11 -0300</lastBuildDate>
+		
+			<atom:link href="https://thneppel.com.br/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Personal</title>
+				<link>https://thneppel.com.br/blog/categories/personal/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/categories/personal/</guid>
+				<description></description>
+			</item>
+	</channel>
 </rss>
