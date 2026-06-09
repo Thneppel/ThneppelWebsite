@@ -666,7 +666,15 @@ if (!isMobile) {
     lightGallery(lgElement, {
       selector: 'a',
       plugins: [lgVideo, lgZoom],
-      download: false
+      download: false,
+      youTubePlayerParams: {
+        mute: 0,
+        autoplay: 1
+      },
+      vimeoPlayerParams: {
+        muted: 0,
+        autoplay: 1
+      }
     });
   }
 </script>
