@@ -14,6 +14,13 @@
 		
 			<atom:link href="https://thneppel.com.br/index.xml" rel="self" type="application/rss+xml" />
 			<item>
+				<title>Matka Studios</title>
+				<link>https://thneppel.com.br/matkastudios/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://thneppel.com.br/matkastudios/</guid>
+				<description>&lt;p&gt;Oh, and this part is more from my &lt;strong&gt;game development/content production side&lt;/strong&gt;&amp;hellip; I’m currently producing and directing videos for the &lt;strong&gt;Matka Studios&lt;/strong&gt; channel, a project focused on &lt;strong&gt;game development, creative experimentation, and the behind-the-scenes process&lt;/strong&gt; of building games and a studio from the ground up.&lt;/p&gt;&#xA;&lt;p&gt;This portfolio section showcases the audiovisual content, editing, creative direction, and production workflows developed for the channel, combining &lt;strong&gt;cinematic storytelling, marketing, and game industry communication&lt;/strong&gt; into a single ongoing project.&lt;/p&gt;</description>
+			</item>
+			<item>
 				<title>Cronic Digital</title>
 				<link>https://thneppel.com.br/cronicdigital/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
