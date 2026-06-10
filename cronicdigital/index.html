@@ -20,8 +20,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cronic Digital</title>
 
-  <link rel="preload stylesheet" type="text/css" href="../lightgallery-bundle.min.css">
-  <script src="../tailwind.js"></script>
+  <link rel="preload stylesheet" type="text/css" href="/lightgallery-bundle.min.css">
+  <script src="/tailwind.js"></script>
 </head>
 
   </head>
@@ -47,24 +47,24 @@
         </button>
         <div class="relative py-1.5 px-6 text-3xl font-bold tracking-wider uppercase mx-2 font-[calamity] font-calamity">
           
-            <h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="../">Thneppel</a></h2>
+            <h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="/">Thneppel</a></h2>
           
         </div>
       </div>
     </div>
   <nav id="menu-bar" class="block mt-3 close">
     <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4"><li class="my-2">
-        <a href="../"
+        <a href="/"
            class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold"
            >
           Portfolio
         </a>
       </li>
     <li class="my-2">
-      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="../blog/">Blog</a>
+      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="/blog/">Blog</a>
     </li>
     <li class="my-2">
-      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="../blog/about">About</a>
+      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="/blog/about">About</a>
     </li>
     </ul>
   </nav>
@@ -77,6 +77,9 @@
   }
   .open {
     display: block !important;
+  }
+  .lg-sub-html {
+    display: none !important;
   }
 </style>
 
@@ -132,10 +135,13 @@
     
 
 <main class="max-w-7xl mx-auto px-4 py-8 flex-1">
-  <h1 class="text-3xl font-bold mb-4">Cronic Digital</h1>
+  <div class="flex flex-wrap items-center gap-4 mb-4">
+    <h1 class="text-3xl font-bold leading-none">Cronic Digital</h1>
+    
+  </div>
   
 <nav class="text-sm text-gray-500 mb-4 space-x-1">
-  <a href="../" class="hover:underline">Home</a>
+  <a href="/" class="hover:underline">Home</a>
   
   
     
@@ -143,7 +149,7 @@
     
       
       /
-      <a href="../cronicdigital" class="hover:underline capitalize">cronicdigital</a>
+      <a href="/cronicdigital" class="hover:underline capitalize">cronicdigital</a>
     
   
     
@@ -212,7 +218,7 @@
     <div class="flex items-center justify-between mb-3 pt-2">
 
       <div class="flex items-center gap-2">
-        <img class="rounded-full h-10 w-10" src="../images/avatar.png" />
+        <img class="rounded-full h-10 w-10" src="/images/avatar.png" />
         <div class="font-semibold text-sm">Thneppel</div>
       </div>
 
@@ -640,16 +646,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Syngoo | Quem atende mais, vende mais (Campanha Criativa)">
 
               
               
                 
                 <a href="https://youtu.be/--zrQkytGm4?si=4t_2q-txxdSvYI3z"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Syngoo – Quem atende mais, vende mais (Campanha Criativa)">
-                  <img src="../cronicdigital/Syngoo%20Quem%20atende%20mais,%20vende%20mais%20-%20Campanha%20Criativa%20Syngoo.Talk_hu_2ad3cdc3b1db5592.jpg"
+                  >
+                  <img src="/cronicdigital/Syngoo%20Quem%20atende%20mais,%20vende%20mais%20-%20Campanha%20Criativa%20Syngoo.Talk_hu_2ad3cdc3b1db5592.jpg"
                       class="w-full h-auto object-cover"
                       alt="Syngoo Quem atende mais, vende mais - Campanha Criativa Syngoo.Talk.jpg"
                       loading="lazy">
@@ -665,16 +674,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Sua Festa Começa Aqui | Vídeo Campanha">
 
               
               
                 
                 <a href="https://youtu.be/fOB79rhk4oM?si=kB4uTQAanfUcJbAO"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Sua Festa Começa Aqui – Vídeo Campanha">
-                  <img src="../cronicdigital/Sua%20Festa%20Come%C3%A7a%20Aqui%20V%C3%ADdeo%20Campanha_hu_b167176da42f9ba.jpg"
+                  >
+                  <img src="/cronicdigital/Sua%20Festa%20Come%C3%A7a%20Aqui%20V%C3%ADdeo%20Campanha_hu_b167176da42f9ba.jpg"
                       class="w-full h-auto object-cover"
                       alt="Sua Festa Começa Aqui Vídeo Campanha.jpg"
                       loading="lazy">
@@ -690,16 +702,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Fazenda Garden | RV Empreendimentos (Teaser)">
 
               
               
                 
                 <a href="https://youtu.be/vbmZUozFLXM?si=O7hV30nkxnIUnE7i"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Fazenda Garden – RV Empreendimentos (Teaser)">
-                  <img src="../cronicdigital/Fazenda%20Garden%20Rv%20Empreendimentos%20Teaser_hu_6840954a50471d3c.jpg"
+                  >
+                  <img src="/cronicdigital/Fazenda%20Garden%20Rv%20Empreendimentos%20Teaser_hu_6840954a50471d3c.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fazenda Garden Rv Empreendimentos Teaser.jpg"
                       loading="lazy">
@@ -715,16 +730,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Imagina se ele fosse mais rápido | Campanha Syngoo.Talk">
 
               
               
                 
                 <a href="https://youtu.be/dAFoFYUj7PI?si=xdmKF5I_UueUA75S"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Imagina se ele fosse mais rápido – Campanha Syngoo.Talk">
-                  <img src="../cronicdigital/Imagina%20se%20ele%20fosse%20mais%20r%C3%A1pido%20V%C3%ADdeo%20Campanha%20Syngoo.Talk_hu_e364c9046b472d9e.jpg"
+                  >
+                  <img src="/cronicdigital/Imagina%20se%20ele%20fosse%20mais%20r%C3%A1pido%20V%C3%ADdeo%20Campanha%20Syngoo.Talk_hu_e364c9046b472d9e.jpg"
                       class="w-full h-auto object-cover"
                       alt="Imagina se ele fosse mais rápido Vídeo Campanha Syngoo.Talk.jpg"
                       loading="lazy">
@@ -740,16 +758,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Produções Originais | Showreel">
 
               
               
                 
                 <a href="https://youtu.be/joGv96QevpU?si=39nwKJfJg63tcRsY"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Produções Originais – Showreel">
-                  <img src="../cronicdigital/Produ%C3%A7%C3%B5es%20Originais%20Show%20Reel_hu_1be942daa32c70a3.jpg"
+                  >
+                  <img src="/cronicdigital/Produ%C3%A7%C3%B5es%20Originais%20Show%20Reel_hu_1be942daa32c70a3.jpg"
                       class="w-full h-auto object-cover"
                       alt="Produções Originais Show Reel.jpg"
                       loading="lazy">
@@ -765,16 +786,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="O que é ser fora da curva | Campanha Mendes Construtora">
 
               
               
                 
                 <a href="https://youtu.be/Hdy1avtpWOo?si=GOqnnFaaIq5WnZuz"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="O que é ser fora da curva – Campanha Mendes Construtora">
-                  <img src="../cronicdigital/O%20que%20%C3%A9%20ser%20fora%20da%20curva%20V%C3%ADdeo%20Campanha%20Mendes%20Construtora_hu_4e307685c3d29719.jpg"
+                  >
+                  <img src="/cronicdigital/O%20que%20%C3%A9%20ser%20fora%20da%20curva%20V%C3%ADdeo%20Campanha%20Mendes%20Construtora_hu_4e307685c3d29719.jpg"
                       class="w-full h-auto object-cover"
                       alt="O que é ser fora da curva Vídeo Campanha Mendes Construtora.jpg"
                       loading="lazy">
@@ -790,16 +814,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Balneário Camboriú Nossa Origem">
 
               
               
                 
                 <a href="https://youtu.be/7u9W9BhOX8k?si=Y7MhK0jCYjxnCv_F"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Balneário Camboriú Nossa Origem">
-                  <img src="../cronicdigital/Balne%C3%A1rio%20Cambori%C3%BA%20Nossa%20Origem_hu_e2bce6991a31c361.jpg"
+                  >
+                  <img src="/cronicdigital/Balne%C3%A1rio%20Cambori%C3%BA%20Nossa%20Origem_hu_e2bce6991a31c361.jpg"
                       class="w-full h-auto object-cover"
                       alt="Balneário Camboriú Nossa Origem.jpg"
                       loading="lazy">
@@ -815,16 +842,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Brava Mundo, o hotel boutique da Praia Brava, Itajaí">
 
               
               
                 
                 <a href="https://youtu.be/s172az4nzTc?si=cAwwogaudaS_WDwc"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Brava Mundo, o hotel boutique da Praia Brava, Itajaí">
-                  <img src="../cronicdigital/Brava%20Mundo,%20o%20hotel%20boutique%20da%20Praia%20Brava,%20Itaja%C3%AD%20%20V%C3%ADdeo%20institucional%20feito%20pela%20Cronic%20Digital_hu_9c9537ca9a084edf.jpg"
+                  >
+                  <img src="/cronicdigital/Brava%20Mundo,%20o%20hotel%20boutique%20da%20Praia%20Brava,%20Itaja%C3%AD%20%20V%C3%ADdeo%20institucional%20feito%20pela%20Cronic%20Digital_hu_9c9537ca9a084edf.jpg"
                       class="w-full h-auto object-cover"
                       alt="Brava Mundo, o hotel boutique da Praia Brava, Itajaí  Vídeo institucional feito pela Cronic Digital.jpg"
                       loading="lazy">
@@ -840,16 +870,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Casinhas João e Maria | A maior fábrica de casinhas de boneca do Brasil">
 
               
               
                 
                 <a href="https://youtu.be/H6zZdlfBRHw?si=Bf4BEzoszV5eIpeF"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Casinhas João e Maria – A maior fábrica de casinhas de boneca do Brasil">
-                  <img src="../cronicdigital/Casinhas%20Jo%C3%A3o%20e%20Maria%20%20A%20maior%20f%C3%A1brica%20de%20casinhas%20de%20boneca%20do%20Brasil_hu_ea24457f92ac32af.jpg"
+                  >
+                  <img src="/cronicdigital/Casinhas%20Jo%C3%A3o%20e%20Maria%20%20A%20maior%20f%C3%A1brica%20de%20casinhas%20de%20boneca%20do%20Brasil_hu_ea24457f92ac32af.jpg"
                       class="w-full h-auto object-cover"
                       alt="Casinhas João e Maria  A maior fábrica de casinhas de boneca do Brasil.jpg"
                       loading="lazy">
@@ -865,16 +898,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Casinhas João e Maria | Campanha de Natal">
 
               
               
                 
                 <a href="https://youtu.be/WDQCvpedW-A?si=3LjYsIjGfacMAZiK"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Casinhas João e Maria – Campanha de Natal">
-                  <img src="../cronicdigital/Casinhas%20Jo%C3%A3o%20e%20Maria%20Campanha%20de%20Natal_hu_3d5461012c078fd9.jpg"
+                  >
+                  <img src="/cronicdigital/Casinhas%20Jo%C3%A3o%20e%20Maria%20Campanha%20de%20Natal_hu_3d5461012c078fd9.jpg"
                       class="w-full h-auto object-cover"
                       alt="Casinhas João e Maria Campanha de Natal.jpg"
                       loading="lazy">
@@ -890,16 +926,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Casinhas João e Maria | Como são montadas as casinhas da maior fábrica do Brasil">
 
               
               
                 
                 <a href="https://youtu.be/p82hzCLwHJ0?si=YtTsKG2eyHydzh8m"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Casinhas João e Maria – Como são montadas as casinhas da maior fábrica do Brasil">
-                  <img src="../cronicdigital/Casinhas%20Jo%C3%A3o%20e%20Maria%20Como%20s%C3%A3o%20montadas%20as%20casinhas%20da%20maior%20f%C3%A1brica%20do%20Brasil_hu_5a0e9079813a7a25.jpg"
+                  >
+                  <img src="/cronicdigital/Casinhas%20Jo%C3%A3o%20e%20Maria%20Como%20s%C3%A3o%20montadas%20as%20casinhas%20da%20maior%20f%C3%A1brica%20do%20Brasil_hu_5a0e9079813a7a25.jpg"
                       class="w-full h-auto object-cover"
                       alt="Casinhas João e Maria Como são montadas as casinhas da maior fábrica do Brasil.jpg"
                       loading="lazy">
@@ -915,16 +954,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Crialed | Soluções Visuais Digitais">
 
               
               
                 
                 <a href="https://youtu.be/1-oyIqY4JtE?si=PbGGlWBRIVre3puH"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Crialed – Soluções Visuais Digitais">
-                  <img src="../cronicdigital/Crialed;%20Solu%C3%A7%C3%B5es%20Visuais%20Digitais%20V%C3%ADdeo%20Institucional_hu_e24c819531ac7841.jpg"
+                  >
+                  <img src="/cronicdigital/Crialed;%20Solu%C3%A7%C3%B5es%20Visuais%20Digitais%20V%C3%ADdeo%20Institucional_hu_e24c819531ac7841.jpg"
                       class="w-full h-auto object-cover"
                       alt="Crialed; Soluções Visuais Digitais Vídeo Institucional.jpg"
                       loading="lazy">
@@ -940,16 +982,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Inpol Polímeros | Soluções simples para problemas complexos">
 
               
               
                 
                 <a href="https://youtu.be/o75c0T3-qXk?si=hpL-rP5CKav74JnM"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Inpol Polímeros – Soluções simples para problemas complexos">
-                  <img src="../cronicdigital/Inpol%20Pol%C3%ADmeros%20Solu%C3%A7%C3%B5es%20simples%20para%20problemas%20complexos%20-%20V%C3%ADdeo%20Institucional_hu_24b75753447a687a.jpg"
+                  >
+                  <img src="/cronicdigital/Inpol%20Pol%C3%ADmeros%20Solu%C3%A7%C3%B5es%20simples%20para%20problemas%20complexos%20-%20V%C3%ADdeo%20Institucional_hu_24b75753447a687a.jpg"
                       class="w-full h-auto object-cover"
                       alt="Inpol Polímeros Soluções simples para problemas complexos - Vídeo Institucional.jpg"
                       loading="lazy">
@@ -965,16 +1010,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Mendes Empreendimentos | Vídeo Institucional">
 
               
               
                 
                 <a href="https://youtu.be/36T6rXDQT1w?si=B9lGMpY2HkjLviui"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Mendes Empreendimentos – Vídeo Institucional">
-                  <img src="../cronicdigital/Mendes%20Empreendimentos%20V%C3%ADdeo%20Institucional_hu_50f5f92a9503ae86.jpg"
+                  >
+                  <img src="/cronicdigital/Mendes%20Empreendimentos%20V%C3%ADdeo%20Institucional_hu_50f5f92a9503ae86.jpg"
                       class="w-full h-auto object-cover"
                       alt="Mendes Empreendimentos Vídeo Institucional.jpg"
                       loading="lazy">
@@ -990,16 +1038,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Meschke Atacadista | Barato Pra Você">
 
               
               
                 
                 <a href="https://youtu.be/RqUKEUSgL5w?si=eyJCWvsBjK0_XNSd"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Meschke Atacadista – Barato Pra Você">
-                  <img src="../cronicdigital/Meschke%20Atacadista%20Barato%20Pra%20Voc%C3%AA_hu_9484e08f13f00bdb.jpg"
+                  >
+                  <img src="/cronicdigital/Meschke%20Atacadista%20Barato%20Pra%20Voc%C3%AA_hu_9484e08f13f00bdb.jpg"
                       class="w-full h-auto object-cover"
                       alt="Meschke Atacadista Barato Pra Você.jpg"
                       loading="lazy">
@@ -1015,16 +1066,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Miami Imports | Institucional">
 
               
               
                 
                 <a href="https://youtu.be/3gTpjj0-hCk?si=D8WWH5FCGFnyCuJX"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="Miami Imports – Institucional">
-                  <img src="../cronicdigital/Miami%20Imports%20Institucional_hu_240aa1ce3667e7e3.jpg"
+                  >
+                  <img src="/cronicdigital/Miami%20Imports%20Institucional_hu_240aa1ce3667e7e3.jpg"
                       class="w-full h-auto object-cover"
                       alt="Miami Imports Institucional.jpg"
                       loading="lazy">
@@ -1040,16 +1094,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="RV Empreendimentos | Vídeo Institucional">
 
               
               
                 
                 <a href="https://youtu.be/NHvsQtjKuLw?si=o31F9vmTusCHS8PK"
                   class="block rounded overflow-hidden"
-                  data-lg-size="1280-720"
-                  data-sub-html="RV Empreendimentos – Vídeo Institucional">
-                  <img src="../cronicdigital/RV%20Empreendimentos%20V%C3%ADdeo%20Institucional_hu_1108fbd486e40bd5.jpg"
+                  >
+                  <img src="/cronicdigital/RV%20Empreendimentos%20V%C3%ADdeo%20Institucional_hu_1108fbd486e40bd5.jpg"
                       class="w-full h-auto object-cover"
                       alt="RV Empreendimentos Vídeo Institucional.jpg"
                       loading="lazy">
@@ -1062,6 +1119,80 @@ if (!isMobile) {
       
     </div>
   
+  
+  <div id="gallery-tooltip" class="glass-tooltip"></div>
+
+  <style>
+  .glass-tooltip {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    max-width: 260px;
+    pointer-events: none;
+    position: fixed;
+    z-index: 99999;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.2s ease;
+  }
+  </style>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tooltip = document.getElementById("gallery-tooltip");
+    const cards = document.querySelectorAll(".gallery-card");
+
+    if (!tooltip) return;
+
+    cards.forEach(card => {
+      card.addEventListener("mouseenter", (e) => {
+        const title = card.getAttribute("data-title");
+        if (!title) return;
+        tooltip.textContent = title;
+        tooltip.style.display = "block";
+        tooltip.offsetHeight; 
+        tooltip.style.opacity = "1";
+      });
+
+      card.addEventListener("mousemove", (e) => {
+        const tooltipWidth = tooltip.offsetWidth;
+        const tooltipHeight = tooltip.offsetHeight;
+        
+        let x = e.clientX + 15;
+        let y = e.clientY + 15;
+        
+        if (x + tooltipWidth > window.innerWidth) {
+          x = e.clientX - tooltipWidth - 10;
+        }
+        if (y + tooltipHeight > window.innerHeight) {
+          y = e.clientY - tooltipHeight - 10;
+        }
+
+        tooltip.style.left = x + "px";
+        tooltip.style.top = y + "px";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = "0";
+        
+        const onTransitionEnd = () => {
+          if (tooltip.style.opacity === "0") {
+            tooltip.style.display = "none";
+          }
+          tooltip.removeEventListener("transitionend", onTransitionEnd);
+        };
+        tooltip.addEventListener("transitionend", onTransitionEnd);
+      });
+    });
+  });
+  </script>
 </main>
 
 
@@ -1073,7 +1204,7 @@ if (!isMobile) {
 
       <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
 
-        <a class="flex items-center group gap-2" href="../">
+        <a class="flex items-center group gap-2" href="/">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 683.6 348.1" class="w-8 h-8 fill-stone-500 group-hover:fill-white transition-colors duration-200">
             <polygon points="148.8 243.9 148.8 348.1 251.6 245.3 199.5 193.2 148.8 243.9"/>
             <polygon points="535.1 104.2 535.1 0 432.2 102.9 484.3 155 535.1 104.2"/>
@@ -1129,11 +1260,11 @@ if (!isMobile) {
 
     <div class="my-8">
       <ul class="flex items-center space-x-4">
-        <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="../">Portfolio</a></li>
+        <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="/">Portfolio</a></li>
         
-          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="../blog/">Blog</a></li>
+          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="/blog/">Blog</a></li>
         
-          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="../blog/about">About</a></li>
+          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="/blog/about">About</a></li>
         
       </ul>
     </div>
@@ -1143,9 +1274,9 @@ if (!isMobile) {
       <p class="text-sm text-stone-600">Copyright © 2026. All rights reserved. <a href="https://Thneppel.com.br/" target="_blank" rel="noopener" class="text-stone-600 hover:text-stone-400 transition">thneppel.com.br</a></p>
 
       <div class="text-sm text-stone-600 flex items-center gap-4">
-        <a href="../privacy-and-policy/" class="hover:text-stone-400 transition">Privacy Policy</a>
+        <a href="/privacy-and-policy/" class="hover:text-stone-400 transition">Privacy Policy</a>
         <span class="text-stone-800">•</span>
-        <a href="../terms-of-use/" class="hover:text-stone-400 transition">Terms of Use</a>
+        <a href="/terms-of-use/" class="hover:text-stone-400 transition">Terms of Use</a>
       </div>
 
     </div>
@@ -1153,17 +1284,36 @@ if (!isMobile) {
   </div>
 </footer>
 
-<script src="../lightgallery.min.js"></script>
-<script src="../lg-video.min.js"></script>
-<script src="../lg-zoom.min.js"></script>
+<script src="/lightgallery.min.js"></script>
+<script src="/lg-video.min.js"></script>
+<script src="/lg-zoom.min.js"></script>
 
 <script>
   const lgElement = document.getElementById("lightgallery");
   if (lgElement) {
     lightGallery(lgElement, {
       selector: 'a',
-      plugins: [lgVideo, lgZoom],
+      plugins: [lgVideo],
       download: false,
+      getCaptionFromTitleOrAlt: false,
+      youTubePlayerParams: {
+        mute: 0,
+        autoplay: 1
+      },
+      vimeoPlayerParams: {
+        muted: 0,
+        autoplay: 1
+      }
+    });
+  }
+
+  const watchBtnElement = document.getElementById("watch-btn-container");
+  if (watchBtnElement) {
+    lightGallery(watchBtnElement, {
+      selector: 'a',
+      plugins: [lgVideo],
+      download: false,
+      getCaptionFromTitleOrAlt: false,
       youTubePlayerParams: {
         mute: 0,
         autoplay: 1

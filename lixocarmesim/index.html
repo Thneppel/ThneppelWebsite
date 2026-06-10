@@ -20,8 +20,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lixo Carmesim</title>
 
-  <link rel="preload stylesheet" type="text/css" href="../lightgallery-bundle.min.css">
-  <script src="../tailwind.js"></script>
+  <link rel="preload stylesheet" type="text/css" href="/lightgallery-bundle.min.css">
+  <script src="/tailwind.js"></script>
 </head>
 
   </head>
@@ -47,24 +47,24 @@
         </button>
         <div class="relative py-1.5 px-6 text-3xl font-bold tracking-wider uppercase mx-2 font-[calamity] font-calamity">
           
-            <h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="../">Thneppel</a></h2>
+            <h2><a class="before:content-[''] before:z-10 before:top-0 before:right-0 before:left-0 before:bottom-0 before:absolute before:pointer-events-auto" href="/">Thneppel</a></h2>
           
         </div>
       </div>
     </div>
   <nav id="menu-bar" class="block mt-3 close">
     <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4"><li class="my-2">
-        <a href="../"
+        <a href="/"
            class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold"
            >
           Portfolio
         </a>
       </li>
     <li class="my-2">
-      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="../blog/">Blog</a>
+      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="/blog/">Blog</a>
     </li>
     <li class="my-2">
-      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="../blog/about">About</a>
+      <a class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold" href="/blog/about">About</a>
     </li>
     </ul>
   </nav>
@@ -77,6 +77,9 @@
   }
   .open {
     display: block !important;
+  }
+  .lg-sub-html {
+    display: none !important;
   }
 </style>
 
@@ -132,10 +135,21 @@
     
 
 <main class="max-w-7xl mx-auto px-4 py-8 flex-1">
-  <h1 class="text-3xl font-bold mb-4">Lixo Carmesim</h1>
+  <div class="flex flex-wrap items-center gap-4 mb-4">
+    <h1 class="text-3xl font-bold leading-none">Lixo Carmesim</h1>
+    
+      <div id="watch-btn-container">
+        <a href="https://www.youtube.com/watch?v=1LQb3svc-uQ" class="flex items-center justify-center w-10 h-10 rounded-full border-2 border-red-600 text-red-600 hover:bg-red-600/10 hover:border-red-500 hover:text-red-500 transition-all duration-200 active:scale-95 shadow-lg shadow-red-600/10" title="Watch Video">
+          <svg class="w-5 h-5 fill-current ml-0.5" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="6 3 20 12 6 21 6 3" />
+          </svg>
+        </a>
+      </div>
+    
+  </div>
   
 <nav class="text-sm text-gray-500 mb-4 space-x-1">
-  <a href="../" class="hover:underline">Home</a>
+  <a href="/" class="hover:underline">Home</a>
   
   
     
@@ -143,7 +157,7 @@
     
       
       /
-      <a href="../lixocarmesim" class="hover:underline capitalize">lixocarmesim</a>
+      <a href="/lixocarmesim" class="hover:underline capitalize">lixocarmesim</a>
     
   
     
@@ -212,7 +226,7 @@
     <div class="flex items-center justify-between mb-3 pt-2">
 
       <div class="flex items-center gap-2">
-        <img class="rounded-full h-10 w-10" src="../images/avatar.png" />
+        <img class="rounded-full h-10 w-10" src="/images/avatar.png" />
         <div class="font-semibold text-sm">Thneppel</div>
       </div>
 
@@ -625,16 +639,19 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+              
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
                 <a href="https://www.youtube.com/watch?v=1LQb3svc-uQ"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Lixo Carmesim">
-                  <img src="../lixocarmesim/0%20Frame_hu_a19ff8e5739ece70.png"
+                  >
+                  <img src="/lixocarmesim/0%20Frame_hu_a19ff8e5739ece70.png"
                       class="w-full h-auto object-cover"
                       alt="0 Frame.png"
                       loading="lazy">
@@ -650,16 +667,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Bottle.jpg"
+                <a href="/lixocarmesim/Bottle.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Bottle.jpg">
-                  <img src="../lixocarmesim/Bottle_hu_b112c010bf00e244.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Bottle_hu_b112c010bf00e244.jpg"
                       class="w-full h-auto object-cover"
                       alt="Bottle.jpg"
                       loading="lazy">
@@ -675,16 +693,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/City.jpg"
+                <a href="/lixocarmesim/City.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="City.jpg">
-                  <img src="../lixocarmesim/City_hu_5c7a49cf3a2a1b3.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/City_hu_5c7a49cf3a2a1b3.jpg"
                       class="w-full h-auto object-cover"
                       alt="City.jpg"
                       loading="lazy">
@@ -700,16 +719,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Dead%20Kid.jpg"
+                <a href="/lixocarmesim/Dead%20Kid.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Dead Kid.jpg">
-                  <img src="../lixocarmesim/Dead%20Kid_hu_55244557dd293192.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Dead%20Kid_hu_55244557dd293192.jpg"
                       class="w-full h-auto object-cover"
                       alt="Dead Kid.jpg"
                       loading="lazy">
@@ -725,16 +745,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20Chilling.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20Chilling.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man Chilling.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20Chilling_hu_6ec45e14d5d963c.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20Chilling_hu_6ec45e14d5d963c.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man Chilling.jpg"
                       loading="lazy">
@@ -750,16 +771,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20Dancing%20Again.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20Dancing%20Again.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man Dancing Again.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20Dancing%20Again_hu_73c70d486b455e9f.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20Dancing%20Again_hu_73c70d486b455e9f.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man Dancing Again.jpg"
                       loading="lazy">
@@ -775,16 +797,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20Dancing.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20Dancing.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man Dancing.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20Dancing_hu_c4fa2deac0318b4d.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20Dancing_hu_c4fa2deac0318b4d.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man Dancing.jpg"
                       loading="lazy">
@@ -800,16 +823,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20Laydown.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20Laydown.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man Laydown.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20Laydown_hu_42e2ad19530b1b9d.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20Laydown_hu_42e2ad19530b1b9d.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man Laydown.jpg"
                       loading="lazy">
@@ -825,16 +849,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20Screaming.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20Screaming.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man Screaming.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20Screaming_hu_f28c59a9e730abd0.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20Screaming_hu_f28c59a9e730abd0.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man Screaming.jpg"
                       loading="lazy">
@@ -850,16 +875,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20Sitting.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20Sitting.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man Sitting.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20Sitting_hu_8746033021c30f53.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20Sitting_hu_8746033021c30f53.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man Sitting.jpg"
                       loading="lazy">
@@ -875,16 +901,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%20With%20Bottle.jpg"
+                <a href="/lixocarmesim/Fat%20Man%20With%20Bottle.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man With Bottle.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%20With%20Bottle_hu_28afa67df4e72bc9.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%20With%20Bottle_hu_28afa67df4e72bc9.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man With Bottle.jpg"
                       loading="lazy">
@@ -900,16 +927,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Fat%20Man%27s%20Hand.jpg"
+                <a href="/lixocarmesim/Fat%20Man%27s%20Hand.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Fat Man&#39;s Hand.jpg">
-                  <img src="../lixocarmesim/Fat%20Man%27s%20Hand_hu_79aee3d06ff6457.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Fat%20Man%27s%20Hand_hu_79aee3d06ff6457.jpg"
                       class="w-full h-auto object-cover"
                       alt="Fat Man&#39;s Hand.jpg"
                       loading="lazy">
@@ -925,16 +953,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/General.jpg"
+                <a href="/lixocarmesim/General.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="General.jpg">
-                  <img src="../lixocarmesim/General_hu_e16bf6cc3b0675af.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/General_hu_e16bf6cc3b0675af.jpg"
                       class="w-full h-auto object-cover"
                       alt="General.jpg"
                       loading="lazy">
@@ -950,16 +979,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Glass%20Monster%20Chasing%20The%20Kid.jpg"
+                <a href="/lixocarmesim/Glass%20Monster%20Chasing%20The%20Kid.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Glass Monster Chasing The Kid.jpg">
-                  <img src="../lixocarmesim/Glass%20Monster%20Chasing%20The%20Kid_hu_ab889ebfbc0958cc.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Glass%20Monster%20Chasing%20The%20Kid_hu_ab889ebfbc0958cc.jpg"
                       class="w-full h-auto object-cover"
                       alt="Glass Monster Chasing The Kid.jpg"
                       loading="lazy">
@@ -975,16 +1005,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Glass%20Monster.jpg"
+                <a href="/lixocarmesim/Glass%20Monster.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Glass Monster.jpg">
-                  <img src="../lixocarmesim/Glass%20Monster_hu_b09f5d38e07636b4.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Glass%20Monster_hu_b09f5d38e07636b4.jpg"
                       class="w-full h-auto object-cover"
                       alt="Glass Monster.jpg"
                       loading="lazy">
@@ -1000,16 +1031,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Glass%20Moster%20Angry.jpg"
+                <a href="/lixocarmesim/Glass%20Moster%20Angry.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Glass Moster Angry.jpg">
-                  <img src="../lixocarmesim/Glass%20Moster%20Angry_hu_36f5cbdafb786e2c.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Glass%20Moster%20Angry_hu_36f5cbdafb786e2c.jpg"
                       class="w-full h-auto object-cover"
                       alt="Glass Moster Angry.jpg"
                       loading="lazy">
@@ -1025,16 +1057,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Glass%20Shards.jpg"
+                <a href="/lixocarmesim/Glass%20Shards.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Glass Shards.jpg">
-                  <img src="../lixocarmesim/Glass%20Shards_hu_345180142439876a.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Glass%20Shards_hu_345180142439876a.jpg"
                       class="w-full h-auto object-cover"
                       alt="Glass Shards.jpg"
                       loading="lazy">
@@ -1050,16 +1083,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Goo%20On%20The%20Streets.jpg"
+                <a href="/lixocarmesim/Goo%20On%20The%20Streets.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Goo On The Streets.jpg">
-                  <img src="../lixocarmesim/Goo%20On%20The%20Streets_hu_362e20a15179a0e2.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Goo%20On%20The%20Streets_hu_362e20a15179a0e2.jpg"
                       class="w-full h-auto object-cover"
                       alt="Goo On The Streets.jpg"
                       loading="lazy">
@@ -1075,16 +1109,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Goo%20With%20Bones.jpg"
+                <a href="/lixocarmesim/Goo%20With%20Bones.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Goo With Bones.jpg">
-                  <img src="../lixocarmesim/Goo%20With%20Bones_hu_87230ec41dda5929.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Goo%20With%20Bones_hu_87230ec41dda5929.jpg"
                       class="w-full h-auto object-cover"
                       alt="Goo With Bones.jpg"
                       loading="lazy">
@@ -1100,16 +1135,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Goo.jpg"
+                <a href="/lixocarmesim/Goo.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Goo.jpg">
-                  <img src="../lixocarmesim/Goo_hu_5c437e938daa39c6.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Goo_hu_5c437e938daa39c6.jpg"
                       class="w-full h-auto object-cover"
                       alt="Goo.jpg"
                       loading="lazy">
@@ -1125,16 +1161,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Guard.jpg"
+                <a href="/lixocarmesim/Guard.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Guard.jpg">
-                  <img src="../lixocarmesim/Guard_hu_9ab742db86380390.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Guard_hu_9ab742db86380390.jpg"
                       class="w-full h-auto object-cover"
                       alt="Guard.jpg"
                       loading="lazy">
@@ -1150,16 +1187,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/People%20Raising%20Their%20Hands.jpg"
+                <a href="/lixocarmesim/People%20Raising%20Their%20Hands.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="People Raising Their Hands.jpg">
-                  <img src="../lixocarmesim/People%20Raising%20Their%20Hands_hu_b85b4fbfba19402d.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/People%20Raising%20Their%20Hands_hu_b85b4fbfba19402d.jpg"
                       class="w-full h-auto object-cover"
                       alt="People Raising Their Hands.jpg"
                       loading="lazy">
@@ -1175,16 +1213,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Person%20Drowning.jpg"
+                <a href="/lixocarmesim/Person%20Drowning.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Person Drowning.jpg">
-                  <img src="../lixocarmesim/Person%20Drowning_hu_8cb73dff1f3dcfd3.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Person%20Drowning_hu_8cb73dff1f3dcfd3.jpg"
                       class="w-full h-auto object-cover"
                       alt="Person Drowning.jpg"
                       loading="lazy">
@@ -1200,16 +1239,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Person.png"
+                <a href="/lixocarmesim/Person.png"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Person.png">
-                  <img src="../lixocarmesim/Person_hu_cb8fc3abfd9af021.png"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Person_hu_cb8fc3abfd9af021.png"
                       class="w-full h-auto object-cover"
                       alt="Person.png"
                       loading="lazy">
@@ -1225,16 +1265,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Plastic%20Monster%20Body.jpg"
+                <a href="/lixocarmesim/Plastic%20Monster%20Body.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Plastic Monster Body.jpg">
-                  <img src="../lixocarmesim/Plastic%20Monster%20Body_hu_202034153c68f7b8.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Plastic%20Monster%20Body_hu_202034153c68f7b8.jpg"
                       class="w-full h-auto object-cover"
                       alt="Plastic Monster Body.jpg"
                       loading="lazy">
@@ -1250,16 +1291,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Plastic%20Monster.jpg"
+                <a href="/lixocarmesim/Plastic%20Monster.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Plastic Monster.jpg">
-                  <img src="../lixocarmesim/Plastic%20Monster_hu_87d10deefe1d941b.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Plastic%20Monster_hu_87d10deefe1d941b.jpg"
                       class="w-full h-auto object-cover"
                       alt="Plastic Monster.jpg"
                       loading="lazy">
@@ -1275,16 +1317,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Red%20Smoke.jpg"
+                <a href="/lixocarmesim/Red%20Smoke.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Red Smoke.jpg">
-                  <img src="../lixocarmesim/Red%20Smoke_hu_5544905eb446d21e.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Red%20Smoke_hu_5544905eb446d21e.jpg"
                       class="w-full h-auto object-cover"
                       alt="Red Smoke.jpg"
                       loading="lazy">
@@ -1300,16 +1343,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Smoke%20On%20The%20City.jpg"
+                <a href="/lixocarmesim/Smoke%20On%20The%20City.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Smoke On The City.jpg">
-                  <img src="../lixocarmesim/Smoke%20On%20The%20City_hu_d26fa9f3932e8ada.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Smoke%20On%20The%20City_hu_d26fa9f3932e8ada.jpg"
                       class="w-full h-auto object-cover"
                       alt="Smoke On The City.jpg"
                       loading="lazy">
@@ -1325,16 +1369,17 @@ if (!isMobile) {
             
 
             
-            <div class="rounded overflow-hidden shadow hover:shadow-md transition">
+            
+            
+            <div class="gallery-card rounded overflow-hidden shadow hover:shadow-md transition" data-title="Lixo Carmesim">
 
               
               
                 
-                <a href="../lixocarmesim/Trash.jpg"
+                <a href="/lixocarmesim/Trash.jpg"
                   class="block rounded overflow-hidden"
-                  data-lg-size="3840-2160"
-                  data-sub-html="Trash.jpg">
-                  <img src="../lixocarmesim/Trash_hu_b6127c77e88d2a83.jpg"
+                  data-lg-size="3840-2160">
+                  <img src="/lixocarmesim/Trash_hu_b6127c77e88d2a83.jpg"
                       class="w-full h-auto object-cover"
                       alt="Trash.jpg"
                       loading="lazy">
@@ -1347,6 +1392,80 @@ if (!isMobile) {
       
     </div>
   
+  
+  <div id="gallery-tooltip" class="glass-tooltip"></div>
+
+  <style>
+  .glass-tooltip {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    border-radius: 14px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #ffffff;
+    max-width: 260px;
+    pointer-events: none;
+    position: fixed;
+    z-index: 99999;
+    opacity: 0;
+    display: none;
+    transition: opacity 0.2s ease;
+  }
+  </style>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tooltip = document.getElementById("gallery-tooltip");
+    const cards = document.querySelectorAll(".gallery-card");
+
+    if (!tooltip) return;
+
+    cards.forEach(card => {
+      card.addEventListener("mouseenter", (e) => {
+        const title = card.getAttribute("data-title");
+        if (!title) return;
+        tooltip.textContent = title;
+        tooltip.style.display = "block";
+        tooltip.offsetHeight; 
+        tooltip.style.opacity = "1";
+      });
+
+      card.addEventListener("mousemove", (e) => {
+        const tooltipWidth = tooltip.offsetWidth;
+        const tooltipHeight = tooltip.offsetHeight;
+        
+        let x = e.clientX + 15;
+        let y = e.clientY + 15;
+        
+        if (x + tooltipWidth > window.innerWidth) {
+          x = e.clientX - tooltipWidth - 10;
+        }
+        if (y + tooltipHeight > window.innerHeight) {
+          y = e.clientY - tooltipHeight - 10;
+        }
+
+        tooltip.style.left = x + "px";
+        tooltip.style.top = y + "px";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        tooltip.style.opacity = "0";
+        
+        const onTransitionEnd = () => {
+          if (tooltip.style.opacity === "0") {
+            tooltip.style.display = "none";
+          }
+          tooltip.removeEventListener("transitionend", onTransitionEnd);
+        };
+        tooltip.addEventListener("transitionend", onTransitionEnd);
+      });
+    });
+  });
+  </script>
 </main>
 
 
@@ -1358,7 +1477,7 @@ if (!isMobile) {
 
       <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
 
-        <a class="flex items-center group gap-2" href="../">
+        <a class="flex items-center group gap-2" href="/">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 683.6 348.1" class="w-8 h-8 fill-stone-500 group-hover:fill-white transition-colors duration-200">
             <polygon points="148.8 243.9 148.8 348.1 251.6 245.3 199.5 193.2 148.8 243.9"/>
             <polygon points="535.1 104.2 535.1 0 432.2 102.9 484.3 155 535.1 104.2"/>
@@ -1414,11 +1533,11 @@ if (!isMobile) {
 
     <div class="my-8">
       <ul class="flex items-center space-x-4">
-        <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="../">Portfolio</a></li>
+        <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="/">Portfolio</a></li>
         
-          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="../blog/">Blog</a></li>
+          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="/blog/">Blog</a></li>
         
-          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="../blog/about">About</a></li>
+          <li><a class="decoration-auto hover:underline font-semibold text-stone-500 hover:text-white transition" href="/blog/about">About</a></li>
         
       </ul>
     </div>
@@ -1428,9 +1547,9 @@ if (!isMobile) {
       <p class="text-sm text-stone-600">Copyright © 2026. All rights reserved. <a href="https://Thneppel.com.br/" target="_blank" rel="noopener" class="text-stone-600 hover:text-stone-400 transition">thneppel.com.br</a></p>
 
       <div class="text-sm text-stone-600 flex items-center gap-4">
-        <a href="../privacy-and-policy/" class="hover:text-stone-400 transition">Privacy Policy</a>
+        <a href="/privacy-and-policy/" class="hover:text-stone-400 transition">Privacy Policy</a>
         <span class="text-stone-800">•</span>
-        <a href="../terms-of-use/" class="hover:text-stone-400 transition">Terms of Use</a>
+        <a href="/terms-of-use/" class="hover:text-stone-400 transition">Terms of Use</a>
       </div>
 
     </div>
@@ -1438,17 +1557,36 @@ if (!isMobile) {
   </div>
 </footer>
 
-<script src="../lightgallery.min.js"></script>
-<script src="../lg-video.min.js"></script>
-<script src="../lg-zoom.min.js"></script>
+<script src="/lightgallery.min.js"></script>
+<script src="/lg-video.min.js"></script>
+<script src="/lg-zoom.min.js"></script>
 
 <script>
   const lgElement = document.getElementById("lightgallery");
   if (lgElement) {
     lightGallery(lgElement, {
       selector: 'a',
-      plugins: [lgVideo, lgZoom],
+      plugins: [lgVideo],
       download: false,
+      getCaptionFromTitleOrAlt: false,
+      youTubePlayerParams: {
+        mute: 0,
+        autoplay: 1
+      },
+      vimeoPlayerParams: {
+        muted: 0,
+        autoplay: 1
+      }
+    });
+  }
+
+  const watchBtnElement = document.getElementById("watch-btn-container");
+  if (watchBtnElement) {
+    lightGallery(watchBtnElement, {
+      selector: 'a',
+      plugins: [lgVideo],
+      download: false,
+      getCaptionFromTitleOrAlt: false,
       youTubePlayerParams: {
         mute: 0,
         autoplay: 1
