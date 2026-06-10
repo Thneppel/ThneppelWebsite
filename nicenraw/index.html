@@ -52,7 +52,7 @@
         </div>
       </div>
     </div>
-  <nav id="menu-bar" class="block mt-3 close">
+  <nav id="menu-bar" class="block mt-3 close toggle-content">
     <ul class="flex items-center flex flex-nowrap whitespace-nowrap overflow-x-auto space-x-4"><li class="my-2">
         <a href="/"
            class="rounded-full px-6 py-2 bg-stone-900 hover:bg-stone-800 font-semibold"
@@ -88,7 +88,7 @@
     const toggleButtons = document.querySelectorAll(".toggle-button");
 
     function hideAllExcept(targetElement) {
-        document.querySelectorAll(".hidden").forEach((element) => {
+        document.querySelectorAll(".toggle-content").forEach((element) => {
             if (element !== targetElement) {
                 element.classList.add("close");
                 element.classList.remove("open");
@@ -1710,7 +1710,7 @@ if (!isMobile) {
       <div class="w-full md:w-3/5 flex flex-col space-y-4 md:pr-8 lg:pr-10">
 
         <a class="flex items-center group gap-2" href="/">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 683.6 348.1" class="w-8 h-8 fill-stone-500 group-hover:fill-white transition-colors duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 683.6 348.1" fill="currentColor" class="w-8 h-8 text-stone-500 group-hover:text-white transition-colors duration-200">
             <polygon points="148.8 243.9 148.8 348.1 251.6 245.3 199.5 193.2 148.8 243.9"/>
             <polygon points="535.1 104.2 535.1 0 432.2 102.9 484.3 155 535.1 104.2"/>
             <path d="M341.9,79.9h0c-18.8,0-36.5,7.3-49.8,20.6l-2.3,2.3,196,196h104.2l-198.3-198.3c-13.3-13.3-31-20.6-49.8-20.6Z"/>
