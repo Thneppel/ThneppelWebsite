@@ -6,6 +6,15 @@
   font-display: swap;
 }
 
+html {
+  color-scheme: dark;
+  background-color: #0c0a09;
+}
+
+body {
+  background-color: #0c0a09;
+}
+
 /* Custom scrollbar styling for a dark, minimalist theme */
 .custom-scrollbar::-webkit-scrollbar {
   height: 6px;
