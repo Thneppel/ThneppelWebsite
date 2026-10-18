@@ -169,20 +169,87 @@
    Mobile Phones (max-width: 768px)
    -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
+  .section-container {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 5.5vw, 2.25rem);
+    margin-bottom: 0.85rem;
+  }
+
+  .section-subtitle {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+  }
+
   #hero {
-    min-height: 82vh;
-    padding-top: 5rem;
-    padding-bottom: 2.5rem;
+    min-height: 80vh;
+    min-height: 80dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 7rem;
+    padding-bottom: 4.5rem;
   }
 
   #hero h1 {
-    font-size: 2.15rem;
+    font-size: clamp(1.95rem, 6vw, 2.5rem);
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
+  }
+
+  #hero .tags {
+    margin-top: 1.75rem;
+    gap: 0.6rem;
+  }
+
+  .tag {
+    font-size: var(--text-xs);
+    padding: 0.45rem 1rem;
+  }
+
+  .desc-intro {
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .desc-location {
+    padding: 2.25rem 1.5rem;
+    margin-bottom: 3.5rem;
+    gap: 2rem;
+  }
+
+  .desc-location h3 {
+    font-size: 1.35rem;
+    line-height: 1.35;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .desc-location p {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  .desc-location .tags {
+    justify-content: center;
+    gap: 0.6rem 0.5rem;
   }
 
   .pictures-grid {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.75rem;
   }
 
   #pic-e, #pic-i, #pic-h {
@@ -193,45 +260,126 @@
 
   #pic-v {
     width: 100%;
-    max-width: 350px;
+    max-width: 360px;
     height: auto;
-    aspect-ratio: 560 / 977;
+    aspect-ratio: 9 / 16;
     margin: 0 auto;
     align-self: center;
   }
 
   #pic-v img {
-    object-fit: contain;
+    object-fit: cover;
+    object-position: center;
     width: 100%;
     height: 100%;
   }
 
+  .services-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .service-item {
+    padding: 1.75rem 0;
+  }
+
+  .service-title {
+    font-size: 1.2rem;
+  }
+
+  .service-desc {
+    font-size: var(--text-sm);
+    line-height: 1.7;
+    margin-top: 0.5rem;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.75rem;
   }
 
   .stat-card {
-    padding: 1.75rem 1.5rem;
+    padding: 2.25rem 1.75rem;
+  }
+
+  .stat-number {
+    font-size: 3.25rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-bio h3 {
+    font-size: 1.65rem;
+    line-height: 1.3;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-bio p {
+    font-size: var(--text-sm);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+  }
+
+  .about-photo {
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
   }
 
   .equipment-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  .equipment-card {
+    padding: 1.5rem;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .contact-card {
+    padding: 2.75rem 1.75rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .contact-info h2 {
+    font-size: 1.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-info p {
+    font-size: var(--text-sm);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .contact-badges {
+    gap: 1.15rem;
   }
 
   .form-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 
-  .contact-card {
-    padding: 1.75rem 1.25rem;
-    border-radius: var(--radius-md);
+  .form-group input,
+  .form-group textarea {
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+    padding: 0.85rem 1.15rem;
   }
 
   .footer-contact {
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 }
 
@@ -240,48 +388,69 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
   .section-container {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-    padding-left: 1.15rem;
-    padding-right: 1.15rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  #hero {
+    padding-top: 6.5rem;
+    padding-bottom: 3.5rem;
+    min-height: 75vh;
+    min-height: 75dvh;
   }
 
   #hero h1 {
     font-size: 1.85rem;
   }
 
+  #hero .tags {
+    gap: 0.5rem;
+  }
+
   .hero-badge {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
   }
 
   .tag {
     font-size: 0.75rem;
-    padding: 0.35rem 0.75rem;
+    padding: 0.4rem 0.85rem;
   }
 
-  .service-item {
-    padding: 1.2rem 0;
+  .desc-location {
+    padding: 2rem 1.25rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+  }
+
+  .contact-card {
+    padding: 2.25rem 1.25rem;
   }
 
   .carousel-group {
-    gap: 2.25rem;
-    padding-right: 2.25rem;
+    gap: 2.5rem;
+    padding-right: 2.5rem;
     animation-duration: 50s;
   }
 
   .logo-item {
-    height: 54px;
-    min-width: 120px;
+    height: 60px;
+    min-width: 130px;
   }
 
   .logo-item img {
-    max-height: 46px;
-    max-width: 150px;
+    max-height: 50px;
+    max-width: 160px;
   }
 
   .whatsapp-float {
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
     bottom: 1.25rem;
     right: 1.25rem;
   }

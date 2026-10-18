@@ -398,12 +398,14 @@
           const isOpen = navLinks.classList.toggle('open');
           toggle.classList.toggle('active', isOpen);
           toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          document.body.style.overflow = isOpen ? 'hidden' : '';
         }
 
         function closeMenu() {
           navLinks.classList.remove('open');
           toggle.classList.remove('active');
           toggle.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
         }
 
         toggle.addEventListener('click', toggleMenu);
