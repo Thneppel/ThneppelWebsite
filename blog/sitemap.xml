@@ -1,50 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://thneppel.com.br/blog/about/</loc>
-    <lastmod>2026-05-11T17:59:34-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/</loc>
-    <lastmod>2026-05-11T17:59:34-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/audiovisual/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/blogging/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/career/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/categories/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/creativity/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/freelancing/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/gamedev/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/graphic-design/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/categories/personal/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/posts/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	
+		<sitemap>
+			<loc>https://thneppel.com.br/blog/en/sitemap.xml</loc>
+			
+				<lastmod>2026-05-11T17:59:34-03:00</lastmod>
+			
+		</sitemap>
+	
+		<sitemap>
+			<loc>https://thneppel.com.br/blog/pt-br/sitemap.xml</loc>
+			
+				<lastmod>2026-05-11T17:59:34-03:00</lastmod>
+			
+		</sitemap>
+	
+</sitemapindex>

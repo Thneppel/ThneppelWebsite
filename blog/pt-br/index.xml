@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Thneppel Blog</title>
+		<link>https://thneppel.com.br/blog/pt-br/</link>
+		<description>Recent content on Thneppel Blog</description>
+		<generator>Hugo</generator>
+		<language>pt-br</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 11 May 2026 17:59:34 -0300</lastBuildDate>
+		
+			<atom:link href="https://thneppel.com.br/blog/pt-br/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Sobre</title>
+				<link>https://thneppel.com.br/blog/pt-br/about/</link>
+				<pubDate>Mon, 11 May 2026 17:59:34 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/pt-br/about/</guid>
+				<description>&lt;p&gt;Sou &lt;strong&gt;Thiago Wagner Neppel&lt;/strong&gt;, designer e diretor criativo brasileiro com mais de 9 anos de experiência em design gráfico, branding e produção audiovisual. Trabalho com identidade visual, campanhas publicitárias, conteúdo digital e projetos audiovisuais completos, do conceito à entrega final.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Blogs em 2026: Vale a Pena?</title>
+				<link>https://thneppel.com.br/blog/pt-br/posts/2026/blogs-in-2026-why-even-bother/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/pt-br/posts/2026/blogs-in-2026-why-even-bother/</guid>
+				<description>&lt;p&gt;&lt;strong&gt;Por que começar a escrever em um blog em pleno 2026?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Sendo bem sincero, enquanto escrevo este texto, eu não tenho essa resposta pronta. Mas se você está lendo isso, é sinal de que fui descobrindo o motivo pelo caminho, então te convido para essa pequena reflexão.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Eu Odeio Marketing. Infelizmente, Sou Bom Nisso.</title>
+				<link>https://thneppel.com.br/blog/pt-br/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</link>
+				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/pt-br/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</guid>
+				<description>&lt;p&gt;Talvez eu não devesse começar meu primeiro post com um pensamento tão pesado, mas a verdade é que eu não estaria escrevendo em um blog em 2026 se não estivesse inspirado a criar e compartilhar coisas boas. Então acho normal e até necessário falar sobre as partes difíceis, e talvez minha história aqui comece justamente com um fim. Um fim cheio de conflitos.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>
