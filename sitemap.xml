@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://thneppel.com.br/matkastudios/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/midia-imobiliaria/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/cronicdigital/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/jimmykimtv/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/mondo/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/nicenraw/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/artdirection/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/lixocarmesim/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/privacy-and-policy/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/terms-of-use/</loc>
-  </url><url>
-    <loc>https://thneppel.com.br/</loc>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	
+		<sitemap>
+			<loc>https://thneppel.com.br/en/sitemap.xml</loc>
+			
+		</sitemap>
+	
+		<sitemap>
+			<loc>https://thneppel.com.br/pt-br/sitemap.xml</loc>
+			
+		</sitemap>
+	
+</sitemapindex>
