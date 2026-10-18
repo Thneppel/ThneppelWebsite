@@ -295,13 +295,14 @@ header.site-header {
 /* Hero Section */
 #hero {
   position: relative;
-  min-height: 88vh;
+  min-height: 85vh;
   display: flex;
-  align-items: flex-end;
-  background: linear-gradient(180deg, rgba(12, 13, 16, 0.05) 0%, rgba(12, 13, 16, 0.15) 50%, rgba(12, 13, 16, 0.6) 88%, var(--bg-main) 100%),
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(12, 13, 16, 0.6) 0%, rgba(12, 13, 16, 0.72) 45%, rgba(12, 13, 16, 0.88) 80%, var(--bg-main) 100%),
               center center / cover no-repeat url('./assets/hero-bg.png');
-  padding-bottom: clamp(3rem, 6vw, 5rem);
-  padding-top: 6rem;
+  padding-top: 7rem;
+  padding-bottom: 4rem;
 }
 
 .hero-content {
@@ -345,6 +346,8 @@ header.site-header {
   background: rgba(12, 13, 16, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--accent);
+  color: #ffffff;
 }
 
 /* Generic Section Styles */
@@ -404,7 +407,7 @@ section {
 
 .desc-location {
   display: grid;
-  grid-template-columns: 1.4fr 1fr;
+  grid-template-columns: 1.1fr 1fr;
   gap: clamp(2rem, 4vw, 3rem);
   align-items: center;
   background: var(--bg-surface);
@@ -420,7 +423,24 @@ section {
 }
 
 .desc-location .tags {
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+.desc-location .tag.tag-accent {
+  border-color: var(--accent);
+  background: rgba(255, 42, 95, 0.16);
+  animation: pulse-location 2.2s ease-in-out infinite;
+}
+
+@keyframes pulse-location {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 42, 95, 0.45);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 14px 3px rgba(255, 42, 95, 0.4);
+    transform: scale(1.04);
+  }
 }
 
 /* Pictures Mosaic Grid */
