@@ -1,0 +1,293 @@
+/* ==========================================================================
+   Layout & Responsive Breakpoints
+   ========================================================================== */
+
+/* Main Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Responsive Navigation Menu
+   -------------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .nav-cta {
+    display: none;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background: rgba(12, 13, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-subtle);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 0 1.5rem;
+    gap: 0;
+    transition: height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+  }
+
+  .nav-links.open {
+    height: calc(100vh - 60px);
+    padding: 2rem 1.5rem;
+    overflow-y: auto;
+  }
+
+  .nav-links li {
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 1.1rem 0;
+    font-size: var(--text-lg);
+    font-weight: 600;
+  }
+
+  .nav-links .mobile-nav-cta {
+    display: block;
+    margin-top: 2rem;
+  }
+
+  .nav-links .mobile-nav-cta .btn {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+  }
+}
+
+@media (min-width: 861px) {
+  .nav-links .mobile-nav-cta {
+    display: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tablet Adjustments (max-width: 992px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .desc-intro {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .desc-location {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .desc-location .tags {
+    justify-content: flex-start;
+  }
+
+  .services-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .services-media {
+    max-width: 580px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-photo {
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  /* Pictures Mosaic on Tablet */
+  .pictures-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto auto auto;
+    gap: 1.25rem;
+  }
+
+  #pic-e {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  #pic-i {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    aspect-ratio: 16 / 9;
+  }
+
+  #pic-h {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    aspect-ratio: 16 / 9;
+  }
+
+  #pic-v {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 560 / 977;
+    margin: 0 auto;
+    justify-self: center;
+  }
+
+  #pic-v img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Phones (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  #hero {
+    min-height: 82vh;
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  #hero h1 {
+    font-size: 2.15rem;
+  }
+
+  .pictures-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  #pic-e, #pic-i, #pic-h {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  #pic-v {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    aspect-ratio: 560 / 977;
+    margin: 0 auto;
+    align-self: center;
+  }
+
+  #pic-v img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .stat-card {
+    padding: 1.75rem 1.5rem;
+  }
+
+  .equipment-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    padding: 1.75rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .footer-contact {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Small Mobile Phones (max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .section-container {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 1.15rem;
+    padding-right: 1.15rem;
+  }
+
+  #hero h1 {
+    font-size: 1.85rem;
+  }
+
+  .hero-badge {
+    font-size: 0.7rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .service-item {
+    padding: 1.2rem 0;
+  }
+
+  .carousel-group {
+    gap: 2.25rem;
+    padding-right: 2.25rem;
+    animation-duration: 50s;
+  }
+
+  .logo-item {
+    height: 54px;
+    min-width: 120px;
+  }
+
+  .logo-item img {
+    max-height: 46px;
+    max-width: 150px;
+  }
+
+  .whatsapp-float {
+    width: 54px;
+    height: 54px;
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  .whatsapp-float svg {
+    width: 32px;
+    height: 32px;
+  }
+}
