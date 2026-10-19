@@ -48,6 +48,23 @@ jobs:
           cp -r hugo-portfolio/public/* deploy-final/
           mkdir -p deploy-final/blog
           cp -r hugo-blog/public/* deploy-final/blog/
+
+          # Publicar About na raiz (/about/ e /pt-br/about/) mantendo o layout e dados do blog
+          cp -r hugo-blog/public/about deploy-final/
+          if [ -d "hugo-blog/public/pt-br/about" ]; then
+            mkdir -p deploy-final/pt-br
+            cp -r hugo-blog/public/pt-br/about deploy-final/pt-br/
+          fi
+
+          # Redirecionar acessos antigos (/blog/about/ -> /about/)
+          mkdir -p deploy-final/blog/about
+          printf '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><link rel="canonical" href="https://thneppel.com.br/about/"><meta http-equiv="refresh" content="0; url=/about/"></head><body><p>Redirecting to <a href="/about/">/about/</a>...</p></body></html>\n' > deploy-final/blog/about/index.html
+
+          if [ -d "hugo-blog/public/pt-br/about" ]; then
+            mkdir -p deploy-final/blog/pt-br/about
+            printf '<!DOCTYPE html><html><head><meta charset="utf-8"><title>Redirecting...</title><link rel="canonical" href="https://thneppel.com.br/pt-br/about/"><meta http-equiv="refresh" content="0; url=/pt-br/about/"></head><body><p>Redirecting to <a href="/pt-br/about/">/pt-br/about/</a>...</p></body></html>\n' > deploy-final/blog/pt-br/about/index.html
+          fi
+
           touch deploy-final/.nojekyll   # evita interferência do Jekyll
           echo "thneppel.com.br" > deploy-final/CNAME   # 👈 adiciona o CNAME
 
