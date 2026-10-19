@@ -515,17 +515,18 @@ a.btn-capsule,
   font-weight: 700 !important;
   line-height: 1.25rem !important;
   color: #ffffff !important;
-  background-color: #991b1b !important;
+  background-color: transparent !important;
+  border: 1px solid #ffffff !important;
   text-decoration: none !important;
-  transition: background-color 0.2s ease !important;
+  transition: all 0.2s ease !important;
 }
 
 .btn-capsule:hover,
 a.btn-capsule:hover,
 .not-prose a.btn-capsule:hover,
 .not-prose a[class*="bg-red"]:hover {
-  background-color: #b91c1c !important;
-  color: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #0c0a09 !important;
   text-decoration: none !important;
 }
 
