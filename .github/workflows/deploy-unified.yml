@@ -1,6 +1,8 @@
 name: Deploy Unificado (Portfólio + Blog)
 
 on:
+  push:
+    branches: [ main ]
   # Permite disparo manual
   workflow_dispatch:
   # Permite disparo via repository_dispatch vindo dos repositórios Hugo
@@ -50,10 +52,11 @@ jobs:
           cp -r hugo-blog/public/* deploy-final/blog/
 
           # Publicar About na raiz (/about/ e /pt-br/about/) mantendo o layout e dados do blog
-          cp -r hugo-blog/public/about deploy-final/
+          mkdir -p deploy-final/about
+          cp -r hugo-blog/public/about/* deploy-final/about/
           if [ -d "hugo-blog/public/pt-br/about" ]; then
-            mkdir -p deploy-final/pt-br
-            cp -r hugo-blog/public/pt-br/about deploy-final/pt-br/
+            mkdir -p deploy-final/pt-br/about
+            cp -r hugo-blog/public/pt-br/about/* deploy-final/pt-br/about/
           fi
 
           # Redirecionar acessos antigos (/blog/about/ -> /about/)
