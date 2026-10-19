@@ -1,18 +1,359 @@
 @font-face {
-  font-family: 'Calamity';
-  src: url('/blog/fonts/calamity.woff2') format('woff2');
+  font-family: 'calamity';
+  src: url('/blog/fonts/calamity.woff2') format('woff2'),
+       url('/fonts/calamity.woff2') format('woff2'),
+       url('../fonts/calamity.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Calamity';
+  src: url('/blog/fonts/calamity.woff2') format('woff2'),
+       url('/fonts/calamity.woff2') format('woff2'),
+       url('../fonts/calamity.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-calamity {
+  font-family: 'calamity', 'Calamity', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
 html {
   color-scheme: dark;
-  background-color: #0c0a09;
+  scroll-behavior: smooth;
+  background-color: #000000;
 }
 
 body {
   background-color: #0c0a09;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Header Styles - Pixel-identical to HugoPortfolio
+   ========================================================================== */
+
+body > header {
+  padding-top: 1.5rem !important; /* py-6 = 24px */
+  padding-bottom: 1.5rem !important;
+  margin-bottom: 2rem !important; /* mb-8 = 32px */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important; /* border-white/[0.06] */
+}
+
+/* Containers for Header, Main, and Footer */
+body > header > div,
+body > footer > div,
+.max-w-7xl {
+  width: 100%;
+  max-width: 80rem !important; /* 1280px */
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1rem !important; /* px-4 = 16px */
+  padding-right: 1rem !important;
+}
+
+@media (min-width: 640px) {
+  body > header > div,
+  body > footer > div,
+  .sm\:px-6 {
+    padding-left: 1.5rem !important; /* px-6 = 24px */
+    padding-right: 1.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body > header > div,
+  body > footer > div,
+  .lg\:px-8 {
+    padding-left: 2rem !important; /* px-8 = 32px */
+    padding-right: 2rem !important;
+  }
+}
+
+@media (min-width: 1280px) {
+  body > header > div,
+  body > footer > div,
+  .xl\:max-w-screen-2xl {
+    max-width: 1536px !important;
+  }
+}
+
+/* Header Flex Layout */
+body > header > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Header Logo */
+body > header a.group {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important; /* gap-3 = 12px */
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+}
+
+body > header a.group svg {
+  width: 2rem !important; /* w-8 = 32px */
+  height: auto !important;
+  fill: #ffffff !important;
+  opacity: 0.9 !important;
+  transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body > header a.group:hover svg {
+  opacity: 1 !important;
+}
+
+body > header a.group span {
+  font-size: 1.5rem !important; /* text-2xl = 24px */
+  line-height: 2rem !important;
+  color: #ffffff !important;
+  font-family: 'calamity', 'Calamity', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body > header a.group:hover span {
+  color: rgb(214, 211, 209) !important; /* text-stone-300 */
+}
+
+/* Header Navigation */
+body > header nav {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1.25rem !important; /* gap-5 = 20px */
+  font-size: 0.875rem !important; /* text-sm = 14px */
+  line-height: 1.25rem !important;
+}
+
+@media (min-width: 640px) {
+  body > header nav {
+    gap: 1.75rem !important; /* sm:gap-7 = 28px */
+  }
+}
+
+/* Nav Links */
+body > header nav a {
+  text-decoration: none !important;
+  transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Language Selector */
+body > header nav div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.375rem !important; /* gap-1.5 = 6px */
+  font-size: 0.75rem !important; /* text-xs = 12px */
+  line-height: 1rem !important;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  text-transform: uppercase !important;
+  padding-left: 0.75rem !important; /* pl-3 = 12px */
+  border-left: 1px solid rgba(255, 255, 255, 0.1) !important; /* border-white/10 */
+  flex-shrink: 0 !important;
+}
+
+@media (min-width: 640px) {
+  body > header nav div {
+    padding-left: 1rem !important; /* sm:pl-4 = 16px */
+  }
+}
+
+/* ==========================================================================
+   Footer Styles - Pixel-identical to HugoPortfolio
+   ========================================================================== */
+
+body > footer {
+  width: 100% !important;
+  margin-top: auto !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+body > footer > div {
+  padding-top: 1.5rem !important; /* py-6 = 24px */
+  padding-bottom: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  font-size: 0.75rem !important; /* text-xs = 12px */
+  line-height: 1rem !important;
+  color: rgb(120, 113, 108) !important; /* text-stone-500 */
+}
+
+@media (min-width: 640px) {
+  body > footer > div {
+    padding-top: 2rem !important; /* sm:py-8 = 32px */
+    padding-bottom: 2rem !important;
+    flex-direction: row !important;
+  }
+}
+
+/* Footer Left Section (Logo + copyright) */
+body > footer > div > div:first-child {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important; /* gap-2 = 8px */
+  text-align: center !important;
+}
+
+@media (min-width: 640px) {
+  body > footer > div > div:first-child {
+    gap: 0.75rem !important; /* sm:gap-3 = 12px */
+  }
+}
+
+body > footer a[aria-label="Thneppel"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important; /* gap-2 = 8px */
+  color: rgb(214, 211, 209) !important; /* text-stone-300 */
+  text-decoration: none !important;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body > footer a[aria-label="Thneppel"]:hover {
+  color: #ffffff !important;
+}
+
+body > footer a[aria-label="Thneppel"] svg {
+  width: 1.5rem !important; /* w-6 = 24px */
+  height: auto !important;
+  fill: currentColor !important;
+}
+
+@media (min-width: 640px) {
+  body > footer a[aria-label="Thneppel"] svg {
+    width: 1.75rem !important; /* sm:w-7 = 28px */
+  }
+}
+
+body > footer a[aria-label="Thneppel"] span {
+  font-family: 'calamity', 'Calamity', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-size: 1rem !important; /* text-base = 16px */
+  line-height: 1.5rem !important;
+  color: #ffffff !important;
+  font-weight: 400 !important;
+}
+
+@media (min-width: 640px) {
+  body > footer a[aria-label="Thneppel"] span {
+    font-size: 1.125rem !important; /* sm:text-lg = 18px */
+    line-height: 1.75rem !important;
+  }
+}
+
+/* Footer Right Section (Social links & Policies) */
+body > footer > div > div:last-child {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  column-gap: 1rem !important; /* gap-x-4 = 16px */
+  row-gap: 0.5rem !important; /* gap-y-2 = 8px */
+  text-align: center !important;
+}
+
+body > footer a {
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+body > footer a:hover {
+  color: rgb(214, 211, 209) !important; /* hover:text-stone-300 */
+}
+
+/* Floating Discord Button */
+.discord-float-btn {
+  position: fixed !important;
+  bottom: 1rem !important; /* bottom-4 = 16px */
+  right: 1rem !important; /* right-4 = 16px */
+  z-index: 50 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 2.75rem !important; /* w-11 = 44px */
+  height: 2.75rem !important; /* h-11 = 44px */
+  border-radius: 9999px !important;
+  background-color: #5865F2 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-decoration: none !important;
+}
+
+@media (min-width: 640px) {
+  .discord-float-btn {
+    bottom: 1.5rem !important; /* sm:bottom-6 = 24px */
+    right: 1.5rem !important; /* sm:right-6 = 24px */
+    width: 3rem !important; /* sm:w-12 = 48px */
+    height: 3rem !important; /* sm:h-12 = 48px */
+  }
+}
+
+.discord-float-btn:hover {
+  background-color: #4752C4 !important;
+  transform: scale(1.1) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+}
+
+.discord-float-btn:active {
+  transform: scale(0.95) !important;
+}
+
+.discord-float-btn svg {
+  width: 1.25rem !important; /* w-5 = 20px */
+  height: 1.25rem !important;
+  fill: currentColor !important;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@media (min-width: 640px) {
+  .discord-float-btn svg {
+    width: 1.5rem !important; /* sm:w-6 = 24px */
+    height: 1.5rem !important;
+  }
+}
+
+.discord-float-btn:hover svg {
+  transform: scale(1.05) !important;
+}
+
+/* Button styles for View All and pagination */
+.view-all-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  line-height: 1.25rem !important;
+  border: 2px solid rgb(41, 37, 36) !important;
+  border-radius: 9999px !important;
+  text-decoration: none !important;
+  transition: background-color 0.2s, color 0.2s !important;
+}
+
+@media (min-width: 768px) {
+  .view-all-btn {
+    padding: 0.5rem 1.5rem !important;
+  }
+}
+
+.view-all-btn:hover {
+  background-color: rgb(41, 37, 36) !important;
 }
 
 /* Custom scrollbar styling for a dark, minimalist theme */
@@ -38,3 +379,154 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.03);
 }
+
+/* ==========================================================================
+   Typography & Prose Styling (Dark Theme & Contrast Fixes)
+   Fix all Tailwind .prose default variables so nothing falls back to
+   light-mode dark-blue/gray #111827.
+   ========================================================================== */
+
+.prose {
+  --tw-prose-body: rgb(231, 229, 228) !important;       /* text-stone-200 */
+  --tw-prose-headings: #ffffff !important;               /* white */
+  --tw-prose-lead: rgb(168, 162, 158) !important;        /* text-stone-400 */
+  --tw-prose-links: #ffffff !important;                  /* text-white */
+  --tw-prose-bold: #ffffff !important;                   /* text-white */
+  --tw-prose-counters: rgb(168, 162, 158) !important;   /* text-stone-400 */
+  --tw-prose-bullets: rgb(120, 113, 108) !important;    /* text-stone-500 */
+  --tw-prose-hr: rgb(41, 37, 36) !important;             /* border-stone-800 */
+  --tw-prose-quotes: rgb(245, 245, 244) !important;      /* text-stone-100 */
+  --tw-prose-quote-borders: rgb(68, 64, 60) !important;  /* border-stone-700 */
+  --tw-prose-captions: rgb(168, 162, 158) !important;    /* text-stone-400 */
+  --tw-prose-code: rgb(245, 245, 244) !important;        /* text-stone-100 */
+  --tw-prose-pre-code: rgb(231, 229, 228) !important;    /* text-stone-200 */
+  --tw-prose-pre-bg: rgb(28, 25, 23) !important;         /* bg-stone-900 */
+  --tw-prose-th-borders: rgb(68, 64, 60) !important;     /* border-stone-700 */
+  --tw-prose-td-borders: rgb(41, 37, 36) !important;     /* border-stone-800 */
+  color: rgb(231, 229, 228) !important;
+}
+
+/* Explicit targeting for elements inside .prose */
+.prose p:not(.not-prose *),
+.prose li:not(.not-prose *),
+.prose ul:not(.not-prose *),
+.prose ol:not(.not-prose *) {
+  color: rgb(231, 229, 228) !important;
+}
+
+.prose h1:not(.not-prose *),
+.prose h2:not(.not-prose *),
+.prose h3:not(.not-prose *),
+.prose h4:not(.not-prose *),
+.prose h5:not(.not-prose *),
+.prose h6:not(.not-prose *) {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+
+.prose strong:not(.not-prose *),
+.prose b:not(.not-prose *) {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Article content links: Clean white with subtle stone underline, turning full white on hover */
+.prose a:not(.not-prose):not([class*="btn"]):not(.not-prose *) {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba(255, 255, 255, 0.4) !important;
+  text-underline-offset: 4px !important;
+  transition: text-decoration-color 0.2s, color 0.2s !important;
+}
+
+.prose a:not(.not-prose):not([class*="btn"]):hover:not(.not-prose *) {
+  color: #ffffff !important;
+  text-decoration-color: #ffffff !important;
+}
+
+/* Inline code formatting */
+.prose code:not(pre code):not(.not-prose *) {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  color: rgb(245, 245, 244) !important;
+  padding: 0.15rem 0.4rem !important;
+  border-radius: 0.375rem !important;
+  font-size: 0.875em !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.prose code::before,
+.prose code::after {
+  content: none !important;
+}
+
+/* Blockquotes */
+.prose blockquote:not(.not-prose *) {
+  border-left: 3px solid rgb(87, 83, 78) !important;
+  padding-left: 1.25rem !important;
+  color: rgb(214, 211, 209) !important;
+  font-style: italic !important;
+}
+
+/* Captions under figures */
+figure figcaption,
+figure figcaption h4,
+.prose figure figcaption:not(.not-prose *),
+.prose figure figcaption h4:not(.not-prose *) {
+  color: rgb(168, 162, 158) !important;
+  font-size: 0.8125rem !important;
+  line-height: 1.25rem !important;
+  text-align: center !important;
+  font-style: italic !important;
+  margin-top: 0.5rem !important;
+}
+
+/* Article Header Fixes */
+#title {
+  margin-bottom: 1rem !important;
+}
+
+#lead {
+  margin-bottom: 1.5rem !important;
+}
+
+#writer img {
+  width: 3rem !important;
+  height: 3rem !important;
+  border-radius: 9999px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+}
+
+/* ==========================================================================
+   Capsule Button Styling
+   ========================================================================== */
+
+.btn-capsule,
+a.btn-capsule,
+.not-prose a.btn-capsule,
+.not-prose a[class*="bg-red"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 9999px !important;
+  font-size: 0.875rem !important;
+  font-weight: 700 !important;
+  line-height: 1.25rem !important;
+  color: #ffffff !important;
+  background-color: #991b1b !important;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease !important;
+}
+
+.btn-capsule:hover,
+a.btn-capsule:hover,
+.not-prose a.btn-capsule:hover,
+.not-prose a[class*="bg-red"]:hover {
+  background-color: #b91c1c !important;
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+

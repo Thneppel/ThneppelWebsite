@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  
+
+
+
+  
+    
+
+    
+      
+    
+
+  
+
+
+
+<meta property="og:title" content="How to manage thousands of SFX and Music Tracks for video editing?">
+<meta property="og:description" content="Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies. Here is how I turned 60GB of chaotic SFX into a fast workflow.">
+<meta property="og:image" content="https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/Banner_hu_edb2b409494e2f0.jpg">
+<meta property="og:url" content="https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Thneppel Blog">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How to manage thousands of SFX and Music Tracks for video editing?">
+<meta name="twitter:description" content="Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies. Here is how I turned 60GB of chaotic SFX into a fast workflow.">
+<meta name="twitter:image" content="https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/Banner_hu_edb2b409494e2f0.jpg">
+<meta name="twitter:url" content="https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+  
+    How to manage thousands of SFX and Music Tracks for video editing? | Thneppel Blog
+  
+</title>
+
+<meta name="description" content="Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies. Here is how I turned 60GB of chaotic SFX into a fast workflow.">
+      <link rel="stylesheet" href="https://thneppel.com.br/blog/css/main.min.8ed20017b347e040ffe8d56cf11d5da0a54c546a780b9cab0ebc41eb061b25ab.css" integrity="sha256-jtIAF7NH4ED/6NVs8R1doKVMVGp4C5yrDrxB6wYbJas=" crossorigin="anonymous">
+<link rel="icon" type="image/png" href="/blog/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/blog/favicon.svg" />
+<link rel="shortcut icon" href="/blog/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/blog/apple-touch-icon.png" />
+<meta name="apple-mobile-web-app-title" content="Thneppel" />
+<link rel="manifest" href="/blog/site.webmanifest" /><link rel="stylesheet" href="/blog/css/custom.css">
+
+<style>
+  @font-face {
+    font-family: 'calamity';
+    src: url('/blog/fonts/calamity.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Calamity';
+    src: url('/blog/fonts/calamity.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+  .font-calamity {
+    font-family: 'calamity', 'Calamity', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  }
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    background-color: #000000;
+  }
+  ::selection {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+  }
+</style>
+</head>
+<body class="bg-stone-950 text-white font-sans min-h-screen flex flex-col"><header class="py-6 mb-8 border-b border-white/[0.06]">
+  <div class="max-w-7xl xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <a href="https://thneppel.com.br/" class="flex items-center gap-3 group" aria-label="Thneppel">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 683.6 348.1" class="w-8 h-auto fill-white opacity-90 group-hover:opacity-100 transition-opacity">
+        <polygon points="148.8 243.9 148.8 348.1 251.6 245.3 199.5 193.2 148.8 243.9"/>
+        <polygon points="535.1 104.2 535.1 0 432.2 102.9 484.3 155 535.1 104.2"/>
+        <path d="M341.9,79.9h0c-18.8,0-36.5,7.3-49.8,20.6l-2.3,2.3,196,196h104.2l-198.3-198.3c-13.3-13.3-31-20.6-49.8-20.6Z"/>
+        <polygon points="540 210.9 683.6 210.9 609.9 137.2 540 137.2 503.2 174.1 540 210.9"/>
+        <polygon points="143.8 137.2 0 137.2 73.7 210.9 143.8 210.9 180.5 174.1 143.8 137.2"/>
+        <path d="M93.8,49.3l198.3,198.3c13.3,13.3,31,20.6,49.8,20.6s36.5-7.3,49.8-20.6l2.3-2.3L198.1,49.3h-104.2Z"/>
+      </svg>
+      <span class="text-2xl text-white group-hover:text-stone-300 transition-colors font-calamity">
+        Thneppel
+      </span>
+    </a>
+
+    <nav class="flex items-center gap-5 sm:gap-7 text-sm">
+      <a href="https://thneppel.com.br/"
+         class="transition-colors duration-200 text-stone-400 hover:text-white">
+        Portfolio
+      </a>
+
+      
+      
+        
+        
+        
+        <a href="/blog/"
+           class="transition-colors duration-200 text-white font-medium"
+           aria-current="page">
+          Blog
+        </a>
+      
+        
+        
+        
+        <a href="/blog/about/"
+           class="transition-colors duration-200 text-stone-400 hover:text-white"
+           >
+          About
+        </a>
+      
+
+      
+      <div class="flex items-center gap-1.5 text-xs font-mono uppercase pl-3 sm:pl-4 border-l border-white/10">
+        
+        
+          
+          
+          
+          
+            
+              
+            
+          
+            
+          
+          
+          <a href="/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/"
+             class="transition-colors duration-200 text-white font-bold pointer-events-none"
+             aria-current="true"
+             title="English">
+            EN
+          </a>
+          
+            <span class="text-stone-600 select-none">|</span>
+          
+        
+          
+          
+          
+          
+            
+          
+            
+              
+            
+          
+          
+          <a href="/blog/pt-br/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/"
+             class="transition-colors duration-200 text-stone-400 hover:text-white"
+             
+             title="Português (Brasil)">
+            PT
+          </a>
+          
+        
+      </div>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .lg-sub-html {
+    display: none !important;
+  }
+</style><main class="max-w-7xl xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex-1 w-full"><div id="breadcrumb" class="py-6 sm:py-8">
+	<ul class="flex flex-wrap items-center gap-2 text-xs font-mono text-stone-500">
+		<li class="flex items-center gap-2">
+			<a class="text-stone-400 hover:text-white transition-colors" href="https://thneppel.com.br/blog/">Thneppel Blog</a>
+			<span class="text-stone-600 select-none">/</span>
+		</li>
+		<li class="flex items-center gap-2">
+			<a class="text-stone-400 hover:text-white transition-colors" href="https://thneppel.com.br/blog/posts/">Posts</a>
+			<span class="text-stone-600 select-none">/</span>
+		</li>
+		<li class="text-stone-300 truncate max-w-xs sm:max-w-md">
+			How to manage thousands of SFX and Music Tracks for video editing?
+		</li>
+	</ul>
+</div><div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 sm:mb-14">
+
+  <article class="md:col-span-2 prose prose-invert lg:prose-lg text-stone-200">
+
+    <header class="not-prose">
+      
+      <h1 id="title" class="text-2xl sm:text-3xl md:text-4xl font-bold leading-tight sm:leading-normal text-white mb-4">How to manage thousands of SFX and Music Tracks for video editing?</h1>
+
+      <div id="lead" class="mb-6">
+
+        <p class="font-semibold text-sm sm:text-base text-stone-300">Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies. Here is how I turned 60GB of chaotic SFX into a fast workflow. </p>
+
+      </div>
+      
+      <div id="writer" class="flex flex-wrap sm:flex-nowrap items-center gap-3 sm:space-x-4 mb-6">
+
+        <img class="w-12 h-12 bg-black rounded-full object-cover shrink-0 border border-stone-800" src="/blog/images/Thneppel.png" alt="Thiago Neppel avatar" width="48" height="48">
+
+        <ul class="flex items-center space-x-2 sm:space-x-4 flex-wrap sm:flex-nowrap text-xs sm:text-sm">
+          
+          <li class="text-stone-300 font-medium my-1 sm:my-2">Thiago Neppel</li>
+          
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-1 sm:my-2 text-stone-400"><time datetime="2026-10-18T21:40:00-03:00">October 18, 2026</time>
+          </li>
+
+          <li class="before:content-['•'] before:mr-2 before:opacity-50 my-1 sm:my-2 text-stone-400">
+            5 min read
+          </li>
+
+        </ul>
+
+      </div>
+      
+    </header>
+
+    <figure id="featureimage" class="rounded-xl aspect-video"><img class="rounded-lg"
+                src="/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/Banner_hu_3bf9073bbc74313a.jpg"
+                alt="How to manage thousands of SFX and Music Tracks for video editing?"
+                width="750"
+                height="422">
+        <figcaption class="text-center italic text-xs text-stone-200">
+          MySoundLib | Fast, local sound effects manager for video editors.
+        </figcaption>
+
+    </figure>
+
+    <div id="content" class="mb-14">
+
+      <div>
+        
+        <p>Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies.</p>
+<p>You are locked in the zone, nailing cuts down to the exact millisecond, and you need a crisp mechanical impact. Instead of solving that in three seconds, you minimize your editor. You dig through a SFX pack you downloaded. You preview five files in a slow media player. You drag a three-minute track into your timeline just to grab a half-second transient, leaving your project bin littered with junk.</p>
+<p>Repeat that across forty cuts a day, and you just burned nearly an hour of pure creative time without putting a single useful frame on screen.</p>
+<p>I dealt with that friction for years while editing in Premiere Pro and After Effects. The market offered two terrible options: bloated enterprise tools built for Hollywood post-production houses, or modern utilities that charge an ongoing monthly subscription just to search files already sitting on your own internal SSD.</p>
+<p>Both options were unacceptable to me. So I built <a href="https://mysoundlib.com/">MySoundLib</a>: a fast, local desktop app designed for one job. You hit a shortcut over your editor, grab the exact slice of sound you need, and drop it straight onto your timeline track.</p>
+<figure><img src="/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/main_window.png"
+			alt="MySoundLib main interface"><figcaption>
+			<h4>MySoundLib: Clean, dark-mode library browser with waveform visualizer and tagging.</h4>
+		</figcaption>
+</figure>
+
+<h2 id="1-instant-search-floating-over-your-timeline">1. Instant Search Floating Over Your Timeline</h2>
+<p>The biggest productivity killer in video editing is window switching. Every time you Alt+Tab to search for audio in Finder or Windows Explorer, your brain loses its grip on the rhythm of the cut.</p>
+<p>In MySoundLib, file explorers become obsolete.</p>
+<p>You press a global hotkey, <strong>Alt + Shift + F</strong> on Windows and Linux or <strong>Cmd + Shift + F</strong> on macOS. A search bar pops up immediately over your video editor without minimizing your project window.</p>
+<figure><img src="/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/quick_search.png"
+			alt="Quick Search floating overlay"><figcaption>
+			<h4>Quick Search floating directly over your editor with instant audio preview.</h4>
+		</figcaption>
+</figure>
+
+<p>You type <em>&ldquo;sub hit&rdquo;</em>, press the spacebar, and hear the preview in your headphones in milliseconds. The search engine scans gigabytes of audio instantly, letting you filter by format, channels, or custom tags. Found the sound? You drag it straight onto the audio track and keep cutting. No split screens, no clutter, no lost focus.</p>
+<h2 id="2-surgical-waveform-trimming-before-you-clutter-your-project">2. Surgical Waveform Trimming Before You Clutter Your Project</h2>
+<p>One of the worst habits in timeline assembly is importing full files when you only need a fraction of a second. Sound designers love packing twenty risers or thirty impacts into a single long audio file.</p>
+<p>When you drag that raw file into your project:</p>
+<ul>
+<li>Your project file balloons in size.</li>
+<li>Autosaves start hanging your machine.</li>
+<li>You waste time zooming in, razor-blading the edges, deleting empty tails, and dragging manual fades.</li>
+</ul>
+<p>In MySoundLib, you see the complete waveform the moment you hit play. Using your mouse, you drag across only the transient peak or the reverb tail you want, and drag exclusively that selected slice directly into your timeline.</p>
+<p>The trim is completely non-destructive. The original audio file on your disk remains intact, but your NLE receives a lightweight, clean snippet. You can even adjust the pitch or playback speed right inside the interface before dropping the clip onto your track.</p>
+<h2 id="3-built-in-opus-conversion-without-shady-web-tools">3. Built-in .opus Conversion Without Shady Web Tools</h2>
+<p>Anyone editing for content creators or client accounts knows this specific headache: the client sends a voice note, interview clip, or reference audio over WhatsApp, and the file arrives in <code>.opus</code> format.</p>
+<p>You drag it into Premiere Pro or DaVinci Resolve, and the software immediately rejects it with an import error. The traditional workaround is annoying: open a web browser, search for sketchy online converters full of pop-up ads, upload your client&rsquo;s confidential voice note to an unknown server, and wait to download a converted file.</p>
+<p>MySoundLib eliminates that detour with an integrated local conversion engine.</p>
+<figure><img src="/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/audio_converter.png"
+			alt="Built-in Audio Converter dialog"><figcaption>
+			<h4>Built-in batch audio converter: Convert OPUS, FLAC, OGG, M4A to WAV or MP3 locally.</h4>
+		</figcaption>
+</figure>
+
+<p>It reads OPUS, FLAC, OGG, M4A, AIFF, MP3, and WAV natively. When you run into a format your video editor refuses to open, you convert it directly inside the app to high-fidelity WAV or MP3 in seconds, individually or in batch. You drag the resulting clip straight onto your tracks with zero internet reliance, zero third-party sites, and zero data leaks.</p>
+<h2 id="4-visual-waveform-auditioning-for-music-tracks-and-pacing">4. Visual Waveform Auditioning for Music Tracks and Pacing</h2>
+<p>Searching for sound effects relies on concrete nouns like footsteps, clicks, and punches. Choosing music tracks depends entirely on energy, dynamics, and instrumentation.</p>
+<p>The problem with keeping music in generic folders is that filenames like <code>Corporate_Inspiring_v3_120bpm.mp3</code> tell you nothing about how the track unfolds. You are forced to listen from second zero just to find where the beat actually kicks in.</p>
+<p>With dedicated libraries inside MySoundLib, you can categorize music by client, project, or vibe. More importantly, you read the waveform visually in seconds. You can instantly see where the drop happens, where the instrumentation empties out, and where the chorus hits, letting you find the right pacing without loading heavy players or caching unwanted audio into your editor.</p>
+<h2 id="5-truly-local-software-zero-cloud-zero-monthly-subscriptions">5. Truly Local Software: Zero Cloud, Zero Monthly Subscriptions</h2>
+<p>The software market has developed an obsession with recurring subscription fees for tools that only interact with local files. Paying ten or twenty dollars every month just to search files on your own hard drive makes no sense.</p>
+<p>MySoundLib is built on a straightforward principle: it is your computer, they are your files, and the software should belong to you.</p>
+<ul>
+<li><strong>100% Offline</strong>: Nothing uploads to a cloud server, there is no invasive tracking, and the app never stops working if your internet drops during a deadline crunch.</li>
+<li><strong>Universal NLE Compatibility</strong>: Runs across Windows, macOS, and Linux, and supports any software that accepts dragged files, including Premiere Pro, DaVinci Resolve, CapCut Desktop, After Effects, Final Cut Pro, Vegas Pro, and Reaper.</li>
+<li><strong>$19 Lifetime License</strong>: A single, one-time payment. You buy a license for your personal use, install it on your primary editing rig and your laptop, and own it with all updates included.</li>
+</ul>
+<hr>
+<p>If your current audio workflow consists of wading through nested folders and trimming three-minute files inside your project bin, stop wasting time as a file archivist.</p>
+<p>Check out the app at <a href="https://mysoundlib.com/">mysoundlib.com</a> and get back to what actually matters: the rhythm of your cut.</p>
+</div>
+
+      
+
+    <ul id="taxonomy" class="not-prose flex items-center space-x-4 flex-nowrap whitespace-nowrap overflow-x-auto custom-scrollbar">
+
+      <li class="font-semibold my-4">Tags:</li>
+        <li ><a class="py-2 px-6 font-semibold border border-stone-800 border-2 rounded-full hover:bg-stone-900 active:bg-zinc-300" href="/blog/tags/audiovisual/">Audiovisual</a></li>
+        <li ><a class="py-2 px-6 font-semibold border border-stone-800 border-2 rounded-full hover:bg-stone-900 active:bg-zinc-300" href="/blog/tags/video-editing/">Video Editing</a></li>
+        <li ><a class="py-2 px-6 font-semibold border border-stone-800 border-2 rounded-full hover:bg-stone-900 active:bg-zinc-300" href="/blog/tags/sound-design/">Sound Design</a></li>
+        <li ><a class="py-2 px-6 font-semibold border border-stone-800 border-2 rounded-full hover:bg-stone-900 active:bg-zinc-300" href="/blog/tags/productivity/">Productivity</a></li>
+        <li ><a class="py-2 px-6 font-semibold border border-stone-800 border-2 rounded-full hover:bg-stone-900 active:bg-zinc-300" href="/blog/tags/software/">Software</a></li>
+    </ul>
+</div>
+
+    <footer id="content-footer" class="not-prose">
+
+      <div id="author-box" class="my-8 md:my-14 p-8 bg-stone-900 rounded-2xl">
+
+        <img class="w-20 h-20 rounded-full" src="/blog/images/Thneppel.png" alt="Thiago Neppel">
+        <div class="flex gap-2">
+        <p class="text-xl my-4">Written by:</p>
+        <h2 class="text-xl font-bold my-4">Thiago Neppel</h2>
+        </div>
+        <p class="mb-4">Marketing director and creative professional with a background in design, advertising, and audiovisual production, currently exploring game development.</p>
+
+        <ul class="flex flex-wrap space-x-4">
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://www.youtube.com/@thneppel" target="_blank" rel="noopener">
+              <svg width="32px" height="32px" viewBox="0 0 32 32" id="icon" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M29.41,9.26a3.5,3.5,0,0,0-2.47-2.47C24.76,6.2,16,6.2,16,6.2s-8.76,0-10.94.59A3.5,3.5,0,0,0,2.59,9.26,36.13,36.13,0,0,0,2,16a36.13,36.13,0,0,0,.59,6.74,3.5,3.5,0,0,0,2.47,2.47C7.24,25.8,16,25.8,16,25.8s8.76,0,10.94-.59a3.5,3.5,0,0,0,2.47-2.47A36.13,36.13,0,0,0,30,16,36.13,36.13,0,0,0,29.41,9.26ZM13.2,20.2V11.8L20.47,16Z"/>
+              </svg>
+              <span class="ml-2">YouTube</span>
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://twitter.com/Thneppel" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+              </svg>
+              <span class="ml-2">Twitter</span>
+            </a>
+          </li>
+          <li>
+            <a class="flex items-center decoration-auto hover:underline" href="https://www.instagram.com/thneppel" target="_blank" rel="noopener">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+
+              </svg>
+              <span class="ml-2">Instagram</span>
+            </a>
+          </li>
+
+        </ul>
+        
+      </div><div id="related-post">
+
+  <h2 class="text-xl md:text-2xl font-bold mb-6 md:mb-8">
+    Recommended for You
+  </h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><article class="relative group bg-stone-900 hover:bg-stone-800 rounded-3xl">
+	
+	<a class="insert-link" href="https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/"></a>
+
+	<figure class="w-full aspect-video overflow-hidden rounded-3xl">
+
+			<img class="object-cover group-hover:scale-105 transition duration-500 cursor-pointer"
+			src="/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/Banner_hu_9f49dffd8b015388.jpg"
+			alt="I Hate Marketing. Unfortunately, I’m Good at It."
+			width="750"
+			height="422">
+
+	</figure>
+
+	<div class="p-6">
+
+		<time datetime="2026-05-11T13:54:11-03:00">May 11, 2026</time>
+
+		<h3 class="my-4 text-2xl font-bold">I Hate Marketing. Unfortunately, I’m Good at It.</h3>
+
+		<p class="text-normal leading-normal text-stone-400 line-clamp-2">Thoughts about burnout, freelancing, uncertainty, and finally pursuing the projects I truly care about.</p>
+
+	</div>
+</article>
+  </div>
+
+</div></footer>
+
+  </article>
+
+  
+  <aside class="md:col-span-1"><div class="lg:sticky lg:top-8">
+
+	
+
+	<div class="space-y-6">
+
+		<h2 class="font-bold text-xl mb-8 text-white">Recent Posts</h2>
+
+		<article class="relative group flex flex-row">
+	<a class="insert-link" href="https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/"></a>
+
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-stone-900">
+
+			<img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer"
+			src="/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/Banner_hu_2d8e20c0d277156f.jpg"
+			alt="How to manage thousands of SFX and Music Tracks for video editing?"
+			width="250"
+			height="250">
+
+	</figure>
+
+
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold text-sm sm:text-base text-stone-200 group-hover:text-white group-hover:underline decoration-stone-500 transition-colors">How to manage thousands of SFX and Music Tracks for video editing?</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/"></a>
+
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-stone-900">
+
+			<img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer"
+			src="/blog/posts/2026/blogs-in-2026-why-even-bother/Banner_hu_1ab793423e316416.jpg"
+			alt="Blogs in 2026: Why Even Bother?"
+			width="250"
+			height="250">
+
+	</figure>
+
+
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold text-sm sm:text-base text-stone-200 group-hover:text-white group-hover:underline decoration-stone-500 transition-colors">Blogs in 2026: Why Even Bother?</h3>
+	</div>
+</article><article class="relative group flex flex-row">
+	<a class="insert-link" href="https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/"></a>
+
+	<figure class="basis-1/3 aspect-square overflow-hidden rounded-2xl bg-stone-900">
+
+			<img class="object-cover h-full w-full group-hover:scale-105 transition duration-500 cursor-pointer"
+			src="/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/Banner_hu_6d97900b3ae59343.jpg"
+			alt="I Hate Marketing. Unfortunately, I’m Good at It."
+			width="250"
+			height="250">
+
+	</figure>
+
+
+	<div class="basis-2/3 self-center ml-4">
+		<h3 class="font-bold text-sm sm:text-base text-stone-200 group-hover:text-white group-hover:underline decoration-stone-500 transition-colors">I Hate Marketing. Unfortunately, I’m Good at It.</h3>
+	</div>
+</article>
+		
+	</div>
+
+</div>
+</aside>
+
+</div>
+  
+</main><footer class="w-full mt-auto border-t border-white/[0.06]">
+  <div class="max-w-7xl xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+    <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-center">
+      <a href="https://thneppel.com.br/" class="flex items-center gap-2 text-stone-300 hover:text-white transition-colors" aria-label="Thneppel">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 683.6 348.1" class="w-6 sm:w-7 h-auto fill-current">
+          <polygon points="148.8 243.9 148.8 348.1 251.6 245.3 199.5 193.2 148.8 243.9"/>
+          <polygon points="535.1 104.2 535.1 0 432.2 102.9 484.3 155 535.1 104.2"/>
+          <path d="M341.9,79.9h0c-18.8,0-36.5,7.3-49.8,20.6l-2.3,2.3,196,196h104.2l-198.3-198.3c-13.3-13.3-31-20.6-49.8-20.6Z"/>
+          <polygon points="540 210.9 683.6 210.9 609.9 137.2 540 137.2 503.2 174.1 540 210.9"/>
+          <polygon points="143.8 137.2 0 137.2 73.7 210.9 143.8 210.9 180.5 174.1 143.8 137.2"/>
+          <path d="M93.8,49.3l198.3,198.3c13.3,13.3,31,20.6,49.8,20.6s36.5-7.3,49.8-20.6l2.3-2.3L198.1,49.3h-104.2Z"/>
+        </svg>
+        <span class="font-calamity text-base sm:text-lg text-white font-normal">Thneppel</span>
+      </a>
+      <span class="text-stone-600">&bull;</span>
+      <span>© 2026 Thiago Neppel</span>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center">
+      
+        <a href="https://www.youtube.com/@thneppel" target="_blank" rel="noopener noreferrer" class="hover:text-stone-300 transition-colors">YouTube</a>
+      
+      
+        <a href="https://twitter.com/Thneppel" target="_blank" rel="noopener noreferrer" class="hover:text-stone-300 transition-colors">X</a>
+      
+      
+        <a href="https://www.instagram.com/thneppel" target="_blank" rel="noopener noreferrer" class="hover:text-stone-300 transition-colors">Instagram</a>
+      
+      <span class="hidden sm:inline text-stone-600">&bull;</span>
+      <a href="https://thneppel.com.br/privacy-and-policy/" class="hover:text-stone-300 transition-colors">Privacy policy</a>
+      <a href="https://thneppel.com.br/terms-of-use/" class="hover:text-stone-300 transition-colors">Terms of use</a>
+    </div>
+  </div>
+</footer>
+
+
+<a href="https://discord.com/users/204272847353413632"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="discord-float-btn fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#5865F2] hover:bg-[#4752C4] text-white shadow-lg hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group"
+   aria-label="Discord">
+  <svg class="w-5 sm:w-6 h-5 sm:h-6 fill-current transition-transform duration-300 group-hover:scale-105" viewBox="0 0 127.14 96.36">
+    <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+  </svg>
+</a>
+
+      <script defer src="/blog/js/insertoggle.474f9b0e08021c6519cff4e46df14ccf148285b2d3a23d6321d6e10f25c291fb.js" integrity="sha256-R0&#43;bDggCHGUZz/TkbfFMzxSChbLToj1jIdbhDyXCkfs=" crossorigin="anonymous"></script>
+</body>
+</html>

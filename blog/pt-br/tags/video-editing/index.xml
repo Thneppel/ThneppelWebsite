@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Video Editing on Thneppel Blog</title>
+		<link>https://thneppel.com.br/blog/pt-br/tags/video-editing/</link>
+		<description>Recent content in Video Editing on Thneppel Blog</description>
+		<generator>Hugo</generator>
+		<language>pt-br</language>
+		
+		
+		
+		
+			<lastBuildDate>Sun, 18 Oct 2026 21:40:00 -0300</lastBuildDate>
+		
+			<atom:link href="https://thneppel.com.br/blog/pt-br/tags/video-editing/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Como gerenciar milhares de SFX e trilhas musicais na edição de vídeo?</title>
+				<link>https://thneppel.com.br/blog/pt-br/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</link>
+				<pubDate>Sun, 18 Oct 2026 21:40:00 -0300</pubDate>
+				<guid>https://thneppel.com.br/blog/pt-br/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</guid>
+				<description>&lt;p&gt;Toda vez que você sai do Premiere, DaVinci ou CapCut para caçar um arquivo de áudio nas pastas do sistema, o ritmo da sua edição morre.&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

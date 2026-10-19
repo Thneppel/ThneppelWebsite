@@ -2,21 +2,125 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://thneppel.com.br/blog/about/</loc>
-    <lastmod>2026-05-11T17:59:34-03:00</lastmod>
+    <loc>https://thneppel.com.br/blog/tags/audiovisual/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://thneppel.com.br/blog/about/"
+                href="https://thneppel.com.br/blog/tags/audiovisual/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://thneppel.com.br/blog/pt-br/about/"
+                href="https://thneppel.com.br/blog/pt-br/tags/audiovisual/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/categories/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/categories/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/categories/personal/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/categories/personal/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/categories/personal/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/posts/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/posts/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/tags/productivity/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/tags/productivity/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/tags/productivity/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/tags/software/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/tags/software/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/tags/software/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/tags/sound-design/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/tags/sound-design/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/tags/sound-design/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/tags/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/tags/"
                 />
   </url><url>
     <loc>https://thneppel.com.br/blog/</loc>
-    <lastmod>2026-05-11T17:59:34-03:00</lastmod>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
@@ -28,17 +132,30 @@
                 href="https://thneppel.com.br/blog/pt-br/"
                 />
   </url><url>
-    <loc>https://thneppel.com.br/blog/tags/audiovisual/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
+    <loc>https://thneppel.com.br/blog/tags/video-editing/</loc>
+    <lastmod>2026-10-18T21:40:00-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en-us"
-                href="https://thneppel.com.br/blog/tags/audiovisual/"
+                href="https://thneppel.com.br/blog/tags/video-editing/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="pt-br"
-                href="https://thneppel.com.br/blog/pt-br/tags/audiovisual/"
+                href="https://thneppel.com.br/blog/pt-br/tags/video-editing/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/blog/about/</loc>
+    <lastmod>2026-05-11T17:59:34-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/blog/about/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/blog/pt-br/about/"
                 />
   </url><url>
     <loc>https://thneppel.com.br/blog/tags/blogging/</loc>
@@ -78,19 +195,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://thneppel.com.br/blog/pt-br/tags/career/"
-                />
-  </url><url>
-    <loc>https://thneppel.com.br/blog/categories/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://thneppel.com.br/blog/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://thneppel.com.br/blog/pt-br/categories/"
                 />
   </url><url>
     <loc>https://thneppel.com.br/blog/tags/creativity/</loc>
@@ -156,45 +260,6 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://thneppel.com.br/blog/pt-br/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/"
-                />
-  </url><url>
-    <loc>https://thneppel.com.br/blog/categories/personal/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://thneppel.com.br/blog/categories/personal/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://thneppel.com.br/blog/pt-br/categories/personal/"
-                />
-  </url><url>
-    <loc>https://thneppel.com.br/blog/posts/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://thneppel.com.br/blog/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://thneppel.com.br/blog/pt-br/posts/"
-                />
-  </url><url>
-    <loc>https://thneppel.com.br/blog/tags/</loc>
-    <lastmod>2026-05-11T13:54:11-03:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://thneppel.com.br/blog/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://thneppel.com.br/blog/pt-br/tags/"
                 />
   </url>
 </urlset>
