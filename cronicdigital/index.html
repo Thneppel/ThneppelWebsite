@@ -2675,6 +2675,296 @@
 </footer>
 
 
+<button type="button" class="email-float-btn" aria-label="Contact by email" aria-haspopup="dialog" onclick="document.getElementById('contact-dialog').showModal()">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z"/><path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z"/>
+  </svg>
+</button>
+
+<dialog id="contact-dialog" class="cd" aria-labelledby="cd-title" data-state="form">
+  <span class="cd-grab" aria-hidden="true"></span>
+  <button type="button" class="cd-close" aria-label="Close" data-close>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+  </button>
+
+  <div class="cd-view cd-view-form">
+    <header class="cd-head">
+      <div>
+        <h2 id="cd-title">Get in touch</h2>
+        <p class="cd-sub">Questions, projects or just a hello. I usually reply within a few days.</p>
+      </div>
+    </header>
+
+    <form id="contact-form" class="cd-form" novalidate>
+      <input type="hidden" name="access_key" value="be9cabd6-5bc2-43f9-9434-27ce15f890d9">
+      <input type="hidden" name="subject" value="New contact from website (Thneppel)">
+      <input type="hidden" name="from_name" value="Thneppel">
+      <input type="checkbox" name="botcheck" class="cd-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <div class="cd-row">
+        <label class="cd-field">
+          <span>Name</span>
+          <input type="text" name="name" autofocus required maxlength="100" autocomplete="name" placeholder="Your name">
+        </label>
+        <label class="cd-field">
+          <span>Email</span>
+          <input type="email" name="email" required maxlength="150" autocomplete="email" inputmode="email" placeholder="you@email.com">
+        </label>
+      </div>
+      <label class="cd-field">
+        <span>Message <small class="cd-count" aria-hidden="true">0/2000</small></span>
+        <textarea name="message" rows="5" required maxlength="2000" placeholder="How can I help?"></textarea>
+      </label>
+
+      <p class="cd-error" role="alert" hidden></p>
+
+      <button type="submit" class="cd-submit">
+        <span class="cd-spinner" aria-hidden="true"></span>
+        <span class="cd-submit-label">Send message</span>
+      </button>
+    </form>
+
+    <footer class="cd-alt">
+      <span>Prefer your own email app?</span>
+      <span class="cd-alt-mail">
+        <a href="mailto:contact@thneppel.com.br">contact@thneppel.com.br</a>
+        <button type="button" class="cd-copy" data-copy="contact@thneppel.com.br">Copy</button>
+      </span>
+    </footer>
+  </div>
+
+  <div class="cd-view cd-view-success" role="status" aria-live="polite">
+    <span class="cd-check" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+    </span>
+    <h2>Message sent</h2>
+    <p class="cd-sub">Thanks for reaching out. I&#39;ll reply to your email soon.</p>
+    <button type="button" class="cd-submit" data-close>Close</button>
+  </div>
+</dialog>
+
+<style>
+   
+  .email-float-btn {
+    position: fixed; z-index: 50; bottom: 1rem; right: calc(1rem + 2.75rem + 0.75rem);
+    display: flex; align-items: center; justify-content: center;
+    width: 2.75rem; height: 2.75rem; padding: 0; border-radius: 9999px; cursor: pointer;
+    background: #E11D48; color: #fff; border: 0;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+    transition: all 300ms cubic-bezier(.4,0,.2,1);
+  }
+  .email-float-btn:hover { background: #BE123C; transform: scale(1.1); box-shadow: 0 25px 50px -12px rgba(0,0,0,.25); }
+  .email-float-btn:active { transform: scale(.95); }
+  .email-float-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+  .email-float-btn svg { width: 1.25rem; height: 1.25rem; }
+  @media (min-width: 640px) {
+    .email-float-btn { bottom: 1.5rem; right: calc(1.5rem + 3rem + 0.75rem); width: 3rem; height: 3rem; }
+    .email-float-btn svg { width: 1.5rem; height: 1.5rem; }
+  }
+
+   
+  html:has(#contact-dialog[open]) { overflow: hidden; }
+  .cd {
+    --cd-accent: #E11D48; --cd-accent-h: #BE123C;
+    --cd-bg: #161412; --cd-field: #0c0a09; --cd-line: rgba(255,255,255,.08);
+    --cd-text: #f5f5f4; --cd-muted: #a8a29e;
+    box-sizing: border-box; position: fixed;
+    width: min(100% - 2rem, 32rem); max-height: calc(100dvh - 2rem); overflow-y: auto;
+    margin: auto; padding: 2rem; border: 1px solid var(--cd-line); border-radius: 1.5rem;
+    background: var(--cd-bg); color: var(--cd-text);
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.04);
+    opacity: 0; transform: translateY(12px) scale(.97);
+    transition: opacity .25s ease, transform .3s cubic-bezier(.2,.9,.3,1.1), overlay .3s allow-discrete, display .3s allow-discrete;
+  }
+  .cd[open] { opacity: 1; transform: none; }
+  @starting-style { .cd[open] { opacity: 0; transform: translateY(12px) scale(.97); } }
+  .cd::backdrop {
+    background: rgba(12,10,9,0); backdrop-filter: blur(0);
+    transition: background .3s, backdrop-filter .3s, overlay .3s allow-discrete, display .3s allow-discrete;
+  }
+  .cd[open]::backdrop { background: rgba(12,10,9,.72); backdrop-filter: blur(6px); }
+  @starting-style { .cd[open]::backdrop { background: rgba(12,10,9,0); backdrop-filter: blur(0); } }
+  .cd *, .cd *::before, .cd *::after { box-sizing: border-box; }
+  .cd h2 { margin: 0; font-size: 1.25rem; line-height: 1.3; font-weight: 700; color: #fff; letter-spacing: -.01em; }
+  .cd-sub { margin: .25rem 0 0; font-size: .875rem; line-height: 1.5; color: var(--cd-muted); }
+  .cd-grab { display: none; }
+
+  .cd-close {
+    position: absolute; top: 1rem; right: 1rem; display: grid; place-items: center;
+    width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 9999px; cursor: pointer;
+    background: rgba(255,255,255,.05); color: var(--cd-muted); transition: background .2s, color .2s;
+  }
+  .cd-close:hover { background: rgba(255,255,255,.1); color: #fff; }
+  .cd-close svg { width: 1rem; height: 1rem; }
+
+   
+  .cd-view-success { display: none; }
+  .cd[data-state="success"] .cd-view-form { display: none; }
+  .cd[data-state="success"] .cd-view-success {
+    display: flex; flex-direction: column; align-items: center; text-align: center; padding: 1rem 0 0;
+    animation: cd-pop .4s cubic-bezier(.2,.9,.3,1.2);
+  }
+
+  .cd-head { margin-bottom: 1.5rem; padding-right: 2rem; }
+
+   
+  .cd-form { display: flex; flex-direction: column; gap: 1rem; margin: 0; }
+  .cd-row { display: grid; gap: 1rem; grid-template-columns: 1fr 1fr; }
+  .cd-field { display: flex; flex-direction: column; gap: .5rem; margin: 0; }
+  .cd-field > span { display: flex; justify-content: space-between; font-size: .8125rem; font-weight: 500; color: #d6d3d1; }
+  .cd-count { font-size: .75rem; font-weight: 400; color: #78716c; font-variant-numeric: tabular-nums; }
+  .cd-field input, .cd-field textarea {
+    width: 100%; margin: 0; padding: .75rem .875rem; border-radius: .75rem;
+    background: var(--cd-field); color: #fff; border: 1px solid var(--cd-line);
+    font: inherit; font-size: 1rem; line-height: 1.5;  
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .cd-field textarea { resize: none; min-height: 8rem; field-sizing: content; max-height: 16rem; }
+  .cd-field input::placeholder, .cd-field textarea::placeholder { color: #57534e; }
+  .cd-field input:hover, .cd-field textarea:hover { border-color: rgba(255,255,255,.16); }
+  .cd-field input:focus, .cd-field textarea:focus {
+    outline: none; border-color: var(--cd-accent); box-shadow: 0 0 0 4px rgba(225,29,72,.18);
+  }
+  .cd-field input:user-invalid, .cd-field textarea:user-invalid,
+  .cd-form.was-submitted .cd-field :invalid { border-color: #fb7185; }
+  .cd-hp { position: absolute; left: -9999px; }
+
+  .cd-error {
+    margin: 0; padding: .75rem .875rem; border-radius: .75rem; font-size: .8125rem; line-height: 1.5;
+    background: rgba(225,29,72,.1); border: 1px solid rgba(225,29,72,.25); color: #fecdd3;
+  }
+  .cd-error[hidden] { display: none; }
+
+  .cd-submit {
+    position: relative; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    width: 100%; margin-top: .25rem; padding: .875rem 1.5rem; border: 0; border-radius: 9999px; cursor: pointer;
+    background: var(--cd-accent); color: #fff; font: inherit; font-size: .9375rem; font-weight: 600;
+    transition: background .2s, transform .1s;
+  }
+  .cd-submit:hover { background: var(--cd-accent-h); }
+  .cd-submit:active { transform: scale(.98); }
+  .cd-submit:focus-visible, .cd-close:focus-visible, .cd-copy:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+  .cd-submit:disabled { cursor: progress; opacity: .8; }
+  .cd-spinner {
+    display: none; width: 1rem; height: 1rem; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,.35); border-top-color: #fff; animation: cd-spin .7s linear infinite;
+  }
+  .cd-submit.is-loading .cd-spinner { display: block; }
+
+   
+  .cd-alt {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem;
+    margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--cd-line);
+    font-size: .8125rem; color: var(--cd-muted);
+  }
+  .cd-alt-mail { display: inline-flex; align-items: center; gap: .5rem; }
+  .cd-alt a { color: #fff; text-decoration: none; font-weight: 500; }
+  .cd-alt a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .cd-copy {
+    padding: .25rem .625rem; border-radius: 9999px; cursor: pointer; font: inherit; font-size: .75rem;
+    background: rgba(255,255,255,.06); color: #d6d3d1; border: 1px solid var(--cd-line); transition: background .2s, color .2s;
+  }
+  .cd-copy:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+   
+  .cd-check {
+    display: grid; place-items: center; width: 4rem; height: 4rem; margin-bottom: 1.25rem; border-radius: 9999px;
+    background: rgba(225,29,72,.14); color: var(--cd-accent);
+  }
+  .cd-check svg { width: 1.75rem; height: 1.75rem; stroke-dasharray: 24; stroke-dashoffset: 24; animation: cd-draw .45s .15s ease-out forwards; }
+  .cd-view-success .cd-sub { max-width: 22rem; margin-bottom: 1.75rem; }
+
+  @keyframes cd-spin { to { transform: rotate(360deg); } }
+  @keyframes cd-pop { from { opacity: 0; transform: scale(.95); } }
+  @keyframes cd-draw { to { stroke-dashoffset: 0; } }
+
+   
+  @media (max-width: 639px) {
+    .cd {
+      width: 100%; max-width: 100%; max-height: 92dvh; margin: auto 0 0;
+      padding: 1.75rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom));
+      border-radius: 1.5rem 1.5rem 0 0; border-bottom: 0; transform: translateY(100%);
+    }
+    @starting-style { .cd[open] { transform: translateY(100%); } }
+    .cd-grab { display: block; position: absolute; top: .5rem; left: 50%; width: 2.5rem; height: .25rem; margin-left: -1.25rem; border-radius: 9999px; background: rgba(255,255,255,.18); }
+    .cd-row { grid-template-columns: 1fr; }
+    .cd-alt { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cd, .cd::backdrop, .cd *, .cd *::before { transition: none !important; animation: none !important; }
+    .cd-check svg { stroke-dashoffset: 0; }
+  }
+</style>
+
+<script>
+  (() => {
+    const t = {"close":"Close","copied":"Copied","copy":"Copy","email":"Email","emailPh":"you@email.com","err":"Could not send your message. Check your connection and try again, or write to contact@thneppel.com.br.","message":"Message","messagePh":"How can I help?","name":"Name","namePh":"Your name","okBtn":"Close","okText":"Thanks for reaching out. I'll reply to your email soon.","okTitle":"Message sent","open":"Contact by email","or":"Prefer your own email app?","send":"Send message","sending":"Sending…","sub":"Questions, projects or just a hello. I usually reply within a few days.","subject":"New contact from website","title":"Get in touch"};
+    const dialog = document.getElementById('contact-dialog');
+    const form = document.getElementById('contact-form');
+    const btn = form.querySelector('.cd-submit');
+    const label = btn.querySelector('.cd-submit-label');
+    const error = form.querySelector('.cd-error');
+    const message = form.elements.message;
+    const count = form.querySelector('.cd-count');
+
+    
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog || e.target.closest('[data-close]')) dialog.close();
+    });
+
+    
+    dialog.addEventListener('close', () => {
+      if (dialog.dataset.state === 'success') setTimeout(() => (dialog.dataset.state = 'form'), 300);
+    });
+
+    message.addEventListener('input', () => (count.textContent = `${message.value.length}/2000`));
+
+    dialog.querySelector('.cd-copy').addEventListener('click', async (e) => {
+      const b = e.currentTarget;
+      try { await navigator.clipboard.writeText(b.dataset.copy); } catch { return; }
+      b.textContent = t.copied;
+      setTimeout(() => (b.textContent = t.copy), 1800);
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      error.hidden = true;
+      if (!form.checkValidity()) {
+        form.classList.add('was-submitted');
+        form.querySelector(':invalid')?.focus();
+        return;
+      }
+      btn.disabled = true;
+      btn.classList.add('is-loading');
+      label.textContent = t.sending;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        });
+        const data = await res.json();
+        if (!data.success) throw new Error(data.message);
+        form.reset();
+        form.classList.remove('was-submitted');
+        count.textContent = '0/2000';
+        dialog.dataset.state = 'success';
+        dialog.querySelector('.cd-view-success [data-close]').focus();
+      } catch {
+        error.textContent = t.err;
+        error.hidden = false;
+      } finally {
+        btn.disabled = false;
+        btn.classList.remove('is-loading');
+        label.textContent = t.send;
+      }
+    });
+  })();
+</script>
+
+
+
 <a href="https://discord.com/users/204272847353413632"
    target="_blank"
    rel="noopener noreferrer"
