@@ -14,6 +14,18 @@
                 href="https://thneppel.com.br/pt-br/matkastudios/"
                 />
   </url><url>
+    <loc>https://thneppel.com.br/mysoundlib/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/mysoundlib/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/pt-br/mysoundlib/"
+                />
+  </url><url>
     <loc>https://thneppel.com.br/cronicdigital/</loc>
     <xhtml:link
                 rel="alternate"
@@ -86,18 +98,6 @@
                 href="https://thneppel.com.br/pt-br/artdirection/"
                 />
   </url><url>
-    <loc>https://thneppel.com.br/mysoundlib/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://thneppel.com.br/mysoundlib/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt-br"
-                href="https://thneppel.com.br/pt-br/mysoundlib/"
-                />
-  </url><url>
     <loc>https://thneppel.com.br/midia-imobiliaria/</loc>
     <xhtml:link
                 rel="alternate"
@@ -108,6 +108,18 @@
                 rel="alternate"
                 hreflang="pt-br"
                 href="https://thneppel.com.br/pt-br/midia-imobiliaria/"
+                />
+  </url><url>
+    <loc>https://thneppel.com.br/depthloot/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://thneppel.com.br/depthloot/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt-br"
+                href="https://thneppel.com.br/pt-br/depthloot/"
                 />
   </url><url>
     <loc>https://thneppel.com.br/privacy-and-policy/</loc>
