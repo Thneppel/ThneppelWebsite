@@ -1,1 +1,4 @@
 User-agent: *
+Allow: /
+
+Sitemap: https://thneppel.com.br/sitemap.xml

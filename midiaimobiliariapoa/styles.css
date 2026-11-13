@@ -12,10 +12,10 @@
   --border-medium: rgba(255, 255, 255, 0.16);
   --border-hover: rgba(255, 255, 255, 0.3);
 
-  --accent: #ff2a5f;
-  --accent-hover: #ff4775;
-  --accent-soft: rgba(255, 42, 95, 0.12);
-  --accent-glow: rgba(255, 42, 95, 0.28);
+  --accent: #dc0f2a;
+  --accent-hover: #ef2a40;
+  --accent-soft: rgba(220, 15, 42, 0.12);
+  --accent-glow: rgba(220, 15, 42, 0.28);
 
   --text-primary: #ffffff;
   --text-secondary: #a3a9b6;
@@ -212,7 +212,7 @@ header.site-header {
 .btn-primary:hover {
   background-color: var(--accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(255, 42, 95, 0.4);
+  box-shadow: 0 6px 20px rgba(220, 15, 42, 0.4);
 }
 
 .btn-primary:active {
@@ -287,7 +287,7 @@ header.site-header {
 }
 
 .tag.tag-accent {
-  border-color: rgba(255, 42, 95, 0.4);
+  border-color: rgba(220, 15, 42, 0.4);
   background: var(--accent-soft);
   color: #ffffff;
 }
@@ -428,17 +428,17 @@ section {
 
 .desc-location .tag.tag-accent {
   border-color: var(--accent);
-  background: rgba(255, 42, 95, 0.16);
+  background: rgba(220, 15, 42, 0.16);
   animation: pulse-location 2.2s ease-in-out infinite;
 }
 
 @keyframes pulse-location {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 42, 95, 0.45);
+    box-shadow: 0 0 0 0 rgba(220, 15, 42, 0.45);
     transform: scale(1);
   }
   50% {
-    box-shadow: 0 0 14px 3px rgba(255, 42, 95, 0.4);
+    box-shadow: 0 0 14px 3px rgba(220, 15, 42, 0.4);
     transform: scale(1.04);
   }
 }

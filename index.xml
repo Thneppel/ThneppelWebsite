@@ -1,101 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Thneppel</title>
-		<link>https://thneppel.com.br/</link>
-		<description>Recent content on Thneppel</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-			<copyright>© Thiago Neppel</copyright>
-		
-		
-			<atom:link href="https://thneppel.com.br/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>Matka Studios | YouTube</title>
-				<link>https://thneppel.com.br/matkastudios/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/matkastudios/</guid>
-				<description>&lt;p&gt;Where my love for game development and video essays meets. At Matka Studios, I write, direct, and edit deep dives exploring game design, creative experiments, and the raw reality of building an indie studio from scratch.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>MySoundLib | Software</title>
-				<link>https://thneppel.com.br/mysoundlib/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/mysoundlib/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>Cronic Digital | Marketing</title>
-				<link>https://thneppel.com.br/cronicdigital/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/cronicdigital/</guid>
-				<description>&lt;p&gt;Over five years working with &lt;a href=&#34;https://cronic.com.br/&#34;&gt;Cronic Digital&lt;/a&gt;, I directed and produced commercial campaigns, institutional films, and branded content. It was also where I started integrating AI tools directly into our production and post-production pipeline to speed up concepts and visual experiments.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Jimmy Kim TV | YouTube</title>
-				<link>https://thneppel.com.br/jimmykimtv/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/jimmykimtv/</guid>
-				<description>&lt;p&gt;My editing work for Jimmy Kim TV throughout 2025. Across 27 travel and street food videos, the goal was always dialing in the comedic timing and rhythm so the episodes felt effortless and genuinely fun to watch. Together, the series pulled in over 4.5 million views.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>La Mondo En Ekvilibro | Marketing</title>
-				<link>https://thneppel.com.br/mondo/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/mondo/</guid>
-				<description>&lt;p&gt;A much more atmospheric, conceptual piece created for La Mondo en Ekvilibro. We wanted to explore nature, technology, and environmental balance by layering motion design, archive footage, and generative visuals into a cinematic mood piece.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Nice N Raw | YouTube</title>
-				<link>https://thneppel.com.br/nicenraw/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/nicenraw/</guid>
-				<description>&lt;p&gt;A truly hands-on YouTube project where I wore almost every hat. For Nice N Raw, I handled camera operation, on-set direction, and the entire editing pipeline in Premiere and After Effects, working to give the channel a sharp, distinctive visual rhythm from shoot to final cut.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Lixo Carmesim | Stop Motion</title>
-				<link>https://thneppel.com.br/lixocarmesim/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/lixocarmesim/</guid>
-				<description>&lt;p&gt;A departure from my everyday commercial work, but easily one of the most rewarding grinds. On this stop-motion short, I spent about three months cleaning up puppet rigs frame by frame in Photoshop and After Effects, touching more than 4,000 individual frames to bring the animation to life.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Art Direction | Design</title>
-				<link>https://thneppel.com.br/artdirection/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/artdirection/</guid>
-				<description>&lt;p&gt;A look into the graphic design side of my work. These are brand identities and visual systems I built for various clients, focused on art direction, custom assets, and making sure the look holds up across digital platforms and print.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Mídia Imobiliária | Real State</title>
-				<link>https://thneppel.com.br/midia-imobiliaria/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/midia-imobiliaria/</guid>
-				<description></description>
-			</item>
-			<item>
-				<title>DepthLoot | Shortform Ads</title>
-				<link>https://thneppel.com.br/depthloot/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/depthloot/</guid>
-				<description>&lt;p&gt;A series of shortform vertical video ads produced for the social media marketing of DepthLoot, an upcoming indie game currently in development for release on &lt;a href=&#34;https://store.steampowered.com/app/4637840/&#34;&gt;Steam&lt;/a&gt;, across TikTok, Instagram Reels, and YouTube Shorts. I was responsible for the end-to-end creative direction: conceptualizing hooks and video ideas, copywriting descriptions, editing with retention-driven pacing, and driving the overall acquisition strategy.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Privacy policy</title>
-				<link>https://thneppel.com.br/privacy-and-policy/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/privacy-and-policy/</guid>
-				<description>&lt;p&gt;This policy explains how personal data is handled on this portfolio website under Brazilian law, including the General Data Protection Law (LGPD).&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-applicable-law&#34;&gt;1. Applicable law&lt;/h2&gt;&#xA;&lt;p&gt;This website complies with the Brazilian General Data Protection Law (Lei Geral de Proteção de Dados, LGPD).&lt;/p&gt;&#xA;&lt;h2 id=&#34;2-data-collection&#34;&gt;2. Data collection&lt;/h2&gt;&#xA;&lt;p&gt;This website may collect:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Contact details such as name and email address when submitted through a form&lt;/li&gt;&#xA;&lt;li&gt;Technical connection data, including IP address and browser logs generated automatically by hosting infrastructure&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;3-purpose&#34;&gt;3. Purpose&lt;/h2&gt;&#xA;&lt;p&gt;Personal data is used only to:&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Terms of use</title>
-				<link>https://thneppel.com.br/terms-of-use/</link>
-				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-				<guid>https://thneppel.com.br/terms-of-use/</guid>
-				<description>&lt;p&gt;Last updated: October 2026&lt;/p&gt;&#xA;&lt;p&gt;This website is a personal portfolio created to present professional work and projects.&lt;/p&gt;&#xA;&lt;h2 id=&#34;1-website-ownership&#34;&gt;1. Website ownership&lt;/h2&gt;&#xA;&lt;p&gt;This website is operated by Thiago Neppel.&lt;br&gt;&#xA;For inquiries, write to: &lt;a href=&#34;mailto:contact@thneppel.com.br&#34;&gt;contact@thneppel.com.br&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;2-purpose&#34;&gt;2. Purpose&lt;/h2&gt;&#xA;&lt;p&gt;The material on this site is provided for informational and portfolio review purposes only. It does not constitute a formal commercial offer or service guarantee.&lt;/p&gt;&#xA;&lt;h2 id=&#34;3-intellectual-property&#34;&gt;3. Intellectual property&lt;/h2&gt;&#xA;&lt;p&gt;Unless stated otherwise, all media displayed on this site, including images, videos, graphic design work, and project descriptions, belong to Thiago Neppel or are shown with authorization from clients and partners. Reproduction or redistribution without written permission is prohibited.&lt;/p&gt;</description>
-			</item>
-	</channel>
+  <channel>
+    <title>Thneppel Blog</title>
+    <link>https://thneppel.com.br/blog/</link>
+    <description>Blog about marketing, design and digital creation, sharing practical experience in audiovisual production, technology and game development.</description>
+    <language>en-US</language>
+    <atom:link href="https://thneppel.com.br/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Oct 2026 00:40:00 GMT</lastBuildDate>
+    <item>
+      <title>How to manage thousands of SFX and Music Tracks for video editing?</title>
+      <link>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</link>
+      <guid>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</guid>
+      <pubDate>Mon, 19 Oct 2026 00:40:00 GMT</pubDate>
+      <description>Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies. Here is how I turned 60GB of chaotic SFX into a fast workflow.</description>
+      <category>audiovisual</category>
+      <category>video editing</category>
+      <category>sound design</category>
+      <category>productivity</category>
+      <category>software</category>
+    </item>
+    <item>
+      <title>Blogs in 2026: Why Even Bother?</title>
+      <link>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</link>
+      <guid>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</guid>
+      <pubDate>Mon, 11 May 2026 16:54:11 GMT</pubDate>
+      <description>A personal reflection on why blogging still matters in the age of social media, AI, and fast content. Thoughts about creativity, writing, visibility, and having your own space on the internet.</description>
+      <category>freelancing</category>
+      <category>creativity</category>
+      <category>career</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>I Hate Marketing. Unfortunately, I’m Good at It.</title>
+      <link>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</link>
+      <guid>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</guid>
+      <pubDate>Mon, 11 May 2026 16:54:11 GMT</pubDate>
+      <description>Thoughts about burnout, freelancing, uncertainty, and finally pursuing the projects I truly care about.</description>
+      <category>graphic design</category>
+      <category>audiovisual</category>
+      <category>gamedev</category>
+      <category>freelancing</category>
+      <category>creativity</category>
+      <category>career</category>
+    </item>
+  </channel>
 </rss>

@@ -1,38 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Posts on Thneppel Blog</title>
-		<link>https://thneppel.com.br/blog/posts/</link>
-		<description>Recent content in Posts on Thneppel Blog</description>
-		<generator>Hugo</generator>
-		<language>en-us</language>
-		
-		
-		
-		
-			<lastBuildDate>Sun, 18 Oct 2026 21:40:00 -0300</lastBuildDate>
-		
-			<atom:link href="https://thneppel.com.br/blog/posts/index.xml" rel="self" type="application/rss+xml" />
-			<item>
-				<title>How to manage thousands of SFX and Music Tracks for video editing?</title>
-				<link>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</link>
-				<pubDate>Sun, 18 Oct 2026 21:40:00 -0300</pubDate>
-				<guid>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</guid>
-				<description>&lt;p&gt;Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>Blogs in 2026: Why Even Bother?</title>
-				<link>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</link>
-				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-				<guid>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</guid>
-				<description>&lt;p&gt;&lt;strong&gt;So, why start writing a blog in 2026?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;I’m going to be honest, as I’m writing this post, I don’t have the answer, but I can assure you, that if you’re reading this, I probably figured it out along the way, so I invite you to this short journey of discovery.&lt;/p&gt;</description>
-			</item>
-			<item>
-				<title>I Hate Marketing. Unfortunately, I’m Good at It.</title>
-				<link>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</link>
-				<pubDate>Mon, 11 May 2026 13:54:11 -0300</pubDate>
-				<guid>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</guid>
-				<description>&lt;p&gt;I probably shouldn’t start my first post here with such depressing thought, but hey, I wouldn’t be writing on a blog in 2026 if I wasn’t inspired to create and share good things in the future, so I think it’s normal and even necessary that we talk about the hard things, and maybe, my story here starts with an end. A conflicted one.&lt;/p&gt;</description>
-			</item>
-	</channel>
+  <channel>
+    <title>Thneppel Blog</title>
+    <link>https://thneppel.com.br/blog/</link>
+    <description>Blog about marketing, design and digital creation, sharing practical experience in audiovisual production, technology and game development.</description>
+    <language>en-US</language>
+    <atom:link href="https://thneppel.com.br/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 19 Oct 2026 00:40:00 GMT</lastBuildDate>
+    <item>
+      <title>How to manage thousands of SFX and Music Tracks for video editing?</title>
+      <link>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</link>
+      <guid>https://thneppel.com.br/blog/posts/2026/the-death-of-alt-tab-how-i-turned-60gb-of-chaotic-sfx-into-a-1-second-workflow/</guid>
+      <pubDate>Mon, 19 Oct 2026 00:40:00 GMT</pubDate>
+      <description>Every time you leave Premiere, DaVinci, or CapCut to hunt down an audio file in your system folders, your editing momentum dies. Here is how I turned 60GB of chaotic SFX into a fast workflow.</description>
+      <category>audiovisual</category>
+      <category>video editing</category>
+      <category>sound design</category>
+      <category>productivity</category>
+      <category>software</category>
+    </item>
+    <item>
+      <title>Blogs in 2026: Why Even Bother?</title>
+      <link>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</link>
+      <guid>https://thneppel.com.br/blog/posts/2026/blogs-in-2026-why-even-bother/</guid>
+      <pubDate>Mon, 11 May 2026 16:54:11 GMT</pubDate>
+      <description>A personal reflection on why blogging still matters in the age of social media, AI, and fast content. Thoughts about creativity, writing, visibility, and having your own space on the internet.</description>
+      <category>freelancing</category>
+      <category>creativity</category>
+      <category>career</category>
+      <category>blogging</category>
+    </item>
+    <item>
+      <title>I Hate Marketing. Unfortunately, I’m Good at It.</title>
+      <link>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</link>
+      <guid>https://thneppel.com.br/blog/posts/2026/i-hate-marketing-unfortunatel-im-good-at-it/</guid>
+      <pubDate>Mon, 11 May 2026 16:54:11 GMT</pubDate>
+      <description>Thoughts about burnout, freelancing, uncertainty, and finally pursuing the projects I truly care about.</description>
+      <category>graphic design</category>
+      <category>audiovisual</category>
+      <category>gamedev</category>
+      <category>freelancing</category>
+      <category>creativity</category>
+      <category>career</category>
+    </item>
+  </channel>
 </rss>

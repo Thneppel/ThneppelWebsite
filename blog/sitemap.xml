@@ -1,18 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-	
-		<sitemap>
-			<loc>https://thneppel.com.br/blog/en/sitemap.xml</loc>
-			
-				<lastmod>2026-10-18T21:40:00-03:00</lastmod>
-			
-		</sitemap>
-	
-		<sitemap>
-			<loc>https://thneppel.com.br/blog/pt-br/sitemap.xml</loc>
-			
-				<lastmod>2026-10-18T21:40:00-03:00</lastmod>
-			
-		</sitemap>
-	
+  <sitemap><loc>https://thneppel.com.br/sitemap.xml</loc></sitemap>
 </sitemapindex>
