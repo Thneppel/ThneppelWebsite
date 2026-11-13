@@ -1,0 +1,308 @@
+---
+// Destaque da Mídia Imobiliária (serviço de foto e vídeo para imóveis), no mesmo formato
+// do destaque do MySoundLib, mas espelhado (imagem à direita) e nas cores do site.
+// Leva para a landing page em public/midiaimobiliariapoa/.
+import { Image } from 'astro:assets';
+import { getLocale, t } from '../../i18n/ui';
+import { getProjects } from '../../lib/projects';
+import { parseYouTube } from '../../lib/youtube';
+
+const locale = getLocale(Astro.currentLocale);
+const project = (await getProjects(locale)).find((p) => p.id.startsWith('midia-imobiliaria/'));
+// Vídeo do campo `watch`: a imagem abre no player do site e toca uma prévia no hover
+// (igual ao destaque do MySoundLib).
+const video = parseYouTube(project?.data.watch);
+
+// Números e construtoras atendidas: os mesmos da landing page.
+const stats = [
+  { value: '+70', label: t(locale, 'realestate.stat.properties') },
+  { value: '+25', label: t(locale, 'realestate.stat.developments') },
+];
+// `h`: altura de cada logo (px), compensando as margens diferentes dos arquivos,
+// para todos terem um peso visual parecido.
+const logos = [
+  { file: 'bbg-negativo.png', name: 'BBG', h: 52 },
+  { file: 'cechinel-negativo.png', name: 'Cechinel', h: 84 },
+  { file: 'embraed-negativo.png', name: 'Embraed', h: 44 },
+  { file: 'fg-empreendimentos-negativo.png', name: 'FG Empreendimentos', h: 36 },
+  { file: 'ga-construtora-negativo.png', name: 'GA Construtora', h: 36 },
+  { file: 'procave-negativo.png', name: 'Procave', h: 24 },
+  { file: 'rv-empreendimentos-negativo.png', name: 'RV Empreendimentos', h: 30 },
+];
+---
+
+{
+  project && (
+    <section class="realestate" aria-labelledby="realestate-title">
+      <div class="container grid">
+        <div class="text">
+          <span class="eyebrow">{t(locale, 'realestate.eyebrow')}</span>
+          <h2 id="realestate-title" class="display-title">
+            {project.data.title}
+          </h2>
+          <p>{t(locale, 'realestate.text')}</p>
+
+          <dl class="stats">
+            {
+              stats.map((s) => (
+                <div>
+                  <dt>{s.label}</dt>
+                  <dd>{s.value}</dd>
+                </div>
+              ))
+            }
+          </dl>
+
+          <a href={project.data.link} class="btn btn-primary">
+            {t(locale, 'realestate.cta')} ↗
+          </a>
+        </div>
+
+        <a
+          href={video ? `https://www.youtube.com/watch?v=${video.id}` : project.data.link}
+          class="art"
+          {...(video
+            ? {
+                target: '_blank',
+                rel: 'noopener',
+                'data-yt': video.id,
+                'data-yt-preview': '',
+                'aria-label': t(locale, 'realestate.watch'),
+              }
+            : { 'aria-label': t(locale, 'realestate.cta') })}
+        >
+          <span class="frame" data-preview-host>
+            <Image
+              src={project.data.cover}
+              alt=""
+              widths={[480, 720, 960, 1280]}
+              sizes="(max-width: 900px) 100vw, 50vw"
+            />
+            {video && <span class="play" aria-hidden="true">▶</span>}
+          </span>
+          <span class="sticker" aria-hidden="true">4K + Drone</span>
+        </a>
+      </div>
+
+      <div class="container clients">
+        <p class="clients-label">{t(locale, 'realestate.clients')}</p>
+        <ul>
+          {
+            logos.map((logo) => (
+              <li>
+                <img
+                  src={`/midiaimobiliariapoa/assets/logos/${logo.file}`}
+                  alt={logo.name}
+                  style={`--h: ${logo.h}px`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .realestate {
+    padding: var(--section-pad) 0;
+    background:
+      radial-gradient(60% 80% at 80% 45%, rgba(220, 15, 42, 0.12), transparent 70%),
+      linear-gradient(180deg, var(--bg) 0%, #0e0a0c 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.5rem;
+  }
+
+  .display-title {
+    margin-bottom: 1.75rem;
+  }
+
+  .text > p {
+    font-size: 1.1rem;
+    max-width: 32rem;
+  }
+
+  .stats {
+    display: flex;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    margin: 2.25rem 0 2.5rem;
+  }
+
+  /* Número em cima, legenda embaixo; os números ficam alinhados mesmo com legendas de tamanhos diferentes */
+  .stats div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 14rem;
+  }
+
+  .stats dd {
+    order: -1;
+  }
+
+  .stats dd {
+    font-family: var(--font-display);
+    font-weight: 750;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
+  }
+
+  .stats dt {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text-muted);
+  }
+
+  /* Imagem: aérea do litoral, com zoom leve no hover */
+  .art {
+    position: relative;
+    display: block;
+  }
+
+  /* 16:9, a proporção do vídeo (a prévia do YouTube toca aqui dentro) */
+  .frame {
+    position: relative;
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    box-shadow: 0 30px 80px rgba(220, 15, 42, 0.18);
+  }
+
+  .frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 65% 50%;
+    transition: transform 0.8s var(--ease);
+  }
+
+  .art:hover .frame :global(img),
+  .art:focus-visible .frame :global(img) {
+    transform: scale(1.04);
+  }
+
+  /* Play igual ao dos outros vídeos: só aparece no hover */
+  .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    margin: -23px 0 0 -23px;
+    padding-left: 3px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 0.85rem;
+    opacity: 0;
+    transform: scale(0.85);
+    transition:
+      opacity 0.25s var(--ease),
+      transform 0.25s var(--ease);
+  }
+
+  .art:hover .play,
+  .art:focus-visible .play {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Com a prévia tocando, o play sai de cima do vídeo */
+  .frame:has(:global(.yt-preview.ready)) .play {
+    opacity: 0 !important;
+  }
+
+  .sticker {
+    position: absolute;
+    left: -0.75rem;
+    bottom: -1rem;
+    padding: 0.7rem 1.1rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+    transform: rotate(6deg);
+  }
+
+  /* Construtoras atendidas */
+  .clients {
+    margin-top: clamp(3.5rem, 7vw, 5rem);
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .clients-label {
+    margin-bottom: 1.5rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .clients ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem 2.5rem;
+  }
+
+  .clients img {
+    display: block;
+    height: var(--h, 34px);
+    width: auto;
+    opacity: 0.55;
+    transition: opacity 0.2s var(--ease);
+  }
+
+  .clients li:hover img {
+    opacity: 1;
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    /* No celular a imagem vem antes do texto */
+    .art {
+      order: -1;
+    }
+
+    .sticker {
+      left: 0.5rem;
+    }
+
+    .clients ul {
+      justify-content: center;
+    }
+
+    .clients img {
+      height: calc(var(--h, 34px) * 0.8);
+    }
+  }
+</style>

@@ -1,0 +1,24 @@
+---
+// Home completa. As páginas /index e /pt-br/index só escolhem o idioma.
+import Base from '../../layouts/Base.astro';
+import Hero from './Hero.astro';
+import About from './About.astro';
+import ProjectCta from './ProjectCta.astro';
+import Work from './Work.astro';
+import Product from './Product.astro';
+import RealEstate from './RealEstate.astro';
+import Contact from './Contact.astro';
+import { getLocale, t } from '../../i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+---
+
+<Base title={t(locale, 'meta.title')} description={t(locale, 'meta.description')} headerOverlay>
+  <Hero />
+  <About />
+  <ProjectCta />
+  <Work />
+  <Product />
+  <RealEstate />
+  <Contact />
+</Base>

@@ -1,0 +1,223 @@
+---
+// Chamada para novos projetos: faixa vermelha de ponta a ponta (a única do site), com
+// letreiro vazado correndo ao fundo e um botão grande para o contato.
+import symbolRaw from '../../assets/symbol.svg?raw';
+import { getLocale, t } from '../../i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+
+// Letreiro: "Start a project [arame] Ideas cut to be watched [arame]", repetido para o
+// loop não ter emenda. O separador é o símbolo do site (arame farpado), só no contorno.
+const phrases = [
+  t(locale, 'about.cta'),
+  `${t(locale, 'about.title')} ${t(locale, 'about.titleAccent').replace(/\.$/, '')}`,
+];
+const sequence = Array.from({ length: 4 }, () => phrases).flat();
+const wirePath = symbolRaw.match(/ d="([^"]+)"/)?.[1] ?? '';
+---
+
+<section class="cta" aria-labelledby="cta-title">
+  <div class="marquee" aria-hidden="true">
+    {
+      ['', 'reverse'].map((dir) => (
+        <div class:list={['track', dir]}>
+          {[0, 1].map(() => (
+            <span class="seq">
+              {sequence.map((text) => (
+                <>
+                  <span class="word">{text}</span>
+                  <svg class="wire" viewBox="0 0 684 349">
+                    <path d={wirePath} />
+                  </svg>
+                </>
+              ))}
+            </span>
+          ))}
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="container inner">
+    <h2 id="cta-title" class="title">{t(locale, 'about.ctaText')}</h2>
+    <a href="#contact" class="go">
+      <span>{t(locale, 'about.cta')}</span>
+      <span class="arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .cta {
+    --ink: #0b0a0d;
+    position: relative;
+    overflow: hidden;
+    padding: clamp(5rem, 11vw, 9rem) 0;
+    background: var(--accent);
+    color: var(--ink);
+    isolation: isolate;
+  }
+
+  /* Linhas de varredura e cantos escurecidos, no clima do CRT */
+  .cta::before,
+  .cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .cta::before {
+    background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0 1px, transparent 1px 3px);
+  }
+
+  .cta::after {
+    background: radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.32) 100%);
+  }
+
+  /* --- Letreiro vazado ao fundo --- */
+  .marquee {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    gap: clamp(0.5rem, 2vw, 1.5rem);
+    z-index: 0;
+  }
+
+  .track {
+    display: flex;
+    width: max-content;
+    animation: slide 40s linear infinite;
+  }
+
+  .track.reverse {
+    animation-direction: reverse;
+    animation-duration: 48s;
+  }
+
+  .seq {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    padding-right: 0.3em;
+    font-size: clamp(4.5rem, 13vw, 11rem);
+  }
+
+  .word {
+    font-family: var(--font-display);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(11, 10, 13, 0.22);
+  }
+
+  /* Separador: o arame farpado do símbolo, só o contorno, como as letras vazadas */
+  .wire {
+    flex-shrink: 0;
+    width: 1.35em;
+    height: auto;
+    overflow: visible;
+  }
+
+  .wire path {
+    fill: none;
+    stroke: rgba(11, 10, 13, 0.22);
+    stroke-width: 1.5px;
+    vector-effect: non-scaling-stroke;
+    stroke-linejoin: round;
+  }
+
+  @keyframes slide {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* --- Conteúdo --- */
+  .inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    gap: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+
+
+
+
+  .title {
+    max-width: 15ch;
+    font-family: var(--font-display);
+    font-weight: 750;
+    font-size: clamp(2.6rem, 7vw, 5.75rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    color: var(--ink);
+  }
+
+  /* Botão grande com sombra deslocada; no hover ele "afunda" e inverte as cores */
+  .go {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 1.2rem 2.2rem;
+    border: 2px solid var(--ink);
+    border-radius: var(--radius-sm);
+    background: var(--ink);
+    color: var(--cream);
+    font-size: 0.9rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    box-shadow: 6px 6px 0 rgba(11, 10, 13, 0.35);
+    transition:
+      transform 0.18s var(--ease),
+      box-shadow 0.18s var(--ease),
+      background-color 0.18s var(--ease),
+      color 0.18s var(--ease);
+  }
+
+  .arrow {
+    display: inline-block;
+    font-size: 1.15em;
+    transition: transform 0.25s var(--ease);
+  }
+
+  .go:hover,
+  .go:focus-visible {
+    transform: translate(3px, 3px);
+    box-shadow: 3px 3px 0 rgba(11, 10, 13, 0.35);
+    background: var(--cream);
+    color: var(--ink);
+  }
+
+  .go:hover .arrow,
+  .go:focus-visible .arrow {
+    transform: translateX(6px);
+  }
+
+  .go:active {
+    transform: translate(6px, 6px);
+    box-shadow: 0 0 0 rgba(11, 10, 13, 0.35);
+  }
+
+  /* O contorno de foco padrão é vermelho e sumiria no fundo vermelho */
+  .go:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .track {
+      animation: none;
+    }
+  }
+</style>

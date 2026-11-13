@@ -1,0 +1,344 @@
+---
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { getImage, Image } from 'astro:assets';
+import tvPhoto from '../../assets/about/tv.jpg';
+import { getLocale, t } from '../../i18n/ui';
+import { getPieces, getProjects } from '../../lib/projects';
+
+const locale = getLocale(Astro.currentLocale);
+const projects = await getProjects(locale);
+
+// Números calculados a partir do próprio portfólio, para não ficarem desatualizados.
+const portfolio = projects.filter((p) => p.data.group !== 'product');
+const videos = portfolio.reduce((n, p) => n + p.data.media.filter((m) => m.video).length, 0);
+const stats = [
+  { value: '8+', label: t(locale, 'about.stat.years') },
+  { value: `${videos}+`, label: t(locale, 'about.stat.videos') },
+  { value: String(portfolio.length), label: t(locale, 'about.stat.clients') },
+];
+
+// Ao lado do texto: a foto da TV, com as thumbs dos vídeos dos Destaques passando na
+// tela (mesma seleção da grade de Destaques: `featured: true` no conteúdo).
+const featured = (await getPieces(locale)).filter((piece) => piece.featured);
+const thumbs = await Promise.all(featured.map((piece) => getImage({ src: piece.image, width: 800, format: 'webp' })));
+const photo = await getImage({ src: tvPhoto, width: tvPhoto.width, format: 'webp', quality: 88 });
+// Versão pelo conteúdo do arquivo: ao trocar a foto, o endereço muda e o navegador não
+// reaproveita a antiga do cache (no modo dev o endereço da imagem otimizada é sempre o mesmo).
+const photoVersion = createHash('md5')
+  .update(readFileSync(join(process.cwd(), 'src/assets/about/tv.jpg')))
+  .digest('hex')
+  .slice(0, 8);
+const photoSrc = `${photo.src}${photo.src.includes('?') ? '&' : '?'}v=${photoVersion}`;
+
+// Cantos do vidro na foto (frações da imagem, y para baixo):
+// superior esquerdo, superior direito, inferior direito, inferior esquerdo.
+const SCREEN_CORNERS = [
+  [0.153, 0.217],
+  [0.5707, 0.1623],
+  [0.5736, 0.7],
+  [0.1482, 0.6604],
+];
+// Contorno do vidro inteiro até a borracha (bordas curvas do tubo), no mesmo sistema.
+// A imagem fica numa área acesa recuada dentro dele (ver RASTER_* em scripts/tvPhoto.ts).
+const SCREEN_OUTLINE = [
+  [0.1405, 0.2377], [0.1415, 0.2274], [0.1444, 0.2198], [0.1491, 0.2151], [0.1558, 0.2118],
+  [0.1673, 0.2090], [0.1912, 0.2066], [0.2629, 0.1972], [0.3346, 0.1868], [0.4302, 0.1755],
+  [0.5163, 0.1656], [0.5497, 0.1642], [0.5602, 0.1646], [0.5669, 0.1670], [0.5707, 0.1726],
+  [0.5717, 0.1811], [0.5717, 0.2358], [0.5727, 0.3302], [0.5727, 0.4245], [0.5727, 0.5189],
+  [0.5727, 0.6132], [0.5727, 0.6717], [0.5717, 0.6811], [0.5688, 0.6858], [0.5631, 0.6882],
+  [0.5526, 0.6892], [0.5163, 0.6877], [0.4302, 0.6849], [0.3537, 0.6783], [0.2677, 0.6708],
+  [0.1912, 0.6623], [0.1644, 0.6575], [0.1549, 0.6547], [0.1482, 0.6509], [0.1444, 0.6453],
+  [0.1424, 0.6321], [0.1396, 0.5849], [0.1367, 0.5094], [0.1358, 0.4340], [0.1377, 0.3585],
+  [0.1396, 0.2830], [0.1405, 0.2500],
+];
+
+// Programas que uso (aparecem embaixo da imagem)
+const apps = [
+  'Premiere Pro',
+  'After Effects',
+  'DaVinci Resolve',
+  'Audition',
+  'Photoshop',
+  'Illustrator',
+  'InDesign',
+];
+---
+
+<section id="about" class="about">
+  <div class="container grid">
+    <div class="text">
+      <span class="eyebrow">{t(locale, 'about.eyebrow')}</span>
+      <h2 class="display-title">
+        {t(locale, 'about.title')}
+        <span class="accent">{t(locale, 'about.titleAccent')}</span>
+      </h2>
+      <p>{t(locale, 'about.p1')}</p>
+      <p>{t(locale, 'about.p2')}</p>
+
+      <dl class="stats" data-stats>
+        {
+          stats.map((s) => (
+            <div>
+              <dt>{s.label}</dt>
+              <dd data-count={s.value}>{s.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    {
+      thumbs.length > 0 && (
+        <figure class="media">
+          <div
+            class="screen"
+            data-tv-stage
+            data-photo={photoSrc}
+            data-corners={JSON.stringify(SCREEN_CORNERS)}
+            data-outline={JSON.stringify(SCREEN_OUTLINE)}
+            data-thumbs={JSON.stringify(thumbs.map((img) => img.src))}
+          >
+            <!-- Foto parada; com WebGL o canvas por cima desenha a mesma foto com a tela ligada -->
+            <Image src={tvPhoto} alt="" widths={[540, 800, 1046]} sizes="(max-width: 900px) 100vw, 46vw" />
+            <canvas class="tv" data-tv aria-hidden="true"></canvas>
+          </div>
+          <figcaption class="chips">
+            {apps.map((app) => <span>{app}</span>)}
+          </figcaption>
+        </figure>
+      )
+    }
+  </div>
+
+</section>
+
+<script>
+  // Números do Sobre contam de 0 até o valor quando a seção aparece (uma vez só).
+  // Sem JavaScript ou com "reduzir movimento", os valores ficam como estão no HTML.
+  const COUNT_MS = 1600;
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-stats]').forEach((list) => {
+    if (still) return;
+    const items = [...list.querySelectorAll<HTMLElement>('[data-count]')].map((el) => {
+      const [, num = '0', suffix = ''] = el.dataset.count!.match(/^(\d+)(.*)$/) ?? [];
+      return { el, target: Number(num), suffix };
+    });
+    // Começa do zero (a seção ainda está fora da tela quando o script roda).
+    items.forEach(({ el, suffix }) => (el.textContent = `0${suffix}`));
+
+    const run = () => {
+      const t0 = performance.now();
+      const frame = (now: number) => {
+        const p = Math.min(1, (now - t0) / COUNT_MS);
+        const eased = 1 - Math.pow(1 - p, 4); // desacelera no fim
+        items.forEach(({ el, target, suffix }) => (el.textContent = `${Math.round(target * eased)}${suffix}`));
+        if (p < 1) requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    };
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        run();
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(list);
+  });
+
+  // A tela da TV troca de thumb a cada SLIDE_MS, só enquanto a seção está na tela.
+  import type { TvPhoto } from '../../scripts/tvPhoto';
+
+  const SLIDE_MS = 3200;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll<HTMLElement>('[data-tv-stage]').forEach((stage) => {
+    const canvas = stage.querySelector<HTMLCanvasElement>('[data-tv]')!;
+    const images: string[] = JSON.parse(stage.dataset.thumbs ?? '[]');
+    if (!images.length) return;
+
+    let tv: TvPhoto | null = null;
+    let index = 0;
+    let timer = 0;
+    let visible = false;
+
+    const restart = () => {
+      window.clearInterval(timer);
+      if (tv && visible && !reduced && images.length > 1) {
+        timer = window.setInterval(() => {
+          index = (index + 1) % images.length;
+          tv?.show(index);
+        }, SLIDE_MS);
+      }
+    };
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      tv?.setActive(visible);
+      restart();
+    }).observe(stage);
+
+    // Só monta quando a seção está chegando perto da tela. Sem WebGL, fica a foto parada.
+    const near = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        near.disconnect();
+        import('../../scripts/tvPhoto')
+          .then(({ createTvPhoto }) =>
+            createTvPhoto({
+              host: stage,
+              canvas,
+              photo: stage.dataset.photo!,
+              corners: JSON.parse(stage.dataset.corners!),
+              outline: JSON.parse(stage.dataset.outline!),
+              images,
+              animate: !reduced,
+            }),
+          )
+          .then((instance) => {
+            tv = instance;
+            stage.setAttribute('data-tv-on', '');
+            tv.setActive(visible);
+            restart();
+          })
+          .catch((err) => console.warn('TV indisponível:', err));
+      },
+      { rootMargin: '400px 0px' },
+    );
+    near.observe(stage);
+  });
+</script>
+
+<style>
+  .about {
+    padding: var(--section-pad) 0;
+    background: linear-gradient(180deg, var(--bg) 0%, #120c12 100%);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .eyebrow {
+    margin-bottom: 1.75rem;
+  }
+
+  .display-title {
+    margin-bottom: 2rem;
+  }
+
+  .text p {
+    font-size: 1.05rem;
+    max-width: 34rem;
+  }
+
+  .text p + p {
+    margin-top: 1.1rem;
+  }
+
+  .stats {
+    display: flex;
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(220, 15, 42, 0.25);
+  }
+
+  .stats div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.4rem;
+    padding-right: clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  .stats div + div {
+    padding-left: clamp(1.25rem, 3vw, 2.5rem);
+    border-left: 1px solid var(--border);
+  }
+
+  .stats dd {
+    font-family: var(--font-display);
+    /* Dígitos com a mesma largura: o número não "treme" enquanto conta */
+    font-variant-numeric: tabular-nums;
+    font-weight: 750;
+    letter-spacing: -0.04em;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .stats dt {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* Foto da TV na proporção original; o canvas (tela ligada) cobre ela inteira.
+     As bordas se dissolvem no fundo da seção. */
+  .screen {
+    position: relative;
+    aspect-ratio: 1046 / 1060;
+    -webkit-mask-image: radial-gradient(ellipse 54% 54% at 50% 52%, #000 64%, transparent 100%);
+    mask-image: radial-gradient(ellipse 54% 54% at 50% 52%, #000 64%, transparent 100%);
+  }
+
+  .screen :global(img),
+  .tv {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .tv {
+    opacity: 0;
+    transition: opacity 0.5s steps(6, jump-end);
+  }
+
+  .screen[data-tv-on] .tv {
+    opacity: 1;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .chips span {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.75rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+  }
+
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats div {
+      padding-right: 1rem;
+    }
+
+    .stats div + div {
+      padding-left: 1rem;
+    }
+  }
+</style>

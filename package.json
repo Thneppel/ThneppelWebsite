@@ -12,6 +12,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.4.11"
+    "@astrojs/markdown-satteri": "^0.4.9",
+    "astro": "^7.4.11",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@types/three": "0.186.0"
   }
 }

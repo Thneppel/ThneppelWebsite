@@ -1,0 +1,28 @@
+{
+  "frameMsFast": 100,
+  "frameMsSlow": 250,
+  "wavePeriodMs": 4000,
+  "variants2d": [
+    "flat-cream",
+    "flat-pink",
+    "outline",
+    "outline-cream",
+    "halftone",
+    "gradient",
+    "grid",
+    "checker",
+    "scanlines"
+  ],
+  "materials3d": [
+    "chrome",
+    "pink-plastic",
+    "wire-pink",
+    "rose-chrome",
+    "rubber",
+    "steel",
+    "neon",
+    "iridescent",
+    "wine",
+    "wire-cream"
+  ]
+}

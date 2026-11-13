@@ -1,0 +1,369 @@
+---
+// Trabalhos na home: lista de projetos em cima, galeria embaixo.
+// A galeria abre em "Destaques" (peças variadas de vários projetos); clicar num projeto
+// troca a galeria, na própria home, para todos os vídeos dele.
+// Sem JavaScript, todos os painéis aparecem em sequência.
+import { render } from 'astro:content';
+import Tile from '../WorkTile.astro';
+import { getLocale, t } from '../../i18n/ui';
+import { getPieces, getProjects, projectHref, projectSlug } from '../../lib/projects';
+
+const locale = getLocale(Astro.currentLocale);
+
+// Só some quem tem `inWork: false` explícito no conteúdo.
+const projects = (await getProjects(locale)).filter((p) => p.data.group !== 'product' && p.data.inWork !== false);
+const allPieces = await getPieces(locale);
+
+// Destaques (grade 3 x 3): as peças marcadas com `featured: true` no conteúdo de cada
+// projeto (src/content/projects/*/en.md e pt-br.md).
+const FEATURED_COLS = 3;
+const projectOf = (piece: (typeof allPieces)[number]) => piece.key.slice(0, piece.key.lastIndexOf('-'));
+
+/**
+ * Ordena a galeria para dois vídeos do mesmo projeto nunca ficarem vizinhos: nem lado a
+ * lado ou um em cima do outro na grade, nem seguidos na lista (celular, uma coluna).
+ * Tenta manter a ordem original (já intercalada por projeto) e só troca o necessário.
+ */
+function arrangeGallery<T>(items: T[], groupOf: (item: T) => string, cols: number): T[] {
+  const out: T[] = [];
+  const used = new Array(items.length).fill(false);
+  const ok = (item: T) => {
+    const pos = out.length;
+    const g = groupOf(item);
+    if (pos > 0 && groupOf(out[pos - 1]) === g) return false; // vizinho anterior (linha ou lista)
+    if (pos >= cols && groupOf(out[pos - cols]) === g) return false; // em cima, na grade
+    return true;
+  };
+  const place = (): boolean => {
+    if (out.length === items.length) return true;
+    for (let i = 0; i < items.length; i++) {
+      if (used[i] || !ok(items[i])) continue;
+      used[i] = true;
+      out.push(items[i]);
+      if (place()) return true;
+      out.pop();
+      used[i] = false;
+    }
+    return false;
+  };
+  // Sem arranjo possível (ex.: quase tudo do mesmo projeto): fica a ordem original.
+  return place() ? out : items;
+}
+
+const featured = arrangeGallery(
+  allPieces.filter((piece) => piece.featured),
+  projectOf,
+  FEATURED_COLS,
+);
+// Abas dos projetos em 2 linhas: metade (arredondada para cima) em cima, o resto embaixo.
+const pickerBreak = Math.ceil((projects.length + 1) / 2);
+
+const panels = await Promise.all(
+  projects.map(async (p) => {
+    const slug = projectSlug(p);
+    const pieces = allPieces.filter((piece) => piece.key.startsWith(`${slug}-`));
+    const { Content } = await render(p);
+    return { project: p, slug, pieces, Content, ...projectHref(p, locale) };
+  }),
+);
+---
+
+<section id="work" class="work">
+  <div class="container">
+    <header class="head">
+      <h2 class="display-title one-line">
+        {t(locale, 'work.title')}{' '}
+        <span class="accent">{t(locale, 'work.titleAccent')}</span>
+      </h2>
+    </header>
+
+    <div class="picker" role="tablist" aria-label={t(locale, 'work.eyebrow')} data-picker>
+      <button role="tab" id="tab-featured" aria-controls="panel-featured" aria-selected="true" data-tab="featured">
+        {t(locale, 'work.featured')}
+      </button>
+      {
+        panels.map(({ project, slug, pieces, href, external }, i) => [
+          // Quebra de linha (só no desktop) antes da cápsula escolhida.
+          i + 1 === pickerBreak && <span class="picker-break" aria-hidden="true" />,
+          pieces.length ? (
+            <button role="tab" id={`tab-${slug}`} aria-controls={`panel-${slug}`} aria-selected="false" data-tab={slug}>
+              {project.data.title}
+              <sup>{pieces.length}</sup>
+            </button>
+          ) : (
+            // Projeto sem vídeos na galeria (ex.: landing page): abre o link direto.
+            <a href={href} class="picker-link" {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
+              {project.data.title} <span aria-hidden="true">↗</span>
+            </a>
+          ),
+        ])
+      }
+    </div>
+
+  </div>
+
+  <div class="panels">
+    <!-- Destaques: galeria só de imagens, mais larga que o conteúdo -->
+    <div class="panel wide" role="tabpanel" id="panel-featured" aria-labelledby="tab-featured" data-panel="featured">
+      <ul class="grid featured">
+        {featured.map((p) => <li><Tile piece={p} landscape bare large /></li>)}
+      </ul>
+    </div>
+
+      {
+        panels
+          .filter(({ pieces }) => pieces.length)
+          .map(({ project, slug, pieces, Content, href }) => (
+            <div class="panel container" role="tabpanel" id={`panel-${slug}`} aria-labelledby={`tab-${slug}`} data-panel={slug} hidden>
+              <div class="panel-head">
+                <div>
+                  <span class="cat">{project.data.category}</span>
+                  <h3>{project.data.title}</h3>
+                </div>
+                <div class="desc">
+                  <Content />
+                  <a href={href} class="more">
+                    {t(locale, 'work.viewProject')} →
+                  </a>
+                </div>
+              </div>
+              <ul class:list={['grid', { vertical: project.data.layout === 'vertical' }]}>
+                {pieces.map((p) => <li><Tile piece={p} /></li>)}
+              </ul>
+            </div>
+          ))
+      }
+  </div>
+</section>
+
+<script>
+  // Troca de painel sem sair da home.
+  document.querySelectorAll<HTMLElement>('[data-picker]').forEach((picker) => {
+    const section = picker.closest('section')!;
+    const tabs = [...picker.querySelectorAll<HTMLButtonElement>('[data-tab]')];
+    const panels = [...section.querySelectorAll<HTMLElement>('[data-panel]')];
+
+    const select = (id: string) => {
+      tabs.forEach((t) => t.setAttribute('aria-selected', String(t.dataset.tab === id)));
+      panels.forEach((p) => (p.hidden = p.dataset.panel !== id));
+    };
+
+    picker.addEventListener('click', (e) => {
+      const tab = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-tab]');
+      if (tab) select(tab.dataset.tab!);
+    });
+
+    // Setas do teclado entre as abas.
+    picker.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(document.activeElement as HTMLButtonElement);
+      if (i < 0 || (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft')) return;
+      const next = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
+      next.focus();
+      select(next.dataset.tab!);
+    });
+  });
+</script>
+
+<style>
+  /* "Selected work." numa linha só (no resto do site a parte em vermelho quebra a linha) */
+  .one-line .accent {
+    display: inline;
+  }
+
+  .work {
+    padding: var(--section-pad) 0;
+    background: var(--bg);
+  }
+
+  .head {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  /* Lista de projetos */
+  .picker {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  /* Força a quebra das cápsulas em 2 linhas equilibradas */
+  .picker-break {
+    flex-basis: 100%;
+    height: 0;
+  }
+
+  .picker button,
+  .picker-link {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.55rem 1rem;
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: none;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition:
+      color 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      background-color 0.2s var(--ease);
+  }
+
+  .picker sup {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+  }
+
+  .picker button:hover,
+  .picker-link:hover {
+    color: var(--cream);
+    border-color: var(--cream);
+  }
+
+  .picker button[aria-selected='true'] {
+    color: #fff;
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .picker button[aria-selected='true'] sup {
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Painéis */
+  .panel {
+    animation: fade 0.35s var(--ease);
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+  }
+
+  .panel-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    gap: 1.5rem 3rem;
+    align-items: start;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cat {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  .panel-head h3 {
+    margin-top: 0.4rem;
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    letter-spacing: -0.04em;
+  }
+
+  .desc :global(p) {
+    font-size: 0.98rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .desc :global(a:not(.more)) {
+    color: var(--accent);
+  }
+
+  .more {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .more:hover {
+    color: var(--accent);
+  }
+
+  /* Galeria: grade uniforme */
+  .grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .grid.vertical {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  /* Destaques: até 1800px, com as margens laterais da página */
+  .panel.wide {
+    max-width: 1800px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .grid.featured {
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(0.5rem, 1vw, 0.9rem);
+  }
+
+  /* 9 destaques: 3 colunas, ou 1 no celular (sem sobrar uma sozinha na última linha) */
+  @media (max-width: 700px) {
+    .grid.featured {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid.vertical {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .panel-head {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 560px) {
+    /* No celular, a lista de projetos vira uma faixa que rola para o lado */
+    .picker-break {
+      display: none;
+    }
+
+    .picker {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      overflow-x: auto;
+      margin-inline: calc(var(--gutter) * -1);
+      padding: 0 var(--gutter) 0.5rem;
+      scrollbar-width: none;
+    }
+
+    .picker > * {
+      flex-shrink: 0;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .grid.vertical {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

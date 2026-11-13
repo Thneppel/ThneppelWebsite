@@ -1,0 +1,14 @@
+---
+import ProjectPage from '../components/ProjectPage.astro';
+import { getProjects, projectSlug } from '../lib/projects';
+
+export async function getStaticPaths() {
+  // Projetos com link próprio (MySoundLib, landing page) não precisam de página.
+  const projects = (await getProjects('en')).filter((p) => !p.data.link);
+  return projects.map((project) => ({ params: { project: projectSlug(project) }, props: { project } }));
+}
+
+const { project } = Astro.props;
+---
+
+<ProjectPage project={project} />
