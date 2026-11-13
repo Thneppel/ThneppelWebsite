@@ -1,0 +1,76 @@
+---
+// Página 404 (o GitHub Pages serve /404.html para qualquer endereço que não existe).
+// Uma página só para os dois idiomas: o texto troca pelo endereço acessado.
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="404 | Thiago Neppel" description="Page not found.">
+  <meta slot="head" name="robots" content="noindex" />
+  <section class="nf">
+    <div class="container inner">
+      <p class="code" aria-hidden="true">404</p>
+      <h1 class="display-title">
+        <span data-en>This scene</span><span data-pt hidden>Essa cena</span>
+        <span class="accent"><span data-en>got cut.</span><span data-pt hidden>foi cortada.</span></span>
+      </h1>
+      <p class="text">
+        <span data-en>The page you're looking for doesn't exist or has moved.</span>
+        <span data-pt hidden>A página que você procura não existe ou mudou de endereço.</span>
+      </p>
+      <div class="actions">
+        <a href="/" class="btn btn-primary" data-home>
+          <span data-en>Back to home</span><span data-pt hidden>Voltar para o início</span> →
+        </a>
+        <a href="/blog/" class="btn btn-ghost" data-blog>Blog</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  // Endereço em português: troca os textos e os links.
+  if (location.pathname.startsWith('/pt-br/') || location.pathname.startsWith('/blog/pt-br/')) {
+    document.documentElement.lang = 'pt-br';
+    document.querySelectorAll<HTMLElement>('[data-en]').forEach((el) => (el.hidden = true));
+    document.querySelectorAll<HTMLElement>('[data-pt]').forEach((el) => (el.hidden = false));
+    document.querySelector('[data-home]')?.setAttribute('href', '/pt-br/');
+    document.querySelector('[data-blog]')?.setAttribute('href', '/pt-br/blog/');
+  }
+</script>
+
+<style>
+  .nf {
+    min-height: 70svh;
+    display: grid;
+    align-items: center;
+    padding: var(--section-pad) 0;
+    background: radial-gradient(50% 50% at 50% 40%, rgba(220, 15, 42, 0.1), transparent 70%), var(--bg);
+  }
+
+  .inner {
+    display: grid;
+    justify-items: start;
+    gap: 1.5rem;
+  }
+
+  .code {
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--accent);
+  }
+
+  .text {
+    max-width: 32rem;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+</style>

@@ -1,0 +1,31 @@
+---
+// Uma versão 2D do símbolo. O pai precisa definir --symbol (URL do SVG).
+import symbolRaw from '../../assets/symbol.svg?raw';
+import type { Variant2DId } from '../../lib/heroVariants';
+import '../../styles/hero-variants.css';
+
+interface Props {
+  id: Variant2DId;
+  class?: string;
+  [key: `data-${string}`]: string | undefined;
+}
+
+const { id, class: className, ...rest } = Astro.props;
+const symbolPath = symbolRaw.match(/ d="([^"]+)"/)?.[1] ?? '';
+---
+
+{
+  id.startsWith('outline') ? (
+    <svg class:list={['hv', 'hv-outline', `hv-${id}`, className]} viewBox="0 0 684 349" aria-hidden="true" {...rest}>
+      <path d={symbolPath} />
+    </svg>
+  ) : id === 'glitch' ? (
+    <div class:list={['hv', 'hv-glitch', className]} aria-hidden="true" {...rest}>
+      <span class="hv-mask r" />
+      <span class="hv-mask c" />
+      <span class="hv-mask w" />
+    </div>
+  ) : (
+    <div class:list={['hv', 'hv-mask', `hv-${id}`, className]} aria-hidden="true" {...rest} />
+  )
+}

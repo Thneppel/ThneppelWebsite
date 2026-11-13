@@ -1,0 +1,286 @@
+---
+// Página de um post do blog.
+import { getImage, Image } from 'astro:assets';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PostCard from './PostCard.astro';
+import authorPhoto from '../../assets/thneppel.png';
+import { getLocale, localePath, t } from '../../i18n/ui';
+import { formatDate, getPosts, readingMinutes, tagHref, type Post } from '../../lib/posts';
+import '../../styles/prose.css';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const { Content } = await render(post);
+const minutes = readingMinutes(post);
+
+// Imagem de compartilhamento (redes sociais): a capa em 1200px.
+const og = await getImage({ src: post.data.cover, width: 1200, format: 'jpg' });
+
+// "Continue lendo": os outros posts, mais recentes primeiro (até 2).
+const others = (await getPosts(locale)).filter((p) => p.id !== post.id).slice(0, 2);
+
+// Dados estruturados para buscadores (artigo de blog).
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString(),
+  inLanguage: locale === 'pt-br' ? 'pt-BR' : 'en',
+  image: new URL(og.src, Astro.site).href,
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).href,
+  keywords: post.data.tags.join(', '),
+  author: { '@type': 'Person', name: 'Thiago Neppel', url: new URL(localePath(locale, '/'), Astro.site).href },
+};
+---
+
+<Base title={`${post.data.title} | Thiago Neppel`} description={post.data.description} image={og.src} type="article">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <link slot="head" rel="alternate" type="application/rss+xml" title="Thneppel Blog" href={localePath(locale, '/blog/index.xml')} />
+
+  <article class="post">
+    <header class="container head">
+      <a href={localePath(locale, '/blog/')} class="back">← {t(locale, 'blog.back')}</a>
+      <ul class="tags">
+        {post.data.tags.map((tag) => <li><a href={tagHref(tag, locale)}>#{tag}</a></li>)}
+      </ul>
+      <h1 class="title">{post.data.title}</h1>
+      <p class="lead">{post.data.description}</p>
+      <p class="meta">
+        <Image src={authorPhoto} alt="" width={36} height={36} class="avatar" />
+        <span class="by">Thiago Neppel</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date, locale)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{minutes} {t(locale, 'blog.minRead')}</span>
+      </p>
+    </header>
+
+    <figure class="container cover">
+      <Image
+        src={post.data.cover}
+        alt=""
+        widths={[640, 960, 1280, 1600]}
+        sizes="(max-width: 760px) 100vw, 704px"
+        loading="eager"
+      />
+      {post.data.caption && <figcaption>{post.data.caption}</figcaption>}
+    </figure>
+
+    <div class="container">
+      <div class="prose body">
+        <Content />
+      </div>
+
+      <aside class="author">
+        <Image src={authorPhoto} alt="Thiago Neppel" width={88} height={88} class="author-photo" />
+        <div>
+          <span class="eyebrow">{t(locale, 'blog.author')}</span>
+          <p class="author-name">Thiago Neppel</p>
+          <p class="author-bio">{t(locale, 'blog.authorBio')}</p>
+          <a href={`${localePath(locale, '/')}#contact`} class="btn btn-primary">{t(locale, 'blog.authorCta')} →</a>
+        </div>
+      </aside>
+    </div>
+  </article>
+
+  {
+    others.length > 0 && (
+      <section class="more">
+        <div class="container">
+          <h2 class="more-title">{t(locale, 'blog.more')}</h2>
+          <div class="grid">
+            {others.map((p) => (
+              <PostCard post={p} />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</Base>
+
+<style>
+  .post {
+    padding: clamp(3rem, 7vw, 5rem) 0 clamp(4rem, 8vw, 6rem);
+    background: radial-gradient(60% 35% at 15% 0%, rgba(220, 15, 42, 0.1), transparent 70%), var(--bg);
+  }
+
+  .head {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+    /* Mesma coluna do texto do post, para as bordas alinharem */
+    max-width: calc(44rem + var(--gutter) * 2);
+  }
+
+  .back {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  .tags {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .tags a {
+    color: var(--accent);
+  }
+
+  .tags a:hover {
+    color: var(--cream);
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-weight: 750;
+    font-size: clamp(2.3rem, 6vw, 4.25rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    color: var(--cream);
+  }
+
+  .lead {
+    max-width: 44rem;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    line-height: 1.55;
+    color: var(--text-secondary);
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .meta :global(.avatar) {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .by {
+    font-weight: 600;
+    color: var(--cream);
+  }
+
+  /* Capa na mesma largura do texto (alinhada com o título), com legenda */
+  .cover {
+    max-width: calc(44rem + var(--gutter) * 2);
+    margin-top: clamp(2.5rem, 5vw, 3.5rem);
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  .cover :global(img) {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-md);
+  }
+
+  .cover figcaption {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* Texto centralizado numa coluna de leitura */
+  .body {
+    margin: 0 auto;
+  }
+
+  /* Autor no fim do post */
+  .author {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    max-width: 44rem;
+    margin: clamp(3.5rem, 7vw, 5rem) auto 0;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-raised);
+  }
+
+  .author :global(.author-photo) {
+    flex-shrink: 0;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .author .eyebrow {
+    font-size: 0.65rem;
+  }
+
+  .author-name {
+    margin: 0.35rem 0 0.5rem;
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--cream);
+  }
+
+  .author-bio {
+    margin-bottom: 1.25rem;
+    color: var(--text-secondary);
+  }
+
+  .author .btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 0.72rem;
+  }
+
+  /* Continue lendo */
+  .more {
+    padding: clamp(3.5rem, 7vw, 5rem) 0 var(--section-pad);
+    border-top: 1px solid var(--border);
+  }
+
+  .more-title {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 750;
+    letter-spacing: -0.04em;
+    color: var(--cream);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(2.5rem, 5vw, 3.5rem) clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  @media (max-width: 700px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+
+    .author {
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+  }
+</style>

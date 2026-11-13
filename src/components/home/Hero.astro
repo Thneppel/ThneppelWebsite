@@ -1,0 +1,513 @@
+---
+// Abertura: montagem rápida do símbolo (arame farpado), alternando renders 3D parados
+// e versões 2D. O que entra e a velocidade ficam em src/data/hero.json
+// (escolha visual em /lab/hero/, só no modo dev).
+//
+// Com WebGL, tudo da abertura (fundo, nome, símbolo) é desenhado
+// num canvas e passa pelo shader CRT newpixie-crt (scripts/heroCrt.ts). O HTML abaixo
+// fica invisível, servindo de referência de posição e de reserva sem WebGL.
+import symbolUrl from '../../assets/symbol.svg?url';
+import Variant2D from '../hero/Variant2D.astro';
+import config from '../../data/hero.json';
+import { buildSequence, type HeroConfig } from '../../lib/heroVariants';
+import { getLocale, t } from '../../i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+const hero = config as HeroConfig;
+const sequence = buildSequence(hero);
+const first = sequence.find((id) => id !== '3d');
+---
+
+<section
+  class="hero"
+  aria-labelledby="hero-title"
+  style={`--symbol: url("${symbolUrl}")`}
+  data-loading
+>
+  <!-- Nome e função: fora da vista, mas lidos pelo Google e por leitores de tela -->
+  <h1 id="hero-title" class="sr-only">Thiago Neppel — {t(locale, 'hero.role')}</h1>
+
+  <!-- Saída do shader CRT (cobre a abertura inteira; o menu fica por cima) -->
+  <canvas class="crt" data-crt aria-hidden="true"></canvas>
+
+  <!-- Nome gigante atrás do símbolo, em duas linhas -->
+  <div class="backname" aria-hidden="true">
+    <span>Thiago</span>
+    <span>Neppel</span>
+  </div>
+
+  <div
+    class="stage"
+    data-hero
+    data-sequence={JSON.stringify(sequence)}
+    data-materials={JSON.stringify(hero.materials3d)}
+    data-timing={JSON.stringify({
+      frameMsFast: hero.frameMsFast,
+      frameMsSlow: hero.frameMsSlow,
+      wavePeriodMs: hero.wavePeriodMs,
+    })}
+  >
+    {
+      hero.variants2d.map((id) => (
+        <Variant2D id={id} class="layer" data-frame={id} data-active={id === first ? '' : undefined} />
+      ))
+    }
+  </div>
+
+  <!-- Loading: some quando o shader CRT fica pronto (ou quando cai no 2D) -->
+  <div class="loader" role="status" data-loader>
+    <!-- Símbolo enchendo de vermelho conforme o progresso (--p) -->
+    <div class="loader-glyph" aria-hidden="true"><span></span></div>
+    <div class="loader-meta">
+      <span class="loader-text">{t(locale, 'hero.loading')}</span>
+      <span class="loader-pct" data-loader-pct aria-hidden="true">000%</span>
+    </div>
+    <span class="loader-bar" aria-hidden="true"><span></span></span>
+  </div>
+
+  <!-- Sem JavaScript, não há o que esperar -->
+  <noscript><style is:inline>.hero[data-loading] > * { opacity: 1 !important; } .hero .loader { display: none !important; }</style></noscript>
+</section>
+
+<script>
+  import symbolRaw from '../../assets/symbol.svg?raw';
+  import type { HeroCrt } from '../../scripts/heroCrt';
+  import { frameDelay, type HeroTiming, type Material3DId, type Variant2DId } from '../../lib/heroVariants';
+  import { attachTilt } from '../../scripts/heroTilt';
+
+  const stage = document.querySelector<HTMLElement>('[data-hero]');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Tira o loading e revela a abertura (com o CRT ou com a reserva em HTML).
+  const reveal = () => {
+    const el = document.querySelector<HTMLElement>('.hero[data-loading]');
+    if (!el) return;
+    el.removeAttribute('data-loading');
+    el.querySelector('[data-loader]')?.setAttribute('aria-hidden', 'true');
+  };
+
+  if (!stage || reduced) reveal();
+
+  /**
+   * Progresso do loading. Não dá para medir o download/compilação de verdade, então
+   * cada etapa concluída libera um teto e o número avança devagar até ele.
+   */
+  const createProgress = (hero: HTMLElement) => {
+    const loader = hero.querySelector<HTMLElement>('[data-loader]');
+    const pct = hero.querySelector<HTMLElement>('[data-loader-pct]');
+    const t0 = performance.now();
+    let shown = 0;
+    let target = 6;
+    let cap = 35;
+    let raf = 0;
+    let done: (() => void) | null = null;
+
+    const paint = () => {
+      loader?.style.setProperty('--p', `${shown.toFixed(2)}%`);
+      if (pct) pct.textContent = `${String(Math.floor(shown)).padStart(3, '0')}%`;
+    };
+
+    const loop = () => {
+      target = Math.min(cap, target + 0.12);
+      shown += (target - shown) * (done ? 0.18 : 0.06);
+      if (done && shown > 99.4) {
+        shown = 100;
+        paint();
+        // Segura o "100%" um instante antes de ligar a tela.
+        window.setTimeout(done, 180);
+        return;
+      }
+      paint();
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+
+    return {
+      /** Libera o progresso até `value` (etapa concluída) e o próximo teto. */
+      step(value: number, nextCap: number) {
+        target = Math.max(target, value);
+        cap = Math.max(cap, nextCap);
+      },
+      /** Corre até 100% e então chama `then`. Se foi rápido (loading nem apareceu), vai direto. */
+      finish(then: () => void) {
+        if (performance.now() - t0 < 300) {
+          cancelAnimationFrame(raf);
+          then();
+          return;
+        }
+        target = cap = 100;
+        done = then;
+      },
+      stop() {
+        cancelAnimationFrame(raf);
+      },
+    };
+  };
+
+  if (stage && !reduced) {
+    const hero = stage.closest<HTMLElement>('.hero')!;
+    const progress = createProgress(hero);
+    // Se o shader demorar demais, mostra a montagem 2D enquanto ele termina de carregar.
+    const giveUp = window.setTimeout(() => {
+      progress.stop();
+      reveal();
+    }, 8000);
+    const sequence: string[] = JSON.parse(stage.dataset.sequence ?? '[]');
+    const materials: Material3DId[] = JSON.parse(stage.dataset.materials ?? '[]');
+    const timing: HeroTiming = JSON.parse(stage.dataset.timing ?? '{}');
+    const frames = new Map<string, Element>();
+    stage.querySelectorAll<HTMLElement>('[data-frame]').forEach((el) => frames.set(el.dataset.frame!, el));
+
+    // Enquanto o CRT não está pronto (ou sem WebGL), a montagem roda no HTML só com o 2D.
+    let crt: HeroCrt | null = null;
+    let index = -1;
+    let timer = 0;
+    let visible = false;
+
+    const tilt = attachTilt(stage, (x, y) => crt?.setRotation(x, y));
+
+    const show = () => {
+      let id = '';
+      for (let tries = 0; tries < sequence.length; tries++) {
+        index = (index + 1) % sequence.length;
+        id = sequence[index];
+        if (id !== '3d' || crt) break;
+      }
+      if (crt) crt.show(id);
+      else frames.forEach((el, key) => el.toggleAttribute('data-active', key === id));
+    };
+
+    // A velocidade oscila numa onda seno: acelera, desacelera, em loop.
+    const start = performance.now();
+    const tick = () => {
+      show();
+      timer = window.setTimeout(tick, frameDelay(timing, performance.now() - start));
+    };
+
+    // Só roda enquanto a abertura está na tela.
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      window.clearTimeout(timer);
+      crt?.setActive(visible);
+      if (visible) tick();
+    }).observe(hero);
+
+    import('../../scripts/heroCrt')
+      .then(async ({ createHeroCrt }) => {
+        // three.js baixado: agora é montar a cena e compilar o shader.
+        progress.step(55, 90);
+        // Deixa o navegador pintar o novo número antes da compilação travar a página.
+        await new Promise((r) => requestAnimationFrame(() => setTimeout(r)));
+        return createHeroCrt({
+          hero,
+          canvas: hero.querySelector<HTMLCanvasElement>('[data-crt]')!,
+          stage,
+          backname: hero.querySelector<HTMLElement>('.backname'),
+          svgText: symbolRaw,
+          variants2d: [...frames.keys()] as Variant2DId[],
+          materials3d: materials,
+        });
+      })
+      .then((instance) => {
+        crt = instance;
+        crt.setRotation(...tilt.current());
+        hero.setAttribute('data-crt-on', '');
+        crt.setActive(visible);
+      })
+      .catch((err) => {
+        // Sem WebGL: fica a montagem 2D no HTML.
+        console.warn('CRT indisponível:', err);
+      })
+      .finally(() => {
+        window.clearTimeout(giveUp);
+        // Fecha em 100% e espera o primeiro quadro do canvas ir para a tela antes de revelar.
+        progress.finish(() => requestAnimationFrame(() => requestAnimationFrame(reveal)));
+      });
+  }
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: max(600px, 100svh);
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: clamp(2.5rem, 6vh, 4rem);
+    padding: 6rem var(--gutter) 5rem;
+    overflow: hidden;
+    background:
+      radial-gradient(50% 45% at 50% 48%, rgba(220, 15, 42, 0.1), transparent 70%),
+      var(--bg);
+  }
+
+  /* Palco com a proporção exata do símbolo (684 x 349).
+     A perspectiva é calculada em JS para bater com a câmera 3D (lib/heroGeometry.ts). */
+  /* "THIAGO / NEPPEL" grande, centralizado atrás do símbolo */
+  .backname {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: grid;
+    justify-items: center;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(5rem, 20vw, 17rem);
+    line-height: 0.8;
+    letter-spacing: -0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: var(--accent);
+    opacity: 0.16;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .stage {
+    position: relative;
+    z-index: 1;
+    width: min(78vw, 720px);
+    aspect-ratio: 684 / 349;
+    perspective: var(--perspective, 2000px);
+  }
+
+  .stage :global(.layer) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    transform: rotateX(var(--tilt-x, 0rad)) rotateY(var(--tilt-y, 0rad));
+  }
+
+  .stage :global(.layer[data-active]) {
+    visibility: visible;
+  }
+
+  /* Saída do shader CRT: cobre a abertura inteira, abaixo do menu */
+  .crt {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    visibility: hidden;
+  }
+
+  /* Com o CRT ligado, o HTML vira só referência de posição */
+  .hero[data-crt-on] .crt {
+    visibility: visible;
+  }
+
+  .hero[data-crt-on] .backname,
+  .hero[data-crt-on] .stage {
+    opacity: 0;
+  }
+
+  /* --- Loading --- */
+  /* Tudo da abertura entra com fade quando o loading sai */
+  .crt,
+  .backname,
+  .stage {
+    transition: opacity 0.6s var(--ease);
+  }
+
+  .hero[data-loading] .crt,
+  .hero[data-loading] .backname,
+  .hero[data-loading] .stage {
+    opacity: 0;
+  }
+
+  /* Ao revelar, o CRT "liga": uma linha fina que se abre na tela inteira, com flash */
+  .hero[data-crt-on]:not([data-loading]) .crt {
+    transition: none;
+    animation: crt-power-on 0.75s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .loader {
+    --p: 0%;
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: 1.4rem;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.35s var(--ease),
+      transform 0.35s var(--ease),
+      visibility 0s linear 0.35s;
+    transform: scaleY(0.02);
+  }
+
+  /* Linhas de varredura e vinheta por cima, como um monitor desligando/ligando */
+  .loader::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.32) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse at center, transparent 45%, rgba(0, 0, 0, 0.65) 100%);
+    animation: loader-flicker 3.2s steps(1) infinite;
+  }
+
+  /* Faixa de luz descendo devagar pela tela */
+  .loader::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 18vh;
+    top: -18vh;
+    background: linear-gradient(180deg, transparent, rgba(220, 15, 42, 0.07) 60%, transparent);
+    animation: loader-roll 3.6s linear infinite;
+  }
+
+  .hero[data-loading] .loader {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    /* Já entra pronto, sem animação de entrada */
+    transition: none;
+  }
+
+  .loader > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Símbolo: contorno apagado, enchendo de vermelho de baixo para cima */
+  .loader-glyph {
+    width: min(64vw, 400px);
+    aspect-ratio: 684 / 349;
+    filter: drop-shadow(0 0 14px rgba(220, 15, 42, 0.55)) drop-shadow(0 0 40px rgba(220, 15, 42, 0.25));
+    animation: loader-glitch 2.8s steps(1) infinite;
+  }
+
+  .loader-glyph span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    -webkit-mask: var(--symbol) center / contain no-repeat;
+    mask: var(--symbol) center / contain no-repeat;
+    background:
+      linear-gradient(0deg, transparent calc(var(--p) - 1.5%), rgba(255, 240, 240, 0.9) calc(var(--p) - 0.5%), transparent var(--p)),
+      linear-gradient(0deg, var(--accent) var(--p), rgba(247, 241, 234, 0.09) var(--p));
+    animation: loader-pulse 1.6s ease-in-out infinite;
+  }
+
+  .loader-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+    width: min(64vw, 400px);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+  }
+
+  .loader-text {
+    color: var(--text-secondary);
+  }
+
+
+  .loader-pct {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    text-shadow: 0 0 10px rgba(220, 15, 42, 0.7);
+  }
+
+  .loader-bar {
+    position: relative;
+    width: min(64vw, 400px);
+    height: 2px;
+    margin-top: -0.6rem;
+    background: var(--border);
+  }
+
+  .loader-bar span {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: var(--p);
+    background: var(--accent);
+    box-shadow:
+      0 0 8px var(--accent),
+      0 0 22px rgba(220, 15, 42, 0.6);
+  }
+
+  @keyframes loader-flicker {
+    0%, 100% { opacity: 1; }
+    41% { opacity: 0.75; }
+    42% { opacity: 1; }
+    77% { opacity: 0.85; }
+    78% { opacity: 1; }
+  }
+
+  @keyframes loader-roll {
+    to {
+      transform: translateY(calc(100vh + 18vh));
+    }
+  }
+
+  /* Tremidas rápidas e raras, como sinal ruim */
+  @keyframes loader-glitch {
+    0%, 100% { transform: none; }
+    62% { transform: translateX(-3px) skewX(-4deg); }
+    63% { transform: translateX(4px); }
+    64% { transform: none; }
+    88% { transform: translateX(2px) scaleY(0.96); }
+    89% { transform: none; }
+  }
+
+  @keyframes loader-pulse {
+    50% {
+      opacity: 0.82;
+    }
+  }
+
+
+  @keyframes crt-power-on {
+    0% {
+      transform: scale(0.6, 0.004);
+      filter: brightness(6) saturate(0);
+    }
+    35% {
+      transform: scale(1, 0.004);
+      filter: brightness(5) saturate(0);
+    }
+    65% {
+      transform: scale(1, 1);
+      filter: brightness(1.8);
+    }
+    100% {
+      transform: none;
+      filter: none;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .stage {
+      width: 88vw;
+    }
+
+    .backname {
+      font-size: 25vw;
+    }
+  }
+</style>

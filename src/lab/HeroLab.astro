@@ -1,0 +1,493 @@
+---
+// Laboratório da abertura (/lab/hero/). Só existe no modo dev: ver integrations/hero-lab.mjs.
+// Mostra todas as versões do símbolo, deixa marcar quais ficam e grava em src/data/hero.json.
+import symbolUrl from '../assets/symbol.svg?url';
+import Variant2D from '../components/hero/Variant2D.astro';
+import config from '../data/hero.json';
+import { MATERIALS_3D, VARIANTS_2D, type HeroConfig } from '../lib/heroVariants';
+import '../styles/global.css';
+
+const hero = config as HeroConfig;
+const on2d = new Set<string>(hero.variants2d);
+const on3d = new Set<string>(hero.materials3d);
+---
+
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Laboratório da abertura</title>
+  </head>
+  <body style={`--symbol: url("${symbolUrl}")`}>
+    <main class="lab" data-lab>
+      <header class="intro">
+        <span class="eyebrow">Laboratório · só no modo dev</span>
+        <h1 class="display-title">Versões da abertura</h1>
+        <p>
+          Marque as versões que ficam no site. A prévia abaixo roda só com as marcadas. Ao salvar, a escolha
+          vai para <code>src/data/hero.json</code> e a home passa a usar.
+        </p>
+      </header>
+
+      <section class="preview-panel" aria-label="Prévia">
+        <div class="preview">
+          <div class="tile-stage big" data-preview>
+            <canvas class="layer three" data-frame="3d"></canvas>
+            {VARIANTS_2D.map((v) => <Variant2D id={v.id} class="layer" data-frame={v.id} />)}
+          </div>
+        </div>
+        <div class="speeds">
+          <label class="speed">
+            <span>Mais rápido: <strong data-speed-label="fast">{hero.frameMsFast} ms</strong></span>
+            <input type="range" min="50" max="1000" step="10" value={hero.frameMsFast} data-speed="fast" />
+          </label>
+          <label class="speed">
+            <span>Mais lento: <strong data-speed-label="slow">{hero.frameMsSlow} ms</strong></span>
+            <input type="range" min="50" max="1000" step="10" value={hero.frameMsSlow} data-speed="slow" />
+          </label>
+          <label class="speed">
+            <span>Uma onda completa: <strong data-speed-label="wave">{hero.wavePeriodMs / 1000} s</strong></span>
+            <input type="range" min="1000" max="20000" step="500" value={hero.wavePeriodMs} data-speed="wave" />
+          </label>
+        </div>
+        <div class="meter" aria-hidden="true">
+          <span class="meter-fill" data-meter></span>
+        </div>
+        <p class="hint">Agora: <strong data-now>–</strong> por visual. Mexa o mouse para inclinar.</p>
+      </section>
+
+      <section aria-labelledby="t3d">
+        <div class="group-head">
+          <h2 id="t3d">3D <small data-count="3d"></small></h2>
+          <div class="group-actions">
+            <button type="button" data-all="3d">Marcar todos</button>
+            <button type="button" data-none="3d">Desmarcar todos</button>
+          </div>
+        </div>
+        <ul class="grid">
+          {
+            MATERIALS_3D.map((m) => (
+              <li>
+                <label class="tile">
+                  <span class="tile-stage">
+                    <img data-snapshot={m.id} alt="" />
+                  </span>
+                  <span class="tile-foot">
+                    <input type="checkbox" data-kind="3d" value={m.id} checked={on3d.has(m.id)} />
+                    {m.label}
+                  </span>
+                </label>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="t2d">
+        <div class="group-head">
+          <h2 id="t2d">2D <small data-count="2d"></small></h2>
+          <div class="group-actions">
+            <button type="button" data-all="2d">Marcar todos</button>
+            <button type="button" data-none="2d">Desmarcar todos</button>
+          </div>
+        </div>
+        <ul class="grid">
+          {
+            VARIANTS_2D.map((v) => (
+              <li>
+                <label class="tile">
+                  <span class="tile-stage">
+                    <Variant2D id={v.id} />
+                  </span>
+                  <span class="tile-foot">
+                    <input type="checkbox" data-kind="2d" value={v.id} checked={on2d.has(v.id)} />
+                    {v.label}
+                  </span>
+                </label>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <div class="savebar">
+        <p data-status role="status"></p>
+        <a href="/pt-br/" class="btn btn-ghost">Ver na home</a>
+        <button type="button" class="btn btn-primary" data-save>Salvar escolha</button>
+      </div>
+
+      <!-- Canvas fora da tela, só para gerar as miniaturas 3D -->
+      <canvas class="snapshot-canvas" data-snapshot-canvas aria-hidden="true"></canvas>
+    </main>
+
+    <script>
+      import symbolRaw from '../assets/symbol.svg?raw';
+      import { createSymbol3D } from '../scripts/symbol3d';
+      import { attachTilt } from '../scripts/heroTilt';
+      import { REST_TILT } from '../lib/heroGeometry';
+      import { MATERIALS_3D, buildSequence, frameDelay, type HeroConfig, type Material3DId, type Variant2DId } from '../lib/heroVariants';
+
+      const root = document.querySelector<HTMLElement>('[data-lab]')!;
+      const boxes = [...root.querySelectorAll<HTMLInputElement>('input[type="checkbox"][data-kind]')];
+      const speedFast = root.querySelector<HTMLInputElement>('[data-speed="fast"]')!;
+      const speedSlow = root.querySelector<HTMLInputElement>('[data-speed="slow"]')!;
+      const wave = root.querySelector<HTMLInputElement>('[data-speed="wave"]')!;
+      const meter = root.querySelector<HTMLElement>('[data-meter]')!;
+      const now = root.querySelector<HTMLElement>('[data-now]')!;
+      const status = root.querySelector<HTMLElement>('[data-status]')!;
+
+      const selected = (kind: '2d' | '3d') => boxes.filter((b) => b.dataset.kind === kind && b.checked).map((b) => b.value);
+      const current = (): HeroConfig => ({
+        frameMsFast: Number(speedFast.value),
+        frameMsSlow: Number(speedSlow.value),
+        wavePeriodMs: Number(wave.value),
+        variants2d: selected('2d') as Variant2DId[],
+        materials3d: selected('3d') as Material3DId[],
+      });
+
+      // Miniaturas 3D: um render por material num canvas fora da tela.
+      const snapCanvas = root.querySelector<HTMLCanvasElement>('[data-snapshot-canvas]')!;
+      const snap = createSymbol3D(snapCanvas, symbolRaw, []);
+      snap.setRotation(...REST_TILT); // miniaturas levemente inclinadas, para a profundidade aparecer
+      for (const { id } of MATERIALS_3D) {
+        const img = root.querySelector<HTMLImageElement>(`[data-snapshot="${id}"]`);
+        if (img) img.src = snap.snapshot(id);
+      }
+      snap.dispose();
+
+      // Prévia ao vivo com a seleção atual.
+      const preview = root.querySelector<HTMLElement>('[data-preview]')!;
+      const frames = new Map<string, Element>();
+      preview.querySelectorAll<HTMLElement>('[data-frame]').forEach((el) => frames.set(el.dataset.frame!, el));
+      const three = createSymbol3D(frames.get('3d') as HTMLCanvasElement, symbolRaw, current().materials3d);
+
+      let sequence: string[] = [];
+      let index = -1;
+      let timer = 0;
+      let showing3d = false;
+      const tilt = attachTilt(preview, (x, y) => {
+        if (showing3d) three.setRotation(x, y);
+      });
+      const show = () => {
+        if (!sequence.length) {
+          frames.forEach((el) => el.removeAttribute('data-active'));
+          return;
+        }
+        index = (index + 1) % sequence.length;
+        const id = sequence[index];
+        showing3d = id === '3d';
+        if (showing3d) {
+          three.setRotation(...tilt.current());
+          three.next();
+        }
+        frames.forEach((el, key) => el.toggleAttribute('data-active', key === id));
+      };
+      // Mesma regra da home: a duração de cada quadro oscila numa onda seno.
+      const start = performance.now();
+      const tick = () => {
+        show();
+        const cfg = current();
+        const delay = frameDelay(cfg, performance.now() - start);
+        // Medidor: cheio = mais rápido, vazio = mais lento.
+        const span = cfg.frameMsSlow - cfg.frameMsFast;
+        meter.style.width = `${span ? ((cfg.frameMsSlow - delay) / span) * 100 : 100}%`;
+        now.textContent = `${delay} ms`;
+        timer = window.setTimeout(tick, delay);
+      };
+      const restart = () => {
+        const cfg = current();
+        sequence = buildSequence(cfg);
+        three.setMaterials(cfg.materials3d);
+        index = -1;
+        window.clearTimeout(timer);
+        tick();
+        root.querySelector('[data-count="2d"]')!.textContent = `${cfg.variants2d.length} de ${boxes.filter((b) => b.dataset.kind === '2d').length}`;
+        root.querySelector('[data-count="3d"]')!.textContent = `${cfg.materials3d.length} de ${boxes.filter((b) => b.dataset.kind === '3d').length}`;
+      };
+
+      boxes.forEach((b) => b.addEventListener('change', () => {
+        status.textContent = 'Alterações não salvas';
+        restart();
+      }));
+      for (const input of [speedFast, speedSlow, wave]) {
+        input.addEventListener('input', () => {
+          root.querySelector(`[data-speed-label="${input.dataset.speed}"]`)!.textContent =
+            input === wave ? `${Number(input.value) / 1000} s` : `${input.value} ms`;
+          status.textContent = 'Alterações não salvas';
+          restart();
+        });
+      }
+      root.querySelectorAll<HTMLButtonElement>('[data-all],[data-none]').forEach((btn) =>
+        btn.addEventListener('click', () => {
+          const kind = btn.dataset.all ?? btn.dataset.none;
+          boxes.filter((b) => b.dataset.kind === kind).forEach((b) => (b.checked = 'all' in btn.dataset));
+          status.textContent = 'Alterações não salvas';
+          restart();
+        }),
+      );
+
+      root.querySelector('[data-save]')!.addEventListener('click', async () => {
+        const cfg = current();
+        if (!cfg.variants2d.length && !cfg.materials3d.length) {
+          status.textContent = 'Marque pelo menos uma versão.';
+          return;
+        }
+        status.textContent = 'Salvando...';
+        try {
+          const res = await fetch('/__lab/hero', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(cfg),
+          });
+          const data = await res.json();
+          if (!data.ok) throw new Error(data.error);
+          status.textContent = `Salvo: ${cfg.materials3d.length} versões 3D, ${cfg.variants2d.length} versões 2D, de ${cfg.frameMsFast} a ${cfg.frameMsSlow} ms, onda de ${cfg.wavePeriodMs / 1000} s.`;
+        } catch (err) {
+          status.textContent = `Não salvou: ${(err as Error).message}`;
+        }
+      });
+
+      restart();
+    </script>
+
+    <style>
+      .lab {
+        width: 100%;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 3rem var(--gutter) 8rem;
+        display: grid;
+        gap: 3.5rem;
+      }
+
+      .intro .eyebrow {
+        margin-bottom: 1rem;
+      }
+
+      .intro p {
+        max-width: 44rem;
+        margin-top: 1.25rem;
+      }
+
+      code {
+        font-size: 0.9em;
+        color: var(--cream);
+      }
+
+      .preview-panel {
+        display: grid;
+        gap: 1.25rem;
+        padding: 2rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: radial-gradient(50% 60% at 50% 45%, rgba(220, 15, 42, 0.1), transparent 70%), var(--bg-raised);
+      }
+
+      .preview {
+        display: grid;
+        place-items: center;
+        padding: 3rem 0;
+      }
+
+      .speeds {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.25rem 2.5rem;
+        max-width: 40rem;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .speed {
+        display: grid;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .hint {
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .hint strong {
+        color: var(--cream);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .meter {
+        width: 100%;
+        max-width: 40rem;
+        height: 4px;
+        margin: 0 auto;
+        border-radius: 2px;
+        background: var(--border);
+        overflow: hidden;
+      }
+
+      .meter-fill {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--accent);
+        transition: width 0.1s linear;
+      }
+
+      .speed input {
+        accent-color: var(--accent);
+      }
+
+      /* Palco no formato do símbolo; o 3D ocupa 1.5x com folga, como na home */
+      .tile-stage {
+        position: relative;
+        display: block;
+        width: 100%;
+        aspect-ratio: 684 / 349;
+      }
+
+      .tile-stage.big {
+        width: min(70vw, 560px);
+        perspective: var(--perspective, 2000px);
+      }
+
+      .tile-stage :global(.layer) {
+        visibility: hidden;
+        transform: rotateX(var(--tilt-x, 0rad)) rotateY(var(--tilt-y, 0rad));
+      }
+
+      .tile-stage :global(.layer[data-active]) {
+        visibility: visible;
+      }
+
+      .tile-stage img,
+      .three {
+        position: absolute;
+        inset: -25%;
+        width: 150%;
+        height: 150%;
+        max-width: none;
+      }
+
+      /* O 3D gira dentro da própria cena; o canvas não recebe a inclinação do CSS. */
+      .tile-stage .three {
+        transform: none;
+      }
+
+      .group-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+        letter-spacing: -0.03em;
+      }
+
+      h2 small {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-muted);
+        margin-left: 0.5rem;
+        letter-spacing: 0;
+      }
+
+      .group-actions {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .group-actions button {
+        background: none;
+        border: 1px solid var(--border-strong);
+        border-radius: var(--radius-sm);
+        color: var(--text-secondary);
+        font: inherit;
+        font-size: 0.8rem;
+        padding: 0.35rem 0.75rem;
+        cursor: pointer;
+      }
+
+      .group-actions button:hover {
+        border-color: var(--accent);
+        color: var(--cream);
+      }
+
+      .grid {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+        gap: 1rem;
+      }
+
+      .tile {
+        display: grid;
+        gap: 0.9rem;
+        padding: 1.75rem 1.5rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-md);
+        background: var(--bg-raised);
+        cursor: pointer;
+        overflow: hidden;
+        transition: border-color 0.2s var(--ease), opacity 0.2s var(--ease);
+      }
+
+      .tile:has(input:checked) {
+        border-color: var(--accent);
+      }
+
+      .tile:not(:has(input:checked)) .tile-stage {
+        opacity: 0.35;
+      }
+
+      .tile-foot {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .tile-foot input {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent);
+      }
+
+      .savebar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding: 1rem var(--gutter);
+        background: rgba(11, 10, 13, 0.92);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border);
+        z-index: 10;
+      }
+
+      .savebar p {
+        margin-right: auto;
+        font-size: 0.9rem;
+      }
+
+      .snapshot-canvas {
+        position: fixed;
+        left: -10000px;
+        top: 0;
+        width: 513px;
+        height: 262px;
+      }
+    </style>
+  </body>
+</html>

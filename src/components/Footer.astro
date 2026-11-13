@@ -1,0 +1,50 @@
+---
+import { getLocale, localePath, t } from '../i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container row">
+    <p>&copy; {year} Thiago Neppel. {t(locale, 'footer.rights')}</p>
+    <div class="legal">
+      <a href={localePath(locale, '/privacy-and-policy/')}>{t(locale, 'footer.privacy')}</a>
+      <a href={localePath(locale, '/terms-of-use/')}>{t(locale, 'footer.terms')}</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 1.25rem 0;
+    background: #070608;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+  }
+
+  p,
+  .legal {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  a:hover {
+    color: var(--accent);
+  }
+</style>

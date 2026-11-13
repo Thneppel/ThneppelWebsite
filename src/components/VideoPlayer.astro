@@ -1,0 +1,245 @@
+---
+// Vídeos do YouTube dentro do site, para qualquer link com data-yt="ID":
+// - clique: abre uma janela por cima da página com o player (Shorts em pé)
+// - mouse parado em cima (data-yt-preview): toca uma prévia sem som dentro da miniatura
+// Sem JavaScript, o link continua levando ao YouTube.
+// Incluído uma vez no layout base.
+import { getLocale } from '../i18n/ui';
+
+const locale = getLocale(Astro.currentLocale);
+const closeLabel = locale === 'pt-br' ? 'Fechar vídeo' : 'Close video';
+---
+
+<dialog class="player" data-player aria-label="Vídeo">
+  <div class="frame" data-player-frame></div>
+  <!-- autofocus: o foco fica na página (não dentro do YouTube), então o Esc fecha a janela -->
+  <button type="button" class="close" data-player-close aria-label={closeLabel} autofocus>✕</button>
+</dialog>
+
+<script>
+  import { previewEmbed, watchEmbed } from '../lib/youtube';
+
+  const dialog = document.querySelector<HTMLDialogElement>('[data-player]')!;
+  const frame = dialog.querySelector<HTMLElement>('[data-player-frame]')!;
+
+  const iframe = (src: string, title: string) => {
+    const el = document.createElement('iframe');
+    el.src = src;
+    el.title = title;
+    el.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    el.allowFullscreen = true;
+    return el;
+  };
+
+  // --- Janela do player ---
+  const open = (id: string, short: boolean, title: string) => {
+    frame.replaceChildren(iframe(watchEmbed(id), title));
+    dialog.classList.toggle('short', short);
+    dialog.showModal();
+  };
+  // Fechar tira o iframe, para o vídeo parar de tocar.
+  dialog.addEventListener('close', () => frame.replaceChildren());
+  dialog.querySelector('[data-player-close]')!.addEventListener('click', () => dialog.close());
+  // Clique fora do vídeo fecha.
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+
+  document.addEventListener('click', (e) => {
+    const link = (e.target as HTMLElement).closest<HTMLElement>('[data-yt]');
+    if (!link || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    e.preventDefault();
+    open(link.dataset.yt!, link.hasAttribute('data-yt-short'), link.getAttribute('aria-label') ?? link.textContent?.trim() ?? '');
+  });
+
+  // --- Prévia ao passar o mouse (só em telas com mouse e sem "reduzir movimento") ---
+  const canPreview =
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (canPreview) {
+    // Curto, só para não abrir vídeo quando o mouse apenas passa por cima.
+    const HOVER_DELAY = 150;
+    // A prévia aparece assim que o vídeo começa a tocar (prioridade: ser instantânea;
+    // o YouTube ainda mostra um aviso de pausa por uns segundos no começo).
+    // Some quando pausa/carrega e na virada do loop, onde o título do YouTube volta.
+    const HIDE_START = 1.2; // s do vídeo, depois de cada volta do loop
+    const HIDE_END = 1.2; // s antes do fim
+    let timer = 0;
+    let current: HTMLElement | null = null;
+    let state = -1;
+    let time = 0;
+    let duration = 0;
+    let looped = false;
+
+    // Abre a conexão com o YouTube já no carregamento: o primeiro hover fica mais rápido.
+    for (const href of ['https://www.youtube-nocookie.com', 'https://i.ytimg.com']) {
+      const link = document.createElement('link');
+      link.rel = 'preconnect';
+      link.href = href;
+      link.crossOrigin = '';
+      document.head.append(link);
+    }
+
+    /** Manda um comando para o player (API do YouTube por postMessage). */
+    const command = (frame: HTMLIFrameElement, func: string, args: unknown[] = []) =>
+      frame.contentWindow?.postMessage(JSON.stringify({ event: 'command', func, args, id: 1, channel: 'widget' }), '*');
+
+    const stop = () => {
+      window.clearTimeout(timer);
+      current?.querySelector('.yt-preview')?.remove();
+      current = null;
+    };
+
+    // O player avisa estado e tempo por mensagens (enablejsapi=1). Estado 1 = tocando.
+    window.addEventListener('message', (e) => {
+      if (!/^https:\/\/www\.youtube(-nocookie)?\.com$/.test(e.origin)) return;
+      const preview = current?.querySelector<HTMLIFrameElement>('.yt-preview');
+      if (!preview || e.source !== preview.contentWindow) return;
+      let data: { info?: { playerState?: number; currentTime?: number; duration?: number } };
+      try {
+        data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+      } catch {
+        return;
+      }
+      const info = data?.info;
+      if (!info) return;
+      if (typeof info.playerState === 'number') {
+        if (info.playerState === 1 && state !== 1) {
+          // Começou (ou voltou) a tocar: desliga as legendas, que aparecem se a conta
+          // do YouTube estiver com "sempre mostrar legendas".
+          command(preview, 'unloadModule', ['captions']);
+          command(preview, 'unloadModule', ['cc']);
+        }
+        state = info.playerState;
+      }
+      if (typeof info.currentTime === 'number') {
+        // Tempo voltou para o começo: o loop deu a volta.
+        if (info.currentTime + 1 < time) looped = true;
+        time = info.currentTime;
+      }
+      if (typeof info.duration === 'number' && info.duration > 0) duration = info.duration;
+      const clean =
+        state === 1 && !(looped && time < HIDE_START) && (!duration || duration - time > HIDE_END);
+      preview.classList.toggle('ready', clean);
+    });
+
+    document.addEventListener('mouseover', (e) => {
+      const tile = (e.target as HTMLElement).closest<HTMLElement>('[data-yt-preview]');
+      if (tile === current) return;
+      stop();
+      if (!tile?.dataset.yt) return;
+      current = tile;
+      timer = window.setTimeout(() => {
+        const host = tile.querySelector<HTMLElement>('[data-preview-host]') ?? tile;
+        const el = iframe(previewEmbed(tile.dataset.yt!, location.origin), '');
+        el.className = 'yt-preview';
+        el.tabIndex = -1;
+        el.setAttribute('aria-hidden', 'true');
+        state = -1;
+        time = 0;
+        duration = 0;
+        looped = false;
+        // Pede ao player que avise as mudanças de estado. A prévia só aparece quando
+        // ele disser "tocando"; até lá (ou se nunca tocar) a miniatura fica visível.
+        el.addEventListener('load', () =>
+          el.contentWindow?.postMessage(JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }), '*'),
+        );
+        // Logo depois da imagem: legenda e ícone continuam por cima da prévia.
+        const img = host.querySelector('img');
+        if (img) img.after(el);
+        else host.append(el);
+      }, HOVER_DELAY);
+    });
+
+    // Ao abrir a janela do player, a prévia para.
+    dialog.addEventListener('toggle', stop);
+  }
+</script>
+
+<style>
+  .player {
+    width: min(92vw, 1100px);
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    margin: auto;
+    border: 0;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .player::backdrop {
+    background: rgba(5, 4, 6, 0.86);
+    backdrop-filter: blur(6px);
+  }
+
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  .frame :global(iframe) {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* Shorts: em pé, limitado pela altura da tela */
+  .player.short {
+    width: auto;
+  }
+
+  .player.short .frame {
+    height: min(86vh, 860px);
+    aspect-ratio: 9 / 16;
+  }
+
+  .close {
+    position: absolute;
+    top: -2.75rem;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-strong);
+    border-radius: 50%;
+    background: rgba(11, 10, 13, 0.6);
+    color: var(--cream);
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+
+  .close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Prévia dentro da miniatura: ampliada para esconder título e logo do YouTube,
+     sem capturar o clique (o clique é do link). */
+  /* Prévia renderizada 2,5x maior e reduzida: a interface do YouTube (que tem tamanho
+     fixo em pixels) fica minúscula, e o corte de 30% nas bordas tira o que sobrar. */
+  :global(.yt-preview) {
+    --render: 2.5;
+    --crop: 1.3;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100% * var(--render));
+    height: calc(100% * var(--render));
+    border: 0;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(calc(var(--crop) / var(--render)));
+    transition: opacity 0.25s var(--ease);
+  }
+
+  :global(.yt-preview.ready) {
+    opacity: 1;
+  }
+</style>

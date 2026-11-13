@@ -1,0 +1,96 @@
+---
+// Páginas legais (política de privacidade e termos de uso), a partir de
+// src/content/legal/<página>/<idioma>.md.
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import '../styles/prose.css';
+import { getLocale, localePath, t } from '../i18n/ui';
+
+interface Props {
+  page: 'privacy-and-policy' | 'terms-of-use';
+}
+
+const { page } = Astro.props;
+const locale = getLocale(Astro.currentLocale);
+const entry = await getEntry('legal', `${page}/${locale}`);
+if (!entry) throw new Error(`Página legal não encontrada: ${page}/${locale}`);
+const { Content } = await render(entry);
+
+const updated = new Intl.DateTimeFormat(locale === 'pt-br' ? 'pt-BR' : 'en-US', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(entry.data.updated);
+
+// Link para a outra página legal, no fim.
+const other = page === 'privacy-and-policy' ? 'terms-of-use' : 'privacy-and-policy';
+const otherLabel = t(locale, other === 'terms-of-use' ? 'footer.terms' : 'footer.privacy');
+---
+
+<Base title={`${entry.data.title} | Thiago Neppel`} description={entry.data.description}>
+  <article class="legal">
+    <header class="container head">
+      <a href={localePath(locale, '/')} class="back">← {t(locale, 'legal.back')}</a>
+      <span class="eyebrow">{t(locale, 'legal.eyebrow')}</span>
+      <h1 class="display-title">{entry.data.title}</h1>
+      <p class="updated">
+        {t(locale, 'legal.updated')}: <time datetime={entry.data.updated.toISOString().slice(0, 10)}>{updated}</time>
+      </p>
+    </header>
+
+    <div class="container">
+      <div class="prose sections">
+        <Content />
+      </div>
+
+      <nav class="more" aria-label={t(locale, 'legal.eyebrow')}>
+        <a href={localePath(locale, `/${other}/`)}>{otherLabel} →</a>
+      </nav>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .legal {
+    padding: clamp(3rem, 8vw, 6rem) 0 var(--section-pad);
+  }
+
+  .head {
+    display: grid;
+    justify-items: start;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 6vw, 4rem);
+  }
+
+  .back {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+
+  .back:hover {
+    color: var(--accent);
+  }
+
+  .head .display-title {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+  }
+
+  .updated {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .more {
+    max-width: 46rem;
+    margin-top: 3.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  .more a:hover {
+    color: var(--accent);
+  }
+</style>
