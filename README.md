@@ -53,13 +53,10 @@ imagens na mesma pasta.
 
 ## Publicação
 
-O site é publicado pelo repositório **Thneppel/ThneppelWebsite** (GitHub Pages, branch
-`pages`, domínio thneppel.com.br). O workflow de lá baixa este repositório, roda
-`npm ci && npm run build` e publica a pasta `dist/` com o `CNAME`.
-
-- Push na `main` deste repositório dispara o deploy (workflow `trigger-deploy.yml`,
-  precisa do secret `PERSONAL_TOKEN`, o mesmo usado nos repositórios Hugo).
-- Também dá para rodar o deploy à mão em ThneppelWebsite > Actions > Run workflow.
+O código fica no repositório **Thneppel/ThneppelWebsite**, que também publica o site
+(GitHub Pages, branch `pages`, domínio thneppel.com.br). Cada push na `main` roda
+`.github/workflows/deploy.yml`: `npm ci && npm run build` e publica a pasta `dist/` com o
+`CNAME`. Também dá para rodar à mão em Actions > Deploy > Run workflow.
 
 No fim do build, `integrations/site-files.mjs` gera `sitemap.xml`, `robots.txt` e os
 endereços antigos de sitemap e RSS do Hugo. Os redirecionamentos de páginas antigas
