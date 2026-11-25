@@ -46,13 +46,13 @@
           <li><a href="#about">Sobre</a></li>
           <li><a href="#packages">Pacotes</a></li>
           <li class="mobile-nav-cta">
-            <a href="#contact" class="btn btn-primary">Faça um Orçamento</a>
+            <a href="orcamento/" class="btn btn-primary">Faça um Orçamento</a>
           </li>
         </ul>
       </nav>
 
       <div class="nav-cta">
-        <a href="#contact" class="btn btn-primary">Faça um Orçamento</a>
+        <a href="orcamento/" class="btn btn-primary">Faça um Orçamento</a>
       </div>
 
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
@@ -67,41 +67,28 @@
     <!-- 1. HERO: Proposta de Valor -->
     <section id="hero">
       <div class="hero-content">
-        <span class="hero-badge">Produção Audiovisual Imobiliária</span>
-        <h1>Vídeos e fotografia em alta resolução para <b>imóveis de alto padrão</b></h1>
-        <p class="hero-subtitle">
-          Fotos, vídeos e imagens aéreas para construtoras, imobiliárias e corretores
-          em Porto Alegre e no Litoral. Material pronto para portais, redes sociais e
-          campanhas em até 5 dias úteis.
-        </p>
+        <span class="hero-badge">Porto Alegre e Litoral</span>
+        <h1>Filmes para imóveis de <b>alto padrão e lançamentos</b></h1>
+        <p class="hero-subtitle">Direção, filmagem, fotografia e drone para construtoras, imobiliárias e corretores.</p>
+        <ul class="hero-facts">
+          <li>Material bruto sempre incluso</li>
+          <li>Imagens aéreas com drone</li>
+          <li>Entrega em até 5 dias úteis</li>
+        </ul>
         <div class="hero-actions">
-          <a href="#contact" class="btn btn-primary btn-lg">Solicitar orçamento</a>
-          <a href="#packages" class="btn btn-outline btn-lg">Ver pacotes</a>
+          <a href="https://wa.me/5551980644290?text=Ol%C3%A1%2C%20Thiago%21%20Quero%20conversar%20sobre%20um%20projeto." class="btn btn-primary btn-lg" target="_blank" rel="noopener">Falar sobre um projeto</a>
+          <a href="#video" class="btn btn-outline btn-lg">Ver portfólio</a>
         </div>
+      </div>
+      <div class="hero-media" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="auto" poster="assets/hero-poster.jpg">
+          <source src="assets/hero-loop.webm" type="video/webm; codecs=av01.0.08M.08">
+          <source src="assets/hero-loop.mp4" type="video/mp4">
+        </video>
       </div>
     </section>
 
-    <!-- 2. SHOWREEL: Vídeo de Demonstração / Portfólio Principal em 4K -->
-    <section id="video" class="section-container">
-      <div class="section-header text-center">
-        <h2 class="section-title">Demonstração de Portfólio</h2>
-        <p class="section-subtitle">Assista ao showreel com recortes reais de produções em imóveis de alto padrão.</p>
-      </div>
-
-      <div class="video-container">
-        <div class="video-player-wrapper">
-          <iframe src="https://www.youtube.com/embed/68AdIFoKKUw?si=f86FScdGswb_Ws5N"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-          </iframe>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. PROVA SOCIAL: Construtoras e Marcas Atendidas (abaixo do demoreel) -->
+    <!-- 3. PROVA SOCIAL: Construtoras e Marcas Atendidas (logo abaixo da hero) -->
     <section id="companies">
       <h2 class="companies-title">Construtoras e Marcas Atendidas</h2>
       <div class="carousel-container">
@@ -141,6 +128,150 @@
         </div>
       </div>
     </section>
+
+    <!-- 2. SHOWREEL: Vídeo de Demonstração / Portfólio Principal em 4K -->
+    <section id="video" class="section-container">
+      <div class="section-header text-center">
+        <h2 class="section-title">Demonstração de Portfólio</h2>
+        <p class="section-subtitle">Assista ao showreel com recortes reais de produções em imóveis de alto padrão.</p>
+      </div>
+
+      <div class="video-container">
+        <div class="video-player-wrapper">
+          <iframe src="https://www.youtube.com/embed/68AdIFoKKUw?si=f86FScdGswb_Ws5N"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2b. CASES: Projetos para construtoras (vídeo carrega só no clique) -->
+    <section id="cases" class="section-container">
+      <div class="section-header text-center">
+        <h2 class="section-title">Projetos para Construtoras</h2>
+        <p class="section-subtitle">Filmes institucionais e de lançamento produzidos para empreendimentos no litoral catarinense.</p>
+      </div>
+
+      <div class="cases-grid">
+        <article class="case-card">
+          <a class="case-video" href="https://www.youtube.com/watch?v=36T6rXDQT1w" target="_blank" rel="noopener" data-yt="36T6rXDQT1w" data-yt-preview aria-label="Assistir: Mendes Empreendimentos, vídeo institucional">
+            <img src="https://i.ytimg.com/vi/36T6rXDQT1w/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/36T6rXDQT1w/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+            <span class="case-play" aria-hidden="true"></span>
+          </a>
+          <div class="case-info">
+            <span class="case-type">Vídeo institucional</span>
+            <h3>Mendes Empreendimentos</h3>
+            <p class="case-place">Balneário Camboriú e Praia Brava, Itajaí</p>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <a class="case-video" href="https://www.youtube.com/watch?v=vbmZUozFLXM" target="_blank" rel="noopener" data-yt="vbmZUozFLXM" data-yt-preview aria-label="Assistir: Fazenda Garden, teaser de lançamento">
+            <img src="https://i.ytimg.com/vi/vbmZUozFLXM/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/vbmZUozFLXM/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+            <span class="case-play" aria-hidden="true"></span>
+          </a>
+          <div class="case-info">
+            <span class="case-type">Teaser de lançamento</span>
+            <h3>Fazenda Garden · RV Empreendimentos</h3>
+            <p class="case-place">Orla de Itajaí</p>
+          </div>
+        </article>
+
+        <article class="case-card">
+          <a class="case-video" href="https://www.youtube.com/watch?v=s172az4nzTc" target="_blank" rel="noopener" data-yt="s172az4nzTc" data-yt-preview aria-label="Assistir: Brava Mundo, vídeo institucional">
+            <img src="https://i.ytimg.com/vi/s172az4nzTc/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/s172az4nzTc/hqdefault.jpg'" alt="" loading="lazy" width="1280" height="720">
+            <span class="case-play" aria-hidden="true"></span>
+          </a>
+          <div class="case-info">
+            <span class="case-type">Vídeo institucional</span>
+            <h3>Brava Mundo · Hotel boutique</h3>
+            <p class="case-place">Praia Brava, Itajaí</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="cases-credit">Produzidos na Cronic Digital · Direção, roteiro, captação com drone e edição: Thiago Neppel</p>
+    </section>
+
+    <!-- 2c. REELS: vídeos verticais (abrem em pé na janela do player) -->
+    <section id="reels" class="section-container">
+      <div class="section-header text-center">
+        <h2 class="section-title">Reels para Corretores e Construtoras</h2>
+        <p class="section-subtitle">Vídeos verticais para Instagram, TikTok e Shorts, pensados para prender a atenção nos primeiros segundos.</p>
+      </div>
+
+      <div class="reels-grid">
+        <a class="reel-card" href="https://youtube.com/shorts/ueErQA1_2d8" target="_blank" rel="noopener" data-yt="ueErQA1_2d8" data-yt-short data-yt-preview aria-label="Detalhe Construtora: Casa Vista Mar · Estaleirinho">
+          <span class="reel-frame">
+            <img src="assets/reels/ueErQA1_2d8.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">Detalhe Construtora</span>
+          <span class="reel-title">Casa Vista Mar · Estaleirinho</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/f5KYlO08CCg" target="_blank" rel="noopener" data-yt="f5KYlO08CCg" data-yt-short data-yt-preview aria-label="Beneduzi & Lopes: Casa em condomínio · Praia Brava">
+          <span class="reel-frame">
+            <img src="assets/reels/f5KYlO08CCg.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">Beneduzi & Lopes</span>
+          <span class="reel-title">Casa em condomínio · Praia Brava</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/uT5RmncaE7I" target="_blank" rel="noopener" data-yt="uT5RmncaE7I" data-yt-short data-yt-preview aria-label="Beneduzi & Lopes: Marine Vision · Vista para a Marina">
+          <span class="reel-frame">
+            <img src="assets/reels/uT5RmncaE7I.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">Beneduzi & Lopes</span>
+          <span class="reel-title">Marine Vision · Vista para a Marina</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/9vvk-2dQpVg" target="_blank" rel="noopener" data-yt="9vvk-2dQpVg" data-yt-short data-yt-preview aria-label="Beneduzi & Lopes: Mirage Residence · Praia Brava">
+          <span class="reel-frame">
+            <img src="assets/reels/9vvk-2dQpVg.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">Beneduzi & Lopes</span>
+          <span class="reel-title">Mirage Residence · Praia Brava</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/DSkMV4frKGc" target="_blank" rel="noopener" data-yt="DSkMV4frKGc" data-yt-short data-yt-preview aria-label="RV Empreendimentos: Flower Park Residence · Joinville">
+          <span class="reel-frame">
+            <img src="assets/reels/DSkMV4frKGc.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">RV Empreendimentos</span>
+          <span class="reel-title">Flower Park Residence · Joinville</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/9-cP1M8L3OQ" target="_blank" rel="noopener" data-yt="9-cP1M8L3OQ" data-yt-short data-yt-preview aria-label="RV Empreendimentos: Le Blanc Residence">
+          <span class="reel-frame">
+            <img src="assets/reels/9-cP1M8L3OQ.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">RV Empreendimentos</span>
+          <span class="reel-title">Le Blanc Residence</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/Bpdq0nUeECY" target="_blank" rel="noopener" data-yt="Bpdq0nUeECY" data-yt-short data-yt-preview aria-label="Beneduzi & Lopes: Marine Vision · Vista mar">
+          <span class="reel-frame">
+            <img src="assets/reels/Bpdq0nUeECY.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">Beneduzi & Lopes</span>
+          <span class="reel-title">Marine Vision · Vista mar</span>
+        </a>
+        <a class="reel-card" href="https://youtube.com/shorts/ZyCjmy41QHc" target="_blank" rel="noopener" data-yt="ZyCjmy41QHc" data-yt-short data-yt-preview aria-label="Detalhe Construtora: Institucional · Balneário Camboriú">
+          <span class="reel-frame">
+            <img src="assets/reels/ZyCjmy41QHc.webp" alt="" loading="lazy" width="540" height="960">
+            <span class="case-play" aria-hidden="true"></span>
+          </span>
+          <span class="reel-client">Detalhe Construtora</span>
+          <span class="reel-title">Institucional · Balneário Camboriú</span>
+        </a>
+      </div>
+    </section>
+
 
     <!-- 4. SERVIÇOS: Escopo de Trabalho & Formatos de Entrega -->
     <section id="services">
@@ -347,54 +478,67 @@
       <div class="section-container">
         <div class="section-header">
           <h2 class="section-title">Pacotes</h2>
-          <p class="section-subtitle">Valores de referência. O orçamento final depende do tamanho do imóvel, da localização e dos formatos de entrega.</p>
+          <p class="section-subtitle">Valores de referência por imóvel. Escolha um pacote, conte o tamanho e o local do imóvel e veja o valor exato na hora.</p>
         </div>
 
         <div class="packages-grid">
           <div class="package-card">
-            <h3>Captação</h3>
-            <p class="package-for">Para quem já tem editor ou agência</p>
-            <div class="package-price"><span>investimento</span> <strong>R$ 700</strong></div>
+            <h3>Essencial</h3>
+            <p class="package-for">Corretores e imobiliárias</p>
+            <div class="package-price"><span>a partir de</span> <strong>R$ 1.875</strong></div>
             <ul>
-              <li>Captação de fotos e vídeos do imóvel</li>
-              <li>Imagens aéreas com drone</li>
-              <li>Entrega dos arquivos brutos, sem edição</li>
+              <li>1 vídeo horizontal com tour completo do imóvel</li>
+              <li>3 vídeos verticais para Reels e TikTok</li>
+              <li>20 fotos tratadas, com correção de linhas e luz</li>
+              <li>Imagens aéreas com drone (vídeo e foto)</li>
+              <li>Arquivos brutos inclusos</li>
             </ul>
-            <a href="#contact" class="btn btn-outline">Solicitar orçamento</a>
+            <a href="orcamento/?pacote=imovel" class="btn btn-outline">Ver valor para meu imóvel</a>
           </div>
 
           <div class="package-card package-featured">
             <span class="package-badge">Recomendado</span>
-            <h3>Vídeo + Fotografia</h3>
-            <p class="package-for">Corretores e imobiliárias</p>
-            <div class="package-price"><span>a partir de</span> <strong>R$ 1.200</strong></div>
+            <h3>Alto Padrão</h3>
+            <p class="package-for">Coberturas, casas e frente mar</p>
+            <div class="package-price"><span>a partir de</span> <strong>R$ 3.200</strong></div>
             <ul>
-              <li>1 vídeo horizontal para YouTube e site</li>
-              <li>2 vídeos verticais para Reels e TikTok</li>
-              <li>2 fotos tratadas por cômodo</li>
-              <li>Imagens aéreas com drone</li>
+              <li>Roteiro e direção pensados para o perfil do comprador</li>
+              <li>Filme cinematográfico com trilha e sound design</li>
+              <li>4 vídeos verticais para Reels, TikTok e anúncios</li>
+              <li>20 fotos tratadas, incluindo fachada ao entardecer</li>
+              <li>Imagens aéreas da fachada, vista e entorno</li>
               <li>Arquivos brutos inclusos</li>
             </ul>
-            <a href="#contact" class="btn btn-primary">Solicitar orçamento</a>
+            <a href="orcamento/?pacote=alto" class="btn btn-primary">Ver valor para meu imóvel</a>
           </div>
 
           <div class="package-card">
-            <h3>Empreendimento</h3>
-            <p class="package-for">Construtoras e lançamentos</p>
+            <h3>Lançamento</h3>
+            <p class="package-for">Construtoras e incorporadoras</p>
             <div class="package-price"><span>investimento</span> <strong>Sob consulta</strong></div>
             <ul>
-              <li>Planejamento de captação com o marketing</li>
-              <li>Vídeo institucional do empreendimento</li>
-              <li>Acompanhamento de obra</li>
-              <li>Conteúdo recorrente para campanhas</li>
+              <li>Conceito e roteiro da campanha junto com o marketing</li>
+              <li>Filme de lançamento do empreendimento</li>
+              <li>Peças em vídeo para anúncios e redes sociais</li>
+              <li>Captação de decorado, plantão e áreas comuns</li>
+              <li>Acompanhamento mensal de obra com drone</li>
+              <li>Conteúdo recorrente até a entrega das chaves</li>
             </ul>
-            <a href="#contact" class="btn btn-outline">Falar sobre o projeto</a>
+            <a href="https://wa.me/5551980644290?text=Ol%C3%A1%2C%20Thiago%21%20Sou%20de%20uma%20construtora/incorporadora%20e%20quero%20conversar%20sobre%20a%20produ%C3%A7%C3%A3o%20de%20um%20lan%C3%A7amento." class="btn btn-outline" target="_blank" rel="noopener">Conversar sobre o projeto</a>
           </div>
         </div>
 
+        <div class="package-custom">
+          <div>
+            <h3>Nenhum pacote encaixa?</h3>
+            <p>Monte o seu item por item: quantos vídeos, fotos e imagens com drone, mais os adicionais. O valor sai na hora.</p>
+          </div>
+          <a href="orcamento/" class="btn btn-primary">Montar meu orçamento</a>
+        </div>
+
         <p class="packages-note">
-          <strong>Demanda recorrente ou vários imóveis?</strong>
-          Contratos mensais e pacotes com mais imóveis têm valores reduzidos. <a href="#contact">Peça uma proposta</a>.
+          <strong>Agência ou já tem editor?</strong>
+          Faço só a captação de fotos, vídeo e drone, com entrega dos arquivos brutos. Contratos mensais e pacotes com vários imóveis têm valores reduzidos. <a href="#contact">Peça uma proposta</a>.
         </p>
       </div>
     </section>
@@ -542,7 +686,129 @@
     </svg>
   </a>
 
+  <!-- Janela do player (mesmo comportamento da home: src/components/VideoPlayer.astro) -->
+  <dialog class="yt-player" data-player aria-label="Vídeo">
+    <div class="yt-player-frame" data-player-frame></div>
+    <!-- autofocus: o foco fica na página (não dentro do YouTube), então o Esc fecha a janela -->
+    <button type="button" class="yt-player-close" data-player-close aria-label="Fechar vídeo" autofocus>✕</button>
+  </dialog>
+
   <script>
+    (function () {
+      // Vídeos do YouTube para qualquer link com data-yt="ID":
+      // - clique: abre uma janela por cima da página com o player
+      // - mouse parado em cima (data-yt-preview): toca uma prévia sem som dentro da miniatura
+      // Sem JavaScript, o link continua levando ao YouTube.
+      const dialog = document.querySelector('[data-player]');
+      const frame = dialog.querySelector('[data-player-frame]');
+
+      const watchEmbed = (id) =>
+        'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0&playsinline=1&modestbranding=1';
+      const previewEmbed = (id) =>
+        'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&controls=0&loop=1&playlist=' + id +
+        '&playsinline=1&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&cc_load_policy=0' +
+        '&enablejsapi=1&origin=' + encodeURIComponent(location.origin);
+
+      const makeIframe = (src, title) => {
+        const el = document.createElement('iframe');
+        el.src = src;
+        el.title = title;
+        el.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+        el.allowFullscreen = true;
+        return el;
+      };
+
+      // --- Janela do player ---
+      dialog.addEventListener('close', () => frame.replaceChildren()); // para o vídeo
+      dialog.querySelector('[data-player-close]').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (e) => { if (e.target === dialog) dialog.close(); });
+
+      document.addEventListener('click', (e) => {
+        const link = e.target.closest('[data-yt]');
+        if (!link || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        frame.replaceChildren(makeIframe(watchEmbed(link.dataset.yt), link.getAttribute('aria-label') || ''));
+        dialog.classList.toggle('short', link.hasAttribute('data-yt-short'));
+        dialog.showModal();
+      });
+
+      // --- Prévia ao passar o mouse (só com mouse e sem "reduzir movimento") ---
+      const canPreview =
+        window.matchMedia('(hover: hover) and (pointer: fine)').matches &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!canPreview) return;
+
+      const HOVER_DELAY = 150;
+      const HIDE_START = 1.2; // s do vídeo, depois de cada volta do loop
+      const HIDE_END = 1.2; // s antes do fim
+      let timer = 0, current = null, state = -1, time = 0, duration = 0, looped = false;
+
+      for (const href of ['https://www.youtube-nocookie.com', 'https://i.ytimg.com']) {
+        const l = document.createElement('link');
+        l.rel = 'preconnect';
+        l.href = href;
+        l.crossOrigin = '';
+        document.head.append(l);
+      }
+
+      const command = (f, func, args) =>
+        f.contentWindow && f.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || [], id: 1, channel: 'widget' }), '*');
+
+      const stop = () => {
+        window.clearTimeout(timer);
+        const p = current && current.querySelector('.yt-preview');
+        if (p) p.remove();
+        current = null;
+      };
+
+      // O player avisa estado e tempo por mensagens (enablejsapi=1). Estado 1 = tocando.
+      window.addEventListener('message', (e) => {
+        if (!/^https:\/\/www\.youtube(-nocookie)?\.com$/.test(e.origin)) return;
+        const preview = current && current.querySelector('.yt-preview');
+        if (!preview || e.source !== preview.contentWindow) return;
+        let data;
+        try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (err) { return; }
+        const info = data && data.info;
+        if (!info) return;
+        if (typeof info.playerState === 'number') {
+          if (info.playerState === 1 && state !== 1) {
+            command(preview, 'unloadModule', ['captions']);
+            command(preview, 'unloadModule', ['cc']);
+          }
+          state = info.playerState;
+        }
+        if (typeof info.currentTime === 'number') {
+          if (info.currentTime + 1 < time) looped = true;
+          time = info.currentTime;
+        }
+        if (typeof info.duration === 'number' && info.duration > 0) duration = info.duration;
+        const clean = state === 1 && !(looped && time < HIDE_START) && (!duration || duration - time > HIDE_END);
+        preview.classList.toggle('ready', clean);
+      });
+
+      document.addEventListener('mouseover', (e) => {
+        const tile = e.target.closest('[data-yt-preview]');
+        if (tile === current) return;
+        stop();
+        if (!tile || !tile.dataset.yt) return;
+        current = tile;
+        timer = window.setTimeout(() => {
+          const el = makeIframe(previewEmbed(tile.dataset.yt), '');
+          el.className = 'yt-preview';
+          el.tabIndex = -1;
+          el.setAttribute('aria-hidden', 'true');
+          state = -1; time = 0; duration = 0; looped = false;
+          el.addEventListener('load', () =>
+            el.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: 1, channel: 'widget' }), '*'),
+          );
+          const img = tile.querySelector('img');
+          if (img) img.after(el); else tile.append(el);
+        }, HOVER_DELAY);
+      });
+
+      dialog.addEventListener('toggle', stop);
+    })();
+
     (function () {
       // Mobile navigation toggle
       const toggle = document.getElementById('mobile-toggle');
