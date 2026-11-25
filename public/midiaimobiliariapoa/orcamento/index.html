@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Monte o orçamento de vídeo, fotografia e drone para o seu imóvel em menos de 2 minutos. Porto Alegre e Litoral."/>
+  <meta name="author" content="Thiago Neppel"/>
+  <meta name="robots" content="index, follow"/>
+  <title>Orçamento online | Mídia Imobiliária | Thiago Neppel</title>
+  <link rel="canonical" href="https://thneppel.com.br/midiaimobiliariapoa/orcamento/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="pt_BR"/>
+  <meta property="og:site_name" content="Thiago Neppel"/>
+  <meta property="og:url" content="https://thneppel.com.br/midiaimobiliariapoa/orcamento/"/>
+  <meta property="og:title" content="Orçamento online de vídeo e foto imobiliária | Thiago Neppel"/>
+  <meta property="og:description" content="Responda algumas perguntas e receba o orçamento na hora."/>
+  <meta property="og:image" content="https://thneppel.com.br/midiaimobiliariapoa/assets/hero-bg.png"/>
+  <link rel="icon" type="image/png" href="../favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="shortcut icon" href="../favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png" />
+  <link rel="stylesheet" href="../styles.css"/>
+  <link rel="stylesheet" href="../layout.css"/>
+  <style>
+    /* ===== Formulário ===== */
+    .quote-page { max-width: 820px; margin: 0 auto; padding: 7rem 1.25rem 4rem; }
+    .quote-intro { margin-bottom: 1rem; }
+    .quote-intro .section-title { margin-bottom: 0.6rem; }
+    .quote-intro .section-subtitle { max-width: 620px; }
+    .q-req-legend { margin-top: 0.75rem; font-size: var(--text-xs); color: var(--text-muted); }
+    .req::after { content: ' *'; color: var(--accent); }
+    /* Sem caixa alta nos rótulos (o estilo base da página usa uppercase) */
+    .quote-page .form-group label { text-transform: none; letter-spacing: 0; font-size: var(--text-sm); font-weight: 600; color: var(--text-secondary); }
+    .opt { margin-left: 0.35rem; font-size: var(--text-xs); font-weight: 400; color: var(--text-muted); }
+    .q-req-legend span { color: var(--accent); }
+
+    /* Etapas: sem caixa, separadas por linha */
+    .q-block { padding: 2.25rem 0; border-top: 1px solid var(--border-subtle); }
+    .q-block:first-of-type { border-top: 0; padding-top: 1.5rem; }
+    .q-block h2 { display: flex; align-items: baseline; gap: 0.75rem; font-size: 1.2rem; margin-bottom: 1.5rem; }
+    .q-block h2:has(+ .q-hint) { margin-bottom: 0.35rem; }
+    .q-step { font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.12em; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .q-hint { margin: 0 0 1.5rem; font-size: var(--text-sm); color: var(--text-muted); }
+
+    /* Campos com a mesma altura */
+    .quote-page .form-grid { gap: 1.25rem 1rem; }
+    .quote-page .form-group input,
+    .quote-page .form-group select,
+    .quote-page .form-group textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 0.7rem 0.9rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font: inherit;
+      font-size: var(--text-sm);
+    }
+    .quote-page .form-group textarea { min-height: 46px; resize: vertical; }
+    .quote-page .form-group select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .q-field-hint { display: block; margin-top: 0.1rem; font-size: var(--text-xs); color: var(--text-muted); }
+    .q-field-hint:empty { display: none; }
+    .q-field-hint a { color: var(--accent); }
+
+    /* Seletor − n + */
+    .stepper { display: inline-flex; align-items: center; height: 46px; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); background: var(--bg-surface); overflow: hidden; flex-shrink: 0; transition: border-color 0.2s ease, background-color 0.2s ease; }
+    .stepper button { width: 42px; height: 100%; border: 0; background: transparent; color: var(--text-primary); font-size: 1.1rem; cursor: pointer; }
+    .stepper button:hover:not(:disabled) { background: var(--accent-soft); color: var(--accent); }
+    .stepper button:disabled { opacity: 0.3; cursor: default; }
+    .stepper output { min-width: 2.4rem; text-align: center; font-weight: 700; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+    .q-imoveis { align-self: flex-start; }
+
+    /* Modelos (atalhos) */
+    .q-presets { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+    .q-preset { padding: 0.45rem 0.9rem; border: 1px solid var(--border-subtle); border-radius: var(--radius-full); background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease; }
+    .q-preset:hover { color: var(--text-primary); border-color: var(--text-muted); }
+    .q-preset.active { color: var(--text-primary); border-color: var(--accent); background: var(--accent-soft); }
+
+    /* Listas (itens e adicionais): uma caixa só, linhas separadas */
+    .q-items, .extras { border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+    .q-item, .extra { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; }
+    .q-item + .q-item, .extra + .extra { border-top: 1px solid var(--border-subtle); }
+    .q-item-text, .extra-text { flex: 1; font-size: var(--text-sm); color: var(--text-muted); line-height: 1.45; transition: opacity 0.2s ease; }
+    .q-item-text b, .extra-text b { display: block; color: var(--text-primary); font-weight: 400; }
+    .q-item:not(.on) .q-item-text { opacity: 0.55; }
+    .q-item.on .stepper { border-color: var(--accent); background: var(--accent-soft); }
+    .q-item .stepper { height: 38px; }
+    .q-item .stepper button { width: 36px; }
+    .q-item.is-locked { cursor: default; }
+    .quote-page .q-item.is-locked input[type="checkbox"] { opacity: 1; cursor: not-allowed; }
+    .q-lock { flex-shrink: 0; margin-right: -0.6rem; color: var(--text-muted); }
+    .q-drone { cursor: pointer; }
+    .q-sub { padding-left: 1.5rem; }
+    .q-items:not(.drone-fotos) .q-sub:not(.q-sub-video) { display: none; }
+    .q-items:not(.drone-video) .q-sub-video { display: none; }
+    .q-incluso { flex-shrink: 0; font-size: var(--text-xs); color: var(--text-muted); }
+    .q-drone { cursor: default; }
+    .q-seg { display: inline-flex; flex-shrink: 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); overflow: hidden; }
+    .q-seg button { padding: 0 0.8rem; height: 38px; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--text-xs); white-space: nowrap; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
+    .q-seg button + button { border-left: 1px solid var(--border-subtle); }
+    .q-seg button:hover:not(:disabled):not(.active) { color: var(--text-primary); background: var(--accent-soft); }
+    .q-seg button.active { background: var(--accent); color: #ffffff; }
+    .q-seg button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .q-item.is-disabled .q-item-text { opacity: 0.45; }
+    .q-item.is-disabled { cursor: default; }
+
+    /* Caixinhas de marcar (adicionais, drone, lançamento) */
+    .quote-page .form-group input[type="checkbox"],
+    .quote-page input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 14px; height: 14px; min-height: 0; padding: 0; margin: 0; flex-shrink: 0;
+      border: 1.5px solid var(--text-muted);
+      border-radius: 3px;
+      background: transparent;
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+    .quote-page input[type="checkbox"]:hover { border-color: var(--text-secondary); }
+    .quote-page input[type="checkbox"]:checked { background: var(--accent); border-color: var(--accent); }
+    .quote-page input[type="checkbox"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    .quote-page input[type="checkbox"]:disabled { opacity: 0.4; cursor: default; }
+    .extra { cursor: pointer; }
+    .extra .extra-price { color: var(--text-muted); font-size: var(--text-xs); white-space: nowrap; }
+    .extra.is-disabled { cursor: default; }
+    .extra.is-disabled .extra-text { opacity: 0.45; }
+    .q-toggle { display: inline-grid; place-items: center; width: 38px; height: 38px; }
+    .q-check { display: flex; align-items: center; gap: 0.75rem; grid-column: 1 / -1; font-size: var(--text-sm); color: var(--text-muted); cursor: pointer; }
+    .q-check b { color: var(--text-primary); font-weight: 600; }
+
+    .q-alert { margin-top: 1.25rem; padding: 0.8rem 1rem; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: var(--radius-sm); font-size: var(--text-sm); color: var(--text-secondary); }
+    .q-hidden { display: none !important; }
+
+    /* Barra fixa */
+    .q-live { position: sticky; bottom: 1rem; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.9rem 1rem 0.9rem 1.25rem; margin-top: 0.5rem; background: rgba(12, 13, 16, 0.94); backdrop-filter: blur(8px); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45); }
+    .q-live small { display: block; margin-bottom: 0.15rem; color: var(--text-muted); font-size: var(--text-xs); }
+    .q-live .q-live-text { font-size: var(--text-sm); font-weight: 600; color: var(--text-primary); }
+    .q-live .btn { min-width: 200px; }
+    .q-privacy { margin-top: 1rem; font-size: var(--text-xs); color: var(--text-muted); text-align: center; }
+    .p-table tr.p-sum td { font-weight: 700; color: #0b0c0f; border-top: 1px solid #d9dce1; }
+    .p-table tr.p-subrow td:first-child { padding-left: 1.1rem; }
+
+    /* Etapa 1: perguntas em linhas (rótulo à esquerda, resposta à direita) */
+    .q-rows { border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+    .q-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; padding: 0.6rem 0; }
+    .q-row + .q-row { border-top: 1px solid var(--border-subtle); }
+    .q-row-label { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+    .q-row-label label, .q-row-label b { font-size: var(--text-sm); font-weight: 400; color: var(--text-primary); text-transform: none; letter-spacing: 0; margin: 0; }
+    .quote-page .q-row select { flex: 0 0 min(250px, 55%); height: 40px; padding: 0 0.8rem; background-color: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); color: var(--text-primary); font: inherit; font-size: var(--text-sm); cursor: pointer; }
+    .quote-page .q-row select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .q-row .stepper { height: 40px; }
+    .q-row .stepper button { width: 38px; }
+    .q-row-check { cursor: pointer; }
+    .q-row-check .q-toggle { width: 40px; height: 40px; }
+    .q-add { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 1rem; padding: 0.3rem 0; border: 0; background: none; color: var(--text-secondary); font: inherit; font-size: var(--text-sm); cursor: pointer; }
+    .q-add:hover { color: var(--text-primary); }
+    .q-end { margin-top: 1.25rem; }
+    .quote-page .q-alert { margin-top: 1rem; padding: 0.15rem 0 0.15rem 0.9rem; border-left: 2px solid var(--accent); background: none; border-radius: 0; font-size: var(--text-xs); color: var(--text-muted); line-height: 1.55; }
+    .q-wizard.is-first #q-summary, .q-wizard:not(.is-first) #q-next-hint { display: none; }
+    #q-next-hint { color: var(--text-secondary); font-weight: 500; }
+
+    .q-origem { margin-top: 1rem; padding: 0.1rem 0 0.1rem 0.9rem; border-left: 2px solid var(--accent); font-size: var(--text-sm); color: var(--text-secondary); max-width: 620px; line-height: 1.55; }
+    .q-origem b { color: var(--text-primary); }
+    .q-origem button { margin-left: 0.35rem; padding: 0; border: 0; background: none; color: var(--accent); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+    /* Etapas (uma de cada vez) */
+    .q-progress { display: grid; grid-template-columns: repeat(var(--n, 4), 1fr); gap: 0.5rem; margin: 1.75rem 0 0; padding: 0; list-style: none; }
+    .q-progress li { min-width: 0; }
+    .q-progress button { display: block; width: 100%; padding: 0.6rem 0 0; border: 0; border-top: 3px solid var(--border-subtle); background: none; color: var(--text-muted); font: inherit; font-size: var(--text-xs); text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: default; transition: border-color 0.25s ease, color 0.25s ease; }
+    .q-progress button b { font-variant-numeric: tabular-nums; margin-right: 0.35rem; }
+    .q-progress .done button { border-top-color: var(--accent); color: var(--text-secondary); cursor: pointer; }
+    .q-progress .done button:hover { color: var(--text-primary); }
+    .q-progress .current button { border-top-color: var(--accent); color: var(--text-primary); font-weight: 600; }
+    .q-wizard .q-block { display: none; border-top: 0; padding-top: 2rem; }
+    .q-wizard .q-block.is-current { display: block; animation: q-in 0.3s ease; }
+    .q-wizard .q-block h2 .q-step { display: none; }
+    @keyframes q-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+    .q-nav { display: flex; gap: 0.5rem; margin-left: auto; }
+    .q-nav .btn { min-width: 0; }
+    #q-next, #q-submit { min-width: 200px; }
+    #q-next { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    #q-next .q-arrow { transition: transform 0.2s ease; }
+    #q-next:hover .q-arrow { transform: translateX(3px); }
+    #q-back { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    #q-back .q-arrow { transition: transform 0.2s ease; }
+    #q-back:hover .q-arrow { transform: translateX(-3px); }
+    .q-wizard:not(.is-last) .q-privacy { display: none; }
+
+    @media (max-width: 640px) {
+      .quote-page .form-grid { grid-template-columns: 1fr; }
+      .q-live { padding: 0.6rem; bottom: 0.75rem; }
+      .q-live > div:first-child { display: none; }
+      .q-nav { width: 100%; }
+      .q-nav .btn { flex: 1; }
+      #q-next, #q-submit { min-width: 0; flex: 2; }
+      .q-row:has(select) { flex-direction: column; align-items: stretch; gap: 0.5rem; padding: 0.85rem 0; }
+      .quote-page .q-row select { flex: none; width: 100%; }
+      .q-drone { flex-wrap: wrap; }
+      .q-seg { width: 100%; }
+      .q-seg button { flex: 1; padding: 0 0.4rem; }
+      .q-progress button span { display: none; }
+      .q-progress .current button span { display: inline; }
+    }
+
+    /* Orçamento gerado */
+    .proposal {
+      background: #ffffff;
+      color: #16181d;
+      border-radius: var(--radius-md);
+      padding: clamp(1.5rem, 4vw, 3rem);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    }
+    .proposal h1, .proposal h2, .proposal h3, .proposal strong { color: #0b0c0f; }
+    .p-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1.5rem; flex-wrap: wrap; padding-bottom: 1.5rem; border-bottom: 2px solid #0b0c0f; }
+    .p-head img { height: 34px; width: auto; filter: invert(1); }
+    .p-head .p-meta { text-align: right; font-size: 0.85rem; color: #555b66; line-height: 1.6; }
+    .p-head .p-meta strong { font-size: 1rem; }
+    .p-title { margin: 1.75rem 0 0.25rem; font-size: 1.6rem; }
+    .p-sub { color: #555b66; margin-bottom: 1.75rem; }
+    .p-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-bottom: 1.75rem; }
+    .p-box { background: #f4f5f7; border-radius: 10px; padding: 1rem 1.1rem; font-size: 0.9rem; line-height: 1.6; }
+    .p-box h3 { font-size: 0.7rem; color: #dc0f2a; margin-bottom: 0.4rem; }
+    .p-addr { margin: -0.5rem 0 1.75rem; }
+    .p-addr h3 { font-size: 0.7rem; color: #dc0f2a; margin-bottom: 0.4rem; }
+    .p-addr ol { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.2rem; font-size: 0.9rem; line-height: 1.5; }
+    .p-addr ol.is-single { list-style: none; padding-left: 0; }
+    .p-addr li::marker { color: #6b7280; font-size: 0.8rem; }
+    .p-addr a { color: #16181d; text-decoration: none; }
+    .p-addr a:hover { text-decoration: underline; }
+    .p-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin-bottom: 0.5rem; }
+    .p-table th { text-align: left; font-size: 0.7rem; color: #555b66; padding: 0.6rem 0; border-bottom: 1px solid #d9dce1; }
+    .p-table .p-num { text-align: right; white-space: nowrap; padding-left: 1rem; font-variant-numeric: tabular-nums; }
+    .p-table td.p-num { font-size: 0.8rem; }
+    .p-table td.p-num { color: #555b66; }
+    .p-table td.p-num:last-child { color: #0b0c0f; font-weight: 600; }
+    .p-table tr.p-discount td.p-num:last-child { color: #0f7a3d; }
+    .p-table td { padding: 0.7rem 0; border-bottom: 1px solid #eceef1; vertical-align: top; }
+    .p-table td small { display: block; color: #6b7280; font-size: 0.8rem; }
+    .p-table tr.p-discount td { color: #0f7a3d; }
+    .p-total { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; padding: 1.1rem 1.25rem; margin: 1rem 0 1.75rem; background: #0b0c0f; color: #ffffff; border-radius: 10px; }
+    .p-total-label { display: flex; flex-direction: column; align-items: flex-start; gap: 0.45rem; }
+    .p-total-label span { font-size: 0.8rem; color: #b9bec7; }
+    .p-flag { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.3rem 0.7rem; border-radius: 999px; background: #dc0f2a; color: #ffffff; font-style: normal; font-size: 0.78rem; font-weight: 700; }
+    .p-flag::before { content: '!'; display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: #ffffff; color: #dc0f2a; font-size: 0.7rem; font-weight: 800; }
+    .p-total strong { color: #ffffff; font-size: 1.8rem; font-weight: 800; text-align: right; line-height: 1.1; }
+    .p-total strong small { display: block; font-size: 0.8rem; font-weight: 600; color: #ff8a98; margin-top: 0.2rem; }
+    @media print { .p-flag { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    .p-list { list-style: none; display: grid; gap: 0.35rem; font-size: 0.9rem; margin-bottom: 1.75rem; }
+    .p-list li { padding-left: 1.2rem; position: relative; }
+    .p-list li::before { content: '✓'; position: absolute; left: 0; color: #dc0f2a; font-weight: 700; }
+    .p-section-title { font-size: 1rem; margin-bottom: 0.6rem; }
+    .p-note { font-size: 0.8rem; color: #6b7280; line-height: 1.6; border-top: 1px solid #eceef1; padding-top: 1rem; }
+    .p-confirm { margin: -0.75rem 0 1.75rem; padding: 0.8rem 1rem; border: 1px solid #f3c2c9; border-radius: 10px; background: #fff5f6; font-size: 0.85rem; color: #3a3f48; line-height: 1.55; }
+    .p-confirm strong { color: #b00d23; }
+    .p-contact { margin: 0.75rem 0 0; font-size: 0.8rem; color: #555b66; line-height: 1.6; }
+    .p-contact a { color: #0b0c0f; text-decoration: none; font-weight: 600; }
+    .p-foot { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #eceef1; text-align: center; font-size: 0.8rem; }
+    .p-foot a { color: #0b0c0f; text-decoration: none; font-weight: 600; }
+    .p-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+    .p-sent { margin-bottom: 1.25rem; }
+
+    /* PDF / impressão: A4 com margem própria, cabe numa página na maioria dos pedidos */
+    @page { size: A4; margin: 12mm 0 10mm; }
+    @page :first { margin-top: 0; }
+    @media print {
+      html { font-size: 12px !important; }
+      html, body { width: auto !important; min-width: 0 !important; overflow: visible !important; background: #ffffff !important; }
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .site-header, .site-footer, .p-actions, .p-sent, .whatsapp-float, #quote-form-view { display: none !important; }
+      .quote-page, #quote-result-view { padding: 0 !important; margin: 0 !important; max-width: none !important; width: auto !important; }
+      .proposal { box-shadow: none; padding: 13mm 14mm 0 !important; border-radius: 0; width: 100% !important; max-width: 210mm; box-sizing: border-box; margin: 0 auto; }
+      .proposal *, .proposal *::before, .proposal *::after { box-sizing: border-box; }
+      .p-table { table-layout: auto; width: 100% !important; }
+      .p-head { padding-bottom: 1rem; }
+      .p-head img { height: 26px; }
+      .p-title { margin-top: 1.25rem; font-size: 1.45rem; }
+      .p-sub { margin-bottom: 1.1rem; }
+      .p-cols { grid-template-columns: 1fr 1fr; gap: 0.9rem; margin-bottom: 1.1rem; }
+      .p-box { padding: 0.75rem 0.9rem; }
+      .p-addr { margin: -0.3rem 0 1.1rem; }
+      .p-addr ol:not(.is-single) { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+      .p-table td { padding: 0.45rem 0; }
+      .p-table tr, .p-total, .p-box, .p-list li, .p-note, .p-confirm, .p-info { break-inside: avoid; page-break-inside: avoid; }
+      .p-confirm { margin: -0.5rem 0 1rem; padding: 0.6rem 0.9rem; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      html { font-size: 11px !important; }
+      .p-table td { padding: 0.35rem 0 !important; }
+      .p-table tr.p-subrow td:first-child { padding-left: 1.1rem !important; }
+      .p-foot { margin-top: 0.5rem; padding-top: 0.4rem; }
+      .p-foot { break-before: avoid; page-break-before: avoid; }
+      .p-sub { display: none; }
+      .p-title { margin-bottom: 0.9rem !important; }
+      .p-table td small { font-size: 0.72rem !important; line-height: 1.3; }
+      .p-table th { padding: 0.4rem 0; }
+      .p-cols { margin-bottom: 0.8rem !important; }
+      .p-box { line-height: 1.45; }
+      .p-note { padding-top: 0.6rem; }
+      .p-list { line-height: 1.4; }
+      .p-sub { margin-bottom: 0.8rem !important; }
+      .p-head { padding-bottom: 0.75rem !important; }
+      .p-title { margin-top: 1rem !important; }
+      .p-section-title { break-after: avoid; page-break-after: avoid; }
+      .p-total { margin: 0.75rem 0 1.25rem; padding: 0.85rem 1.1rem; }
+      .p-list { margin-bottom: 1.1rem; gap: 0.2rem; }
+      .p-info { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+      .p-table td small { font-size: 0.75rem; }
+      .p-total, .p-box, .p-flag { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="../" aria-label="Voltar para a página de mídia imobiliária">
+          <img src="../assets/logo.png" alt="Thiago Neppel">
+        </a>
+      </div>
+      <div class="nav-cta" style="display:flex">
+        <a href="../" class="btn btn-outline">Voltar ao site</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="quote-page">
+    <!-- ETAPA 1: formulário -->
+    <section id="quote-form-view">
+      <div class="quote-intro">
+        <h1 class="section-title">Monte seu orçamento</h1>
+        <p class="section-subtitle">Responda algumas perguntas e receba na hora o orçamento completo, com valores, prazos e o que está incluso. Leva menos de 2 minutos.</p>
+        <p class="q-origem q-hidden" id="q-origem"></p>
+        <p class="q-req-legend"><span>*</span> Campos obrigatórios</p>
+        <ol class="q-progress" id="q-progress">
+        </ol>
+      </div>
+
+      <form id="quote-form" class="q-wizard" novalidate>
+        <input type="checkbox" name="botcheck" style="display: none;" tabindex="-1" autocomplete="off">
+
+        <div class="q-block">
+          <h2><span class="q-step">01</span> Sobre os imóveis</h2>
+          <div class="q-rows">
+            <div class="q-row">
+              <div class="q-row-label">
+                <label class="req" id="q-imoveis-label">Quantos imóveis?</label>
+                <small class="q-field-hint" id="q-imoveis-hint"></small>
+              </div>
+              <span class="stepper q-imoveis" role="group" aria-labelledby="q-imoveis-label">
+                <button type="button" data-imoveis="-1" aria-label="Menos imóveis">−</button>
+                <output id="q-imoveis">1</output>
+                <button type="button" data-imoveis="1" aria-label="Mais imóveis">+</button>
+              </span>
+            </div>
+            <div class="q-row">
+              <div class="q-row-label"><label class="req" for="q-area" id="q-area-label">Tamanho do imóvel</label></div>
+              <select id="q-area" name="area" required></select>
+            </div>
+            <div class="q-row">
+              <div class="q-row-label"><label class="req" for="q-local">Onde fica</label></div>
+              <select id="q-local" name="local" required></select>
+            </div>
+            <div class="q-row">
+              <div class="q-row-label"><label class="req" for="q-prazo">Para quando?</label></div>
+              <select id="q-prazo" name="prazo" required>
+                <option>Nas próximas 2 semanas</option>
+                <option>Ainda este mês</option>
+                <option>No próximo mês</option>
+                <option>Ainda sem data</option>
+              </select>
+            </div>
+            <label class="q-row q-row-check">
+              <span class="q-row-label">
+                <b>Lançamento ou empreendimento</b>
+                <small class="q-field-hint">Prédio, decorado ou acompanhamento de obra</small>
+              </span>
+              <span class="q-toggle"><input type="checkbox" name="lancamento" id="q-lancamento"></span>
+            </label>
+          </div>
+          <p class="q-alert q-hidden" id="q-alert" role="status"></p>
+
+          <button type="button" class="q-add" id="q-add-end">+ Adicionar <span id="q-add-end-label">endereço</span> <span class="opt">opcional</span></button>
+          <div class="form-group q-end q-hidden" id="q-end-wrap">
+            <label for="q-enderecos"><span id="q-enderecos-label">Endereço</span> <span class="opt">opcional</span></label>
+            <textarea id="q-enderecos" name="enderecos" rows="1" placeholder="Rua e número, ou cole o link do Google Maps"></textarea>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <h2><span class="q-step">02</span> O que cada imóvel recebe?</h2>
+          <p class="q-hint">Quantidades por imóvel. Se preferir, comece por um modelo e ajuste.</p>
+          <div class="q-presets" id="q-presets"></div>
+          <div class="q-items" id="q-items"></div>
+        </div>
+
+        <div class="q-block">
+          <h2><span class="q-step">03</span> Adicionais por imóvel</h2>
+          <div class="extras" id="extras"></div>
+        </div>
+
+        <div class="q-block">
+          <h2><span class="q-step">04</span> Seus dados</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="req" for="q-nome">Nome completo</label>
+              <input id="q-nome" name="nome" type="text" placeholder="Seu nome" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="req" for="q-perfil">Você é</label>
+              <select id="q-perfil" name="perfil" required>
+                <option>Corretor(a)</option>
+                <option>Imobiliária</option>
+                <option>Construtora ou incorporadora</option>
+                <option>Agência de marketing</option>
+                <option>Arquiteto(a) ou designer de interiores</option>
+                <option>Proprietário(a)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="req" for="q-email">E-mail</label>
+              <input id="q-email" name="email" type="email" placeholder="seu@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label class="req" for="q-fone">Telefone / WhatsApp</label>
+              <input id="q-fone" name="telefone" type="tel" placeholder="(51) 90000-0000" required autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="q-empresa">Empresa ou imobiliária <span class="opt">opcional</span></label>
+              <input id="q-empresa" name="empresa" type="text" placeholder="Nome da empresa" autocomplete="organization">
+            </div>
+            <div class="form-group full-width">
+              <label for="q-obs">Observações <span class="opt">opcional</span></label>
+              <textarea id="q-obs" name="observacoes" rows="2" placeholder="Ex.: imóvel mobiliado, acesso ao terraço, prazo do anúncio"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="q-live" aria-live="polite">
+          <div>
+            <small>Orçamento na hora</small>
+            <strong class="q-live-text" id="q-summary">Escolha o que precisa</strong>
+            <strong class="q-live-text" id="q-next-hint">Próximo: o que cada imóvel recebe</strong>
+          </div>
+          <div class="q-nav">
+            <button type="button" class="btn btn-outline btn-lg q-hidden" id="q-back"><svg class="q-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Voltar</button>
+            <button type="submit" class="btn btn-primary btn-lg" id="q-next">Continuar <svg class="q-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <button type="submit" class="btn btn-primary btn-lg q-hidden" id="q-submit">Gerar orçamento</button>
+          </div>
+        </div>
+        <div id="q-status" class="form-status" role="alert"></div>
+        <p class="q-privacy">Ao gerar o orçamento, seus dados chegam até mim para eu entrar em contato sobre este pedido. Não compartilho com terceiros.</p>
+      </form>
+    </section>
+
+    <!-- ETAPA 2: orçamento gerado -->
+    <section id="quote-result-view" class="q-hidden">
+      <div id="p-sent" class="form-status p-sent"></div>
+      <article class="proposal" id="proposal"></article>
+      <div class="p-actions">
+        <a id="p-whatsapp" class="btn btn-primary btn-lg" target="_blank" rel="noopener">Confirmar pelo WhatsApp</a>
+        <button type="button" class="btn btn-outline btn-lg" id="p-print">Salvar em PDF</button>
+        <button type="button" class="btn btn-outline btn-lg" id="p-edit">Editar respostas</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-contact">
+        <a href="https://wa.me/5551980644290" target="_blank" rel="noopener">(51) 9 8064 4290</a>
+        <span>•</span>
+        <a href="mailto:contato@thneppel.com.br">contato@thneppel.com.br</a>
+        <span>•</span>
+        <span>Porto Alegre, RS</span>
+      </div>
+      <p class="footer-legal">CNPJ 34.164.721/0001-59 · Emissão de nota fiscal</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // =====================================================================
+      // TABELA DE PREÇOS: edite aqui.
+      // =====================================================================
+
+      // Taxa fixa de cada visita ao imóvel (deslocamento em Porto Alegre, montagem, ~2 h de captação)
+      const CAPTACAO = { nome: 'Captação no imóvel', desc: 'Visita de cerca de 2 horas, equipamento e organização do material', valor: 400 };
+
+      // Itens com quantidade. max = limite do seletor.
+      // fixo: sempre incluso, não dá para desmarcar.
+      // aereoVideo e aereoFoto não aparecem como itens soltos: o drone é escolhido numa linha só
+      // (Sem drone / Vídeo / Fotos / Vídeo e fotos). Vídeo aéreo só existe se houver algum vídeo.
+      const ITENS = [
+        { id: 'bruto', nome: 'Material bruto', desc: 'Todos os arquivos captados, sem edição. Sempre incluso', fixo: true, valor: 0 },
+        { id: 'horizontal', nome: 'Vídeo horizontal', desc: 'Tour editado de 1 a 2 minutos para YouTube, site e portais', unit: 'vídeo', valor: 450, max: 3 },
+        { id: 'vertical', nome: 'Vídeos verticais', desc: 'Cortes de 15 a 60 segundos para Reels, TikTok, Shorts e anúncios', unit: 'vídeo', valor: 150, max: 10 },
+        { id: 'fotos', nome: 'Fotos tratadas', desc: 'Correção de linhas, luz e cor', unit: 'foto', valor: 15, max: 50, passo: 5 },
+        { id: 'aereoVideo', nome: 'Vídeo aéreo', toggle: true, valor: 0 },
+        { id: 'aereoFoto', nome: 'Fotos aéreas', desc: 'Fachada, vista e entorno', unit: 'foto', valor: 25, max: 20, passo: 5, min: 5 },
+      ];
+
+      // Voo de drone: cobrado uma vez por imóvel sempre que houver drone (vídeo aéreo e/ou fotos aéreas)
+      const VOO_DRONE = { nome: 'Voo de drone', desc: 'Planejamento, autorização de voo e piloto', valor: 150 };
+      const MODOS_DRONE = [
+        { id: 'nao', nome: 'Sem drone' },
+        { id: 'video', nome: 'Vídeo', video: true },
+        { id: 'fotos', nome: 'Fotos', fotos: true },
+        { id: 'ambos', nome: 'Vídeo e fotos', video: true, fotos: true },
+      ];
+
+      // Adicionais. requer: só aparece ativo se o item tiver quantidade > 0.
+      const EXTRAS = [
+        { id: 'cinema', nome: 'Filme cinematográfico', desc: 'Roteiro, direção, trilha e sound design no vídeo horizontal', valor: 700, requer: 'horizontal' },
+        { id: 'apresentador', nome: 'Corretor apresentando o imóvel', desc: 'Roteiro de fala e direção na gravação', valor: 300 },
+        { id: 'entardecer', nome: 'Fotos ao entardecer', desc: 'Visita extra no horário dourado, com o imóvel iluminado', valor: 350 },
+        { id: 'expressa', nome: 'Entrega expressa em 72 horas', desc: 'Material editado em até 72 horas após a captação', valor: 400 },
+      ];
+
+      // Modelos prontos (atalhos que só preenchem as quantidades)
+      const MODELOS = {
+        imovel: { nome: 'Essencial', desc: 'corretores', qtd: { horizontal: 1, vertical: 3, fotos: 20, aereoFoto: 5, aereoVideo: 1 }, extras: [] },
+        alto: { nome: 'Alto Padrão', desc: 'frente mar e coberturas', qtd: { horizontal: 1, vertical: 4, fotos: 20, aereoFoto: 10, aereoVideo: 1 }, extras: ['cinema', 'entardecer'] },
+        redes: { nome: 'Só redes sociais', desc: 'Reels', qtd: { horizontal: 0, vertical: 4, fotos: 10, aereoFoto: 0, aereoVideo: 1 }, extras: [] },
+        fotos: { nome: 'Só fotos', desc: 'portais', qtd: { horizontal: 0, vertical: 0, fotos: 20, aereoFoto: 5, aereoVideo: 0 }, extras: [] },
+      };
+
+      // Acréscimo pelo tamanho do imóvel
+      const AREAS = [
+        { id: 'ate100', nome: 'Até 100 m²', valor: 0 },
+        { id: '100a250', nome: '100 a 250 m²', valor: 0 },
+        { id: '250a400', nome: '250 a 400 m²', valor: 300 },
+        { id: 'mais400', nome: 'Acima de 400 m²', valor: 600 },
+      ];
+
+      // valor = deslocamento por diária. null = sem valor automático (proposta personalizada),
+      // para não mostrar um preço que não cobre viagem, hospedagem e dias de estrada.
+      // mobilizacao = taxa única por pedido (ida e volta, tempo de estrada, combustível e pedágio).
+      const LOCAIS = [
+        { id: 'poa', nome: 'Porto Alegre', valor: 0 },
+        { id: 'metro', nome: 'Região Metropolitana', valor: 150 },
+        { id: 'litoral', nome: 'Litoral Norte gaúcho', valor: 450, mobilizacao: 300 },
+        { id: 'serra', nome: 'Serra Gaúcha', valor: 450, mobilizacao: 300 },
+        { id: 'rs', nome: 'Outra cidade do RS', valor: null },
+        { id: 'fora', nome: 'Fora do Rio Grande do Sul', valor: null },
+      ];
+      // Quantos imóveis cabem em um dia de captação (define quantas viagens são cobradas)
+      const IMOVEIS_POR_DIA = 3;
+
+      // Desconto por quantidade de imóveis no mesmo pedido (sobre os imóveis, sem o deslocamento)
+      const DESCONTOS = [
+        { aPartirDe: 4, desconto: 0.15 },
+        { aPartirDe: 2, desconto: 0.10 },
+      ];
+      // Acima disso, o formulário pede para falar direto (contrato mensal / proposta sob medida)
+      const MAX_IMOVEIS = 10;
+
+      const SEMPRE_INCLUSO = [
+        'Uso livre em portais, site, redes sociais, anúncios e impressos, sem prazo',
+        '1 rodada de ajustes de edição por vídeo',
+      ];
+
+      const VALIDADE_DIAS = 15;
+      const WHATSAPP = '5551980644290';
+      const WEB3FORMS_KEY = 'da9dbf03-3123-40f4-a0f7-826094278408';
+      // =====================================================================
+
+      const $ = (s) => document.querySelector(s);
+      const brl = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+      const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const qtd = {};
+
+      // --- Monta a interface a partir da tabela ---
+      $('#q-presets').innerHTML = Object.entries(MODELOS).map(([id, m]) =>
+        `<button type="button" class="q-preset" data-modelo="${id}">${m.nome}</button>`).join('');
+
+      $('#q-items').innerHTML = ITENS.map((it) => {
+        const sub = it.id === 'aereoFoto' ? ' q-sub' : '';
+        const cab = '';
+        // Drone: uma linha com 4 opções (no lugar do item "vídeo aéreo")
+        if (it.id === 'aereoVideo') return `
+        <div class="q-item q-drone" data-drone>
+          <span class="q-item-text"><b>Drone</b><span id="q-drone-desc"></span></span>
+          <span class="q-seg" role="group" aria-label="Drone">
+            ${MODOS_DRONE.map((m) => `<button type="button" data-drone-modo="${m.id}">${m.nome}</button>`).join('')}
+          </span>
+        </div>
+        <div class="q-item q-sub q-sub-video on">
+          <span class="q-item-text"><b>Vídeos aéreos</b>Imagens do drone editadas dentro dos vídeos</span>
+          <span class="q-incluso">Incluso no voo</span>
+        </div>`;
+        if (it.fixo) return `
+        <label class="q-item on is-locked" data-item="${it.id}">
+          <span class="q-item-text"><b>${it.nome}</b>${it.desc}</span>
+          <svg class="q-lock" viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span class="q-toggle"><input type="checkbox" checked disabled aria-label="${it.nome} (sempre incluso)"></span>
+        </label>`;
+        if (it.toggle) return cab + `
+        <label class="q-item${sub}" data-item="${it.id}">
+          <span class="q-item-text"><b>${it.nome}</b><span class="q-item-desc">${it.desc}</span></span>
+          <span class="q-toggle"><input type="checkbox" data-toggle="${it.id}" aria-label="${it.nome}"></span>
+        </label>`;
+        return cab + `
+        <div class="q-item${sub}" data-item="${it.id}">
+          <span class="q-item-text"><b>${it.nome}</b>${it.desc}</span>
+          <span class="stepper">
+            <button type="button" data-step="-1" aria-label="Menos ${it.nome.toLowerCase()}">−</button>
+            <output aria-live="polite">0</output>
+            <button type="button" data-step="1" aria-label="Mais ${it.nome.toLowerCase()}">+</button>
+          </span>
+        </div>`;
+      }).join('');
+
+      $('#extras').innerHTML = EXTRAS.map((x) => `
+        <label class="extra" data-extra="${x.id}">
+          <input type="checkbox" name="extra" value="${x.id}">
+          <span class="extra-text"><b>${x.nome}</b>${x.desc}</span>
+          <span class="extra-price"></span>
+        </label>`).join('');
+
+      const fill = (sel, list) => { $(sel).innerHTML = list.map((o) => `<option value="${o.id}">${o.nome}</option>`).join(''); };
+      fill('#q-area', AREAS);
+      fill('#q-local', LOCAIS);
+
+      const form = $('#quote-form');
+      let imoveis = 1;
+      const plural = (n, um, varios) => n + ' ' + (n === 1 ? um : varios);
+      document.querySelector('.q-imoveis').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-imoveis]');
+        if (!b) return;
+        imoveis = Math.max(1, Math.min(MAX_IMOVEIS, imoveis + Number(b.dataset.imoveis)));
+        atualizar();
+      });
+
+      function setQtd(id, v) {
+        const it = ITENS.find((i) => i.id === id);
+        qtd[id] = it.fixo ? 1 : Math.max(0, Math.min(it.toggle ? 1 : it.max, v));
+      }
+
+      function aplicarModelo(id) {
+        const m = MODELOS[id];
+        if (!m) return;
+        ITENS.forEach((it) => setQtd(it.id, m.qtd[it.id] || 0));
+        form.querySelectorAll('input[name="extra"]').forEach((c) => { c.checked = m.extras.includes(c.value); });
+        document.querySelectorAll('.q-preset').forEach((b) => b.classList.toggle('active', b.dataset.modelo === id));
+        atualizar();
+      }
+
+      $('#q-items').addEventListener('click', (e) => {
+        // Escolha do drone
+        const modoBtn = e.target.closest('[data-drone-modo]');
+        if (modoBtn) {
+          if (modoBtn.disabled) return;
+          const m = MODOS_DRONE.find((x) => x.id === modoBtn.dataset.droneModo);
+          setQtd('aereoVideo', m.video ? 1 : 0);
+          setQtd('aereoFoto', m.fotos ? Math.max(5, qtd.aereoFoto || 0) : 0);
+          document.querySelectorAll('.q-preset').forEach((b) => b.classList.remove('active'));
+          atualizar();
+          return;
+        }
+        const btn = e.target.closest('[data-step]');
+        if (!btn) return;
+        const id = btn.closest('[data-item]').dataset.item;
+        const it = ITENS.find((i) => i.id === id);
+        setQtd(id, Math.max(it.min || 0, (qtd[id] || 0) + Number(btn.dataset.step) * (it.passo || 1)));
+        document.querySelectorAll('.q-preset').forEach((b) => b.classList.remove('active'));
+        atualizar();
+      });
+      $('#q-items').addEventListener('change', (e) => {
+        const t = e.target.closest('[data-toggle]');
+        if (!t) return;
+        setQtd(t.dataset.toggle, t.checked ? 1 : 0);
+        document.querySelectorAll('.q-preset').forEach((b) => b.classList.remove('active'));
+        atualizar();
+      });
+      $('#q-presets').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-modelo]');
+        if (b) aplicarModelo(b.dataset.modelo);
+      });
+
+      // --- Cálculo ---
+      const temVideo = () => (qtd.horizontal || 0) + (qtd.vertical || 0) > 0;
+      // Modo do drone a partir das quantidades (vídeo aéreo só vale se houver vídeo)
+      function modoDrone() {
+        const v = (qtd.aereoVideo || 0) > 0 && temVideo();
+        const f = (qtd.aereoFoto || 0) > 0;
+        return v && f ? 'ambos' : v ? 'video' : f ? 'fotos' : 'nao';
+      }
+      const vooDrone = () => modoDrone() !== 'nao';
+
+      function calcular() {
+        const f = new FormData(form);
+        const area = AREAS.find((a) => a.id === f.get('area'));
+        const local = LOCAIS.find((l) => l.id === f.get('local'));
+        const desc = (DESCONTOS.find((d) => imoveis >= d.aPartirDe) || { desconto: 0 }).desconto;
+        const lancamento = f.get('lancamento') === 'on';
+        const viagemPendente = local.valor === null;
+        const dias = Math.ceil(imoveis / IMOVEIS_POR_DIA);
+        const extras = EXTRAS.filter((x) => f.getAll('extra').includes(x.id) && (!x.requer || qtd[x.requer] > 0));
+
+        const itens = [];
+        // Material bruto é sempre incluso, então todo pedido tem pelo menos a captação
+        const algum = true;
+        const voo = vooDrone();
+        itens.push({ nome: CAPTACAO.nome, desc: CAPTACAO.desc, qtd: 1, unit: CAPTACAO.valor, valor: CAPTACAO.valor });
+        const modo = MODOS_DRONE.find((m) => m.id === modoDrone());
+        ITENS.forEach((it) => {
+          if (it.id === 'aereoVideo') {
+            if (voo) itens.push({ nome: VOO_DRONE.nome, desc: VOO_DRONE.desc, qtd: 1, unit: VOO_DRONE.valor, valor: VOO_DRONE.valor });
+            if (modo.video) itens.push({ nome: 'Vídeos aéreos', desc: 'Imagens do drone editadas dentro dos vídeos', qtd: 1, unit: null, valor: 0, incluso: true, sub: true });
+            return;
+          }
+          const n = qtd[it.id] || 0;
+          if (!n) return;
+          itens.push(it.valor
+            ? { nome: it.nome, desc: it.desc, qtd: n, unit: it.valor, valor: n * it.valor, sub: it.id === 'aereoFoto' }
+            : { nome: it.nome, desc: it.desc, qtd: n, unit: null, valor: 0, incluso: true });
+        });
+        extras.forEach((x) => itens.push({ nome: x.nome, desc: x.desc, qtd: 1, unit: x.valor, valor: x.valor }));
+        if (algum && area.valor) itens.push({ nome: 'Imóvel de ' + area.nome.toLowerCase(), desc: 'Mais tempo de captação e edição', qtd: 1, unit: area.valor, valor: area.valor });
+
+        const porImovel = itens.reduce((s, i) => s + i.valor, 0);
+        const resumo = [];
+        let total = null;
+        if (algum) {
+          total = porImovel * imoveis;
+          if (imoveis > 1) {
+            resumo.push({ nome: 'Subtotal por imóvel', desc: '', valor: porImovel, soma: true });
+            resumo.push({ nome: 'Imóveis', desc: '', qtd: imoveis, unit: porImovel, valor: total });
+          }
+          const desconto = Math.round(total * desc);
+          if (desconto) {
+            resumo.push({ nome: `Desconto por quantidade (${Math.round(desc * 100)}%)`, desc: plural(imoveis, 'imóvel', 'imóveis') + ' no mesmo pedido', valor: -desconto, desconto: true });
+            total -= desconto;
+          }
+          if (viagemPendente) {
+            resumo.push({ nome: 'Viagem e hospedagem', desc: `${local.nome} · ${plural(dias, 'dia', 'dias')} de captação · calculado na proposta final`, valor: null, pendente: true });
+          } else if (local.valor) {
+            const desl = local.valor * dias;
+            resumo.push({ nome: 'Deslocamento', desc: `${local.nome} · até ${IMOVEIS_POR_DIA} imóveis por diária`, qtd: dias, unit: local.valor, valor: desl });
+            total += desl;
+          }
+          if (!viagemPendente && local.mobilizacao) {
+            resumo.push({ nome: 'Mobilização', desc: `${local.nome} · ida e volta, tempo de estrada, combustível e pedágio`, qtd: 1, unit: local.mobilizacao, valor: local.mobilizacao });
+            total += local.mobilizacao;
+          }
+        }
+        return { f, area, local, extras, itens, resumo, porImovel, total, algum, viagemPendente, lancamento, dias };
+      }
+
+      // Aviso para pedidos sem valor completo (ou null se o valor sai completo)
+      function motivoSobConsulta(c) {
+        const partes = [];
+        if (c.lancamento) partes.push('Lançamentos e empreendimentos recebem uma proposta personalizada, feita a partir do briefing com o marketing (campanha, decorado, acompanhamento de obra). O valor gerado automaticamente é uma referência da produção.');
+        if (c.viagemPendente) partes.push('Para cidades mais distantes, viagem e hospedagem ainda não estão incluídas.');
+        return partes.length ? partes.join(' ') + ' Envio a proposta final em até 24 horas.' : null;
+      }
+
+      // Endereços: cada linha vira um link do Google Maps (ou mantém o link colado)
+      function enderecosComMapa(texto) {
+        return String(texto || '').split('\n').map((l) => l.trim()).filter(Boolean).map((l) => ({
+          texto: l,
+          mapa: /^https?:\/\//.test(l) ? l : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(l),
+        }));
+      }
+
+      function resumoEscolha() {
+        const n = (id) => qtd[id] || 0;
+        const partes = [];
+        if (n('horizontal')) partes.push(`${n('horizontal')} ${n('horizontal') > 1 ? 'vídeos' : 'vídeo'}`);
+        if (n('vertical')) partes.push(`${n('vertical')} ${n('vertical') > 1 ? 'verticais' : 'vertical'}`);
+        if (n('fotos')) partes.push(`${n('fotos')} fotos`);
+        const md = modoDrone();
+        if (md === 'video') partes.push('vídeo aéreo');
+        if (md === 'fotos') partes.push(`${n('aereoFoto')} fotos aéreas`);
+        if (md === 'ambos') partes.push(`vídeo aéreo e ${n('aereoFoto')} fotos aéreas`);
+        if (!partes.length) partes.push('só material bruto');
+        return (imoveis > 1 ? `${imoveis} imóveis, cada um com ` : '') + partes.join(' · ');
+      }
+
+      function atualizar() {
+        // Drone: sem vídeo no pedido, não existe vídeo aéreo (vira "Fotos" ou "Sem drone")
+        if (!temVideo() && qtd.aereoVideo) setQtd('aereoVideo', 0);
+        const md = modoDrone();
+        document.querySelectorAll('[data-drone-modo]').forEach((b) => {
+          const m = MODOS_DRONE.find((x) => x.id === b.dataset.droneModo);
+          b.classList.toggle('active', m.id === md);
+          b.setAttribute('aria-pressed', m.id === md);
+          b.disabled = !!m.video && !temVideo();
+        });
+        $('#q-drone-desc').textContent = temVideo() ? 'Voo com planejamento, autorização e piloto' : 'Vídeo aéreo precisa de pelo menos 1 vídeo no pedido';
+        $('[data-drone]').classList.toggle('on', md !== 'nao');
+        $('#q-items').classList.toggle('drone-fotos', md === 'fotos' || md === 'ambos');
+        $('#q-items').classList.toggle('drone-video', md === 'video' || md === 'ambos');
+        ITENS.forEach((it) => {
+          const el = document.querySelector(`[data-item="${it.id}"]`);
+          const n = qtd[it.id] || 0;
+          if (it.fixo || !el) return;
+          const semVideo = it.requerVideo && !temVideo();
+          el.classList.toggle('on', n > 0 && !semVideo);
+          el.classList.toggle('is-disabled', !!semVideo);
+          if (it.toggle) {
+            const inp = el.querySelector('input');
+            inp.checked = n > 0 && !semVideo;
+            inp.disabled = !!semVideo;
+            el.querySelector('.q-item-desc').textContent = semVideo ? 'Precisa de pelo menos 1 vídeo' : it.desc;
+          } else {
+            el.querySelector('output').textContent = n;
+            el.querySelector('[data-step="-1"]').disabled = n <= (it.min || 0);
+            el.querySelector('[data-step="1"]').disabled = n >= it.max;
+          }
+        });
+        EXTRAS.forEach((x) => {
+          const el = document.querySelector(`[data-extra="${x.id}"]`);
+          const bloqueado = x.requer && !(qtd[x.requer] > 0);
+          el.classList.toggle('is-disabled', !!bloqueado);
+          el.querySelector('input').disabled = !!bloqueado;
+          el.querySelector('.extra-price').textContent = bloqueado ? 'Precisa de 1 vídeo horizontal' : '';
+        });
+        $('#q-imoveis').textContent = imoveis;
+        $('#q-area-label').textContent = imoveis > 1 ? 'Tamanho médio dos imóveis' : 'Tamanho do imóvel';
+        $('#q-enderecos-label').textContent = imoveis > 1 ? 'Endereços' : 'Endereço';
+        $('#q-add-end-label').textContent = imoveis > 1 ? 'endereços' : 'endereço';
+        $('#q-enderecos').placeholder = imoveis > 1 ? 'Um por linha: rua e número, ou link do Google Maps' : 'Rua e número, ou cole o link do Google Maps';
+        $('#q-enderecos').rows = Math.min(imoveis, 5);
+        $('#q-imoveis-hint').innerHTML = imoveis >= MAX_IMOVEIS
+          ? `Mais de ${MAX_IMOVEIS} imóveis ou contrato mensal? <a href="https://wa.me/${WHATSAPP}" target="_blank" rel="noopener">Fale comigo</a>`
+          : imoveis >= 2 ? `Até ${IMOVEIS_POR_DIA} imóveis por diária` : '';
+        const motivo = motivoSobConsulta(calcular());
+        $('#q-alert').classList.toggle('q-hidden', !motivo);
+        $('#q-alert').textContent = motivo || '';
+        document.querySelector('[data-imoveis="-1"]').disabled = imoveis <= 1;
+        document.querySelector('[data-imoveis="1"]').disabled = imoveis >= MAX_IMOVEIS;
+        $('#q-summary').textContent = resumoEscolha();
+      }
+      form.addEventListener('change', (e) => { if (!e.target.closest('[data-toggle]')) atualizar(); });
+
+      // Estado inicial: modelo vindo do link (?pacote=imovel|alto|lancamento) ou Essencial
+      ITENS.forEach((it) => setQtd(it.id, 0));
+      const pre = new URLSearchParams(location.search).get('pacote');
+      if (pre === 'lancamento') {
+        $('#q-lancamento').checked = true;
+        aplicarModelo('alto');
+      } else {
+        aplicarModelo(MODELOS[pre] ? pre : 'imovel');
+      }
+      // --- Etapas: uma de cada vez ---
+      // Quem vem de um pacote da página principal (?pacote=imovel|alto) faz o caminho curto:
+      // os itens já estão definidos, então pula "Entregas" e "Adicionais" (dá para abrir depois).
+      const etapas = [...form.querySelectorAll('.q-block')];
+      const NOMES = ['Imóveis', 'Entregas', 'Adicionais', 'Seus dados'];
+      const PROXIMO = ['sobre os imóveis', 'o que cada imóvel recebe', 'adicionais', 'seus dados'];
+      const modoPacote = pre !== 'lancamento' && !!MODELOS[pre];
+      let ordem = modoPacote ? [0, 3] : [0, 1, 2, 3];
+      let etapa = 0;
+      let etapaMax = 0;
+
+      function desenharProgresso() {
+        $('#q-progress').style.setProperty('--n', ordem.length);
+        $('#q-progress').innerHTML = ordem.map((b, i) =>
+          `<li><button type="button" data-goto="${i}"><b>${i + 1}</b><span>${NOMES[b]}</span></button></li>`).join('');
+      }
+
+      function irPara(n, rolar = true) {
+        etapa = Math.max(0, Math.min(n, ordem.length - 1));
+        etapaMax = Math.max(etapaMax, etapa);
+        const ultima = etapa === ordem.length - 1;
+        etapas.forEach((el, i) => el.classList.toggle('is-current', i === ordem[etapa]));
+        document.querySelectorAll('#q-progress li').forEach((li, i) => {
+          li.classList.toggle('current', i === etapa);
+          li.classList.toggle('done', i !== etapa && i <= etapaMax);
+          li.querySelector('button').toggleAttribute('aria-current', i === etapa);
+        });
+        form.classList.toggle('is-last', ultima);
+        form.classList.toggle('is-first', etapa === 0);
+        if (!ultima) $('#q-next-hint').textContent = 'Próximo: ' + PROXIMO[ordem[etapa + 1]];
+        $('#q-back').classList.toggle('q-hidden', etapa === 0);
+        $('#q-next').classList.toggle('q-hidden', ultima);
+        $('#q-submit').classList.toggle('q-hidden', !ultima);
+        $('#q-status').className = 'form-status';
+        $('#q-status').textContent = '';
+        if (rolar) $('#q-progress').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Abre todas as etapas (sai do caminho curto do pacote)
+      function modoCompleto() {
+        if (ordem.length === 4) return;
+        const atual = ordem[etapa];
+        ordem = [0, 1, 2, 3];
+        desenharProgresso();
+        etapaMax = 0;
+        irPara(ordem.indexOf(atual), false);
+        $('.quote-intro .section-title').textContent = 'Monte seu orçamento';
+        $('#q-origem').innerHTML = `Você começou pelo pacote <b>${MODELOS[pre].nome}</b>. Ajuste os itens nas etapas 2 e 3.`;
+      }
+
+      // Aviso de onde a pessoa veio
+      if (pre === 'lancamento') {
+        $('#q-origem').innerHTML = 'Você escolheu <b>Lançamento</b>. Conte o básico sobre o empreendimento: o orçamento sai como referência e a proposta final é montada depois do briefing.';
+        $('#q-origem').classList.remove('q-hidden');
+      } else if (modoPacote) {
+        const m = MODELOS[pre];
+        const extras = m.extras.map((id) => EXTRAS.find((x) => x.id === id).nome.toLowerCase());
+        $('.quote-intro .section-title').textContent = `Pacote ${m.nome}`;
+        $('.quote-intro .section-subtitle').textContent = 'Conte sobre o imóvel e receba na hora o orçamento completo, com valores, prazos e o que está incluso.';
+        $('#q-origem').innerHTML = `<b>Por imóvel:</b> ${esc(resumoEscolha())}${extras.length ? ' · ' + esc(extras.join(' · ')) : ''}.`
+          + '<button type="button" id="q-ajustar">Ajustar itens</button>';
+        $('#q-origem').classList.remove('q-hidden');
+        $('#q-ajustar').addEventListener('click', modoCompleto);
+      }
+
+      // Confere a etapa atual antes de seguir (true se pode avançar)
+      function etapaValida() {
+        if (ordem[etapa] === 1 && !calcular().algum) {
+          $('#q-status').className = 'form-status error';
+          $('#q-status').textContent = 'Escolha pelo menos um item (vídeo, fotos ou drone) para continuar.';
+          return false;
+        }
+        const campos = [...etapas[ordem[etapa]].querySelectorAll('input, select, textarea')];
+        const invalido = campos.find((el) => !el.checkValidity());
+        if (invalido) {
+          invalido.reportValidity();
+          return false;
+        }
+        return true;
+      }
+
+      $('#q-back').addEventListener('click', () => irPara(etapa - 1));
+      // Endereço fica escondido até a pessoa pedir
+      $('#q-add-end').addEventListener('click', () => {
+        $('#q-add-end').classList.add('q-hidden');
+        $('#q-end-wrap').classList.remove('q-hidden');
+        $('#q-enderecos').focus();
+      });
+      $('#q-progress').addEventListener('click', (e) => {
+        const b = e.target.closest('[data-goto]');
+        if (!b) return;
+        const n = Number(b.dataset.goto);
+        if (n <= etapaMax && (n <= etapa || etapaValida())) irPara(n);
+      });
+      desenharProgresso();
+      irPara(0, false);
+
+      // --- Orçamento gerado ---
+      function numeroOrcamento() {
+        const d = new Date();
+        const p = (n) => String(n).padStart(2, '0');
+        return `ORC-${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+      }
+
+      function renderProposta(c, numero) {
+        const { f, area, local, itens, resumo, total, viagemPendente, lancamento } = c;
+        const hoje = new Date();
+        const validade = new Date(hoje.getTime() + VALIDADE_DIAS * 864e5);
+        const enderecos = enderecosComMapa(f.get('enderecos'));
+        const linhas = itens.concat(resumo).map((i) => `
+          <tr class="${i.desconto ? 'p-discount' : ''}${i.soma ? ' p-sum' : ''}${i.sub ? ' p-subrow' : ''}">
+            <td>${esc(i.nome)}<small>${esc(i.desc)}</small></td>
+            <td class="p-num">${i.qtd ?? ''}</td>
+            <td class="p-num">${i.unit != null ? brl(i.unit) : ''}</td>
+            <td class="p-num">${i.incluso ? 'Incluso' : i.valor === null ? 'A calcular' : (i.valor < 0 ? '− ' + brl(-i.valor) : brl(i.valor))}</td>
+          </tr>`).join('');
+        const prazo = c.extras.some((x) => x.id === 'expressa') ? 'Material editado em até 72 horas após a captação' : 'Material editado em até 5 dias úteis após a captação';
+
+        $('#proposal').innerHTML = `
+          <header class="p-head">
+            <div class="p-brand">
+              <img src="../assets/logo.png" alt="Thiago Neppel">
+              <p class="p-contact">
+                Thiago Neppel · Produção audiovisual imobiliária<br>
+                WhatsApp <a href="https://wa.me/${WHATSAPP}">(51) 9 8064 4290</a><br>
+                <a href="mailto:contato@thneppel.com.br">contato@thneppel.com.br</a>
+              </p>
+            </div>
+            <div class="p-meta">
+              <strong>Orçamento ${numero}</strong><br>
+              Emitido em ${hoje.toLocaleDateString('pt-BR')}<br>
+              Válido até ${validade.toLocaleDateString('pt-BR')}
+            </div>
+          </header>
+
+          <h1 class="p-title">Produção audiovisual imobiliária</h1>
+          <p class="p-sub">${esc(resumoEscolha())}</p>
+
+          <div class="p-cols">
+            <div class="p-box">
+              <h3>Cliente</h3>
+              <strong>${esc(f.get('nome'))}</strong><br>
+              ${f.get('empresa') ? esc(f.get('empresa')) + '<br>' : ''}
+              ${esc(f.get('perfil'))}<br>
+              ${esc(f.get('email'))}<br>
+              ${esc(f.get('telefone'))}
+            </div>
+            <div class="p-box">
+              <h3>${imoveis > 1 ? 'Imóveis' : 'Imóvel'}</h3>
+              ${plural(imoveis, 'imóvel', 'imóveis')}${c.lancamento ? ' · lançamento' : ''} · ${imoveis > 1 ? 'tamanho médio ' : ''}${esc(area.nome)}<br>
+              ${esc(local.nome)}<br>
+              Para quando: ${esc(f.get('prazo'))}
+            </div>
+          </div>
+
+          ${enderecos.length ? `
+          <div class="p-addr">
+            <h3>${enderecos.length > 1 ? 'Endereços' : 'Endereço'}</h3>
+            <ol${enderecos.length > 1 ? '' : ' class="is-single"'}>
+              ${enderecos.map((e) => `<li><a href="${esc(e.mapa)}">${/^https?:\/\//.test(e.texto) ? 'Localização no Google Maps' : esc(e.texto)}</a></li>`).join('')}
+            </ol>
+          </div>` : ''}
+
+          <table class="p-table">
+            <thead><tr><th>${imoveis > 1 ? 'Por imóvel' : 'Item'}</th><th class="p-num">Qtd.</th><th class="p-num">Unitário</th><th class="p-num">Total</th></tr></thead>
+            <tbody>${linhas}</tbody>
+          </table>
+
+          <div class="p-total">
+            <div class="p-total-label">
+              <span>${lancamento ? 'Valor de referência' : viagemPendente ? 'Investimento parcial' : 'Investimento' + (imoveis > 1 ? ' total' : '')}</span>
+              ${viagemPendente ? '<em class="p-flag">Não inclui viagem e hospedagem</em>' : ''}
+              ${lancamento ? '<em class="p-flag">Lançamento: valor final após o briefing</em>' : ''}
+            </div>
+            <strong>${brl(total)}${viagemPendente ? '<small>+ viagem e hospedagem</small>' : ''}</strong>
+          </div>
+
+          <p class="p-confirm">
+            <strong>Este orçamento não reserva data nem confirma o serviço.</strong>
+            Para contratar, consulte a disponibilidade e confirme a contratação comigo pelo WhatsApp ou e-mail.
+          </p>
+
+          <div class="p-info">
+          <div>
+          <h2 class="p-section-title">Também incluso</h2>
+          <ul class="p-list">${SEMPRE_INCLUSO.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>
+
+          </div>
+          <div>
+          <h2 class="p-section-title">Condições</h2>
+          <ul class="p-list">
+            <li>Captação no melhor horário de luz, sem atrapalhar a rotina do imóvel</li>
+            <li>${prazo}, por link de download</li>
+            <li>Chuva ou vento forte: remarcação sem custo</li>
+            <li>Emissão de nota fiscal (CNPJ 34.164.721/0001-59)</li>
+          </ul>
+          </div>
+          </div>
+
+          <p class="p-note">
+            ${motivoSobConsulta(c) ? esc(motivoSobConsulta(c)) : 'Valor estimado a partir das respostas do formulário. O valor final é confirmado após conferir o imóvel e a data.'}
+            ${f.get('observacoes') ? '<br><br><strong>Observações:</strong> ' + esc(f.get('observacoes')) : ''}
+          </p>
+
+          <footer class="p-foot"><a href="https://thneppel.com.br/midiaimobiliariapoa/">thneppel.com.br/midiaimobiliariapoa</a></footer>`;
+
+        const msg = `Olá, Thiago! Gerei o orçamento ${numero} no site (${resumoEscolha()}${', ' + brl(total) + (viagemPendente ? ' + viagem' : '') + (lancamento ? ', lançamento' : '')}) e quero agendar.`;
+        $('#p-whatsapp').href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+      }
+
+      // --- Envio por e-mail (Web3Forms, mesma chave do formulário de contato) ---
+      async function enviarEmail(c, numero) {
+        const { f, area, local, itens, resumo: linhasResumo, total } = c;
+        const resumo = itens.concat(linhasResumo).map((i) => `${i.sub ? '  - ' : ''}${i.nome}${i.qtd && i.unit != null ? ` (${i.qtd} × ${brl(i.unit)})` : ''}: ${i.incluso ? 'incluso' : i.valor === null ? 'a calcular' : brl(i.valor)}`).join('\n');
+        const payload = {
+          access_key: WEB3FORMS_KEY,
+          subject: `Orçamento ${numero} · ${brl(total)}${c.lancamento ? ' · lançamento' : ''}${c.viagemPendente ? ' + viagem' : ''} · ${f.get('nome')}`,
+          from_name: 'Site Thiago Neppel · Orçamento online',
+          botcheck: f.get('botcheck') ? true : '',
+          'Orçamento': numero,
+          'Total': brl(total) + (c.viagemPendente ? ' + viagem e hospedagem a calcular' : '') + (c.lancamento ? ' (referência, lançamento)' : ''),
+          'Valor dos itens (referência)': brl(c.porImovel * imoveis) + (c.dias > 1 ? ` · ${c.dias} dias de captação` : ''),
+          'Escolha': resumoEscolha(),
+          'Nome': f.get('nome'),
+          email: f.get('email'),
+          'Telefone / WhatsApp': f.get('telefone'),
+          'Empresa': f.get('empresa') || '-',
+          'Perfil': f.get('perfil'),
+          'Imóveis': imoveis + (c.lancamento ? ' (lançamento / empreendimento)' : ''),
+          'Tamanho': (imoveis > 1 ? 'Média: ' : '') + area.nome,
+          'Local': local.nome,
+          'Endereços (Google Maps)': enderecosComMapa(f.get('enderecos')).map((e) => `${e.texto}\n${e.mapa}`).join('\n\n') || '-',
+          'Para quando': f.get('prazo'),
+          'Itens': resumo,
+          'Observações': f.get('observacoes') || '-',
+        };
+        const r = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await r.json();
+        if (!r.ok || !data.success) throw new Error(data.message || 'Falha no envio');
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const status = $('#q-status');
+        // Enter ou "Continuar" antes da última etapa: só avança
+        if (etapa < ordem.length - 1) {
+          if (etapaValida()) irPara(etapa + 1);
+          return;
+        }
+        const c = calcular();
+        if (!c.algum) {
+          modoCompleto();
+          irPara(1);
+          etapaValida();
+          return;
+        }
+        // Modo teste: com o nome exatamente "Teste 123", gera o orçamento sem enviar e-mail
+        // e sem exigir e-mail e telefone.
+        const teste = c.f.get('nome').trim() === 'Teste 123';
+        if (!teste && !form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        const btn = $('#q-submit');
+        btn.disabled = true;
+        btn.textContent = 'Gerando...';
+        status.className = 'form-status';
+        status.textContent = '';
+
+        const numero = numeroOrcamento();
+        let enviado = true;
+        if (!teste) {
+          try {
+            await enviarEmail(c, numero);
+          } catch (err) {
+            enviado = false;
+          }
+        }
+
+        renderProposta(c, numero);
+        const sent = $('#p-sent');
+        sent.className = 'form-status p-sent ' + (teste ? 'info' : enviado ? 'success' : 'error');
+        sent.textContent = teste
+          ? 'Modo teste: orçamento gerado só nesta tela. Nada foi enviado por e-mail.'
+          : enviado
+          ? 'Orçamento gerado e enviado para mim. Entro em contato em até 24 horas, ou confirme agora pelo WhatsApp.'
+          : 'Orçamento gerado, mas não consegui receber seus dados automaticamente. Para garantir, confirme pelo WhatsApp.';
+
+        $('#quote-form-view').classList.add('q-hidden');
+        $('#quote-result-view').classList.remove('q-hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        btn.disabled = false;
+        btn.textContent = 'Gerar orçamento';
+      });
+
+      $('#p-print').addEventListener('click', () => {
+        const titulo = document.title;
+        const numero = ($('.p-meta strong')?.textContent || 'Orçamento').trim();
+        document.title = `${numero} - Thiago Neppel`;
+        window.print();
+        setTimeout(() => { document.title = titulo; }, 1000);
+      });
+      $('#p-edit').addEventListener('click', () => {
+        $('#quote-result-view').classList.add('q-hidden');
+        $('#quote-form-view').classList.remove('q-hidden');
+        irPara(0, false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+</body>
+</html>
