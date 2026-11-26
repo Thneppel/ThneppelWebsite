@@ -92,9 +92,6 @@
     .q-lock { flex-shrink: 0; margin-right: -0.6rem; color: var(--text-muted); }
     .q-drone { cursor: pointer; }
     .q-sub { padding-left: 1.5rem; }
-    .q-items:not(.drone-fotos) .q-sub:not(.q-sub-video) { display: none; }
-    .q-items:not(.drone-video) .q-sub-video { display: none; }
-    .q-incluso { flex-shrink: 0; font-size: var(--text-xs); color: var(--text-muted); }
     .q-drone { cursor: default; }
     .q-seg { display: inline-flex; flex-shrink: 0; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); overflow: hidden; }
     .q-seg button { padding: 0 0.8rem; height: 38px; border: 0; background: transparent; color: var(--text-secondary); font: inherit; font-size: var(--text-xs); white-space: nowrap; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; }
@@ -133,9 +130,7 @@
     .q-hidden { display: none !important; }
 
     /* Barra fixa */
-    .q-live { position: sticky; bottom: 1rem; z-index: 5; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 0.9rem 1rem 0.9rem 1.25rem; margin-top: 0.5rem; background: rgba(12, 13, 16, 0.94); backdrop-filter: blur(8px); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45); }
-    .q-live small { display: block; margin-bottom: 0.15rem; color: var(--text-muted); font-size: var(--text-xs); }
-    .q-live .q-live-text { font-size: var(--text-sm); font-weight: 600; color: var(--text-primary); }
+    .q-live { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; flex-wrap: wrap; margin-top: 1.25rem; }
     .q-live .btn { min-width: 200px; }
     .q-privacy { margin-top: 1rem; font-size: var(--text-xs); color: var(--text-muted); text-align: center; }
     .p-table tr.p-sum td { font-weight: 700; color: #0b0c0f; border-top: 1px solid #d9dce1; }
@@ -157,8 +152,6 @@
     .q-add:hover { color: var(--text-primary); }
     .q-end { margin-top: 1.25rem; }
     .quote-page .q-alert { margin-top: 1rem; padding: 0.15rem 0 0.15rem 0.9rem; border-left: 2px solid var(--accent); background: none; border-radius: 0; font-size: var(--text-xs); color: var(--text-muted); line-height: 1.55; }
-    .q-wizard.is-first #q-summary, .q-wizard:not(.is-first) #q-next-hint { display: none; }
-    #q-next-hint { color: var(--text-secondary); font-weight: 500; }
 
     .q-origem { margin-top: 1rem; padding: 0.1rem 0 0.1rem 0.9rem; border-left: 2px solid var(--accent); font-size: var(--text-sm); color: var(--text-secondary); max-width: 620px; line-height: 1.55; }
     .q-origem b { color: var(--text-primary); }
@@ -172,7 +165,7 @@
     .q-progress .done button { border-top-color: var(--accent); color: var(--text-secondary); cursor: pointer; }
     .q-progress .done button:hover { color: var(--text-primary); }
     .q-progress .current button { border-top-color: var(--accent); color: var(--text-primary); font-weight: 600; }
-    .q-wizard .q-block { display: none; border-top: 0; padding-top: 2rem; }
+    .q-wizard .q-block { display: none; border-top: 0; padding-top: 2rem; padding-bottom: 0; }
     .q-wizard .q-block.is-current { display: block; animation: q-in 0.3s ease; }
     .q-wizard .q-block h2 .q-step { display: none; }
     @keyframes q-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
@@ -189,8 +182,6 @@
 
     @media (max-width: 640px) {
       .quote-page .form-grid { grid-template-columns: 1fr; }
-      .q-live { padding: 0.6rem; bottom: 0.75rem; }
-      .q-live > div:first-child { display: none; }
       .q-nav { width: 100%; }
       .q-nav .btn { flex: 1; }
       #q-next, #q-submit { min-width: 0; flex: 2; }
@@ -434,12 +425,7 @@
           </div>
         </div>
 
-        <div class="q-live" aria-live="polite">
-          <div>
-            <small>Orçamento na hora</small>
-            <strong class="q-live-text" id="q-summary">Escolha o que precisa</strong>
-            <strong class="q-live-text" id="q-next-hint">Próximo: o que cada imóvel recebe</strong>
-          </div>
+        <div class="q-live">
           <div class="q-nav">
             <button type="button" class="btn btn-outline btn-lg q-hidden" id="q-back"><svg class="q-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg> Voltar</button>
             <button type="submit" class="btn btn-primary btn-lg" id="q-next">Continuar <svg class="q-arrow" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -487,29 +473,30 @@
 
       // Itens com quantidade. max = limite do seletor.
       // fixo: sempre incluso, não dá para desmarcar.
-      // aereoVideo e aereoFoto não aparecem como itens soltos: o drone é escolhido numa linha só
-      // (Sem drone / Vídeo / Fotos / Vídeo e fotos). Vídeo aéreo só existe se houver algum vídeo.
+      // aereoVideo e aereoFoto não aparecem como itens soltos nem têm quantidade: o drone é escolhido
+      // numa linha só (Sem drone / Vídeo / Fotos / Vídeo e fotos). Vídeo aéreo só existe se houver algum vídeo.
       const ITENS = [
         { id: 'bruto', nome: 'Material bruto', desc: 'Todos os arquivos captados, sem edição. Sempre incluso', fixo: true, valor: 0 },
         { id: 'horizontal', nome: 'Vídeo horizontal', desc: 'Tour editado de 1 a 2 minutos para YouTube, site e portais', unit: 'vídeo', valor: 450, max: 3 },
         { id: 'vertical', nome: 'Vídeos verticais', desc: 'Cortes de 15 a 60 segundos para Reels, TikTok, Shorts e anúncios', unit: 'vídeo', valor: 150, max: 10 },
         { id: 'fotos', nome: 'Fotos tratadas', desc: 'Correção de linhas, luz e cor', unit: 'foto', valor: 15, max: 50, passo: 5 },
-        { id: 'aereoVideo', nome: 'Vídeo aéreo', toggle: true, valor: 0 },
-        { id: 'aereoFoto', nome: 'Fotos aéreas', desc: 'Fachada, vista e entorno', unit: 'foto', valor: 25, max: 20, passo: 5, min: 5 },
+        { id: 'aereoVideo', nome: 'Vídeos aéreos', desc: 'Imagens do drone editadas dentro dos vídeos', toggle: true, valor: 100, requerVideo: true },
+        { id: 'aereoFoto', nome: 'Fotos aéreas', desc: 'Fachada, vista e entorno, nos melhores ângulos', toggle: true, valor: 100 },
       ];
 
-      // Voo de drone: cobrado uma vez por imóvel sempre que houver drone (vídeo aéreo e/ou fotos aéreas)
-      const VOO_DRONE = { nome: 'Voo de drone', desc: 'Planejamento, autorização de voo e piloto', valor: 150 };
+      // Voo de drone: cobrado uma vez por imóvel sempre que houver drone. Vídeo aéreo e fotos aéreas são cobrados à parte.
+      const VOO_DRONE = { nome: 'Voo de drone', desc: 'Planejamento, autorização de voo e piloto', valor: 75 };
+      // desc: o que o cliente recebe em cada opção (aparece embaixo de "Drone")
       const MODOS_DRONE = [
-        { id: 'nao', nome: 'Sem drone' },
-        { id: 'video', nome: 'Vídeo', video: true },
-        { id: 'fotos', nome: 'Fotos', fotos: true },
-        { id: 'ambos', nome: 'Vídeo e fotos', video: true, fotos: true },
+        { id: 'nao', nome: 'Sem drone', desc: 'Imagens aéreas do imóvel, da vista e do entorno' },
+        { id: 'video', nome: 'Vídeo', video: true, desc: 'Imagens aéreas editadas dentro dos vídeos' },
+        { id: 'fotos', nome: 'Fotos', fotos: true, desc: 'Fotos aéreas tratadas da fachada, vista e entorno' },
+        { id: 'ambos', nome: 'Vídeo e fotos', video: true, fotos: true, desc: 'Imagens aéreas nos vídeos e fotos aéreas tratadas da fachada, vista e entorno' },
       ];
 
       // Adicionais. requer: só aparece ativo se o item tiver quantidade > 0.
       const EXTRAS = [
-        { id: 'cinema', nome: 'Filme cinematográfico', desc: 'Roteiro, direção, trilha e sound design no vídeo horizontal', valor: 700, requer: 'horizontal' },
+        { id: 'cinema', nome: 'Filme cinematográfico', desc: 'Roteiro, direção, trilha e sound design no vídeo horizontal', valor: 825, requer: 'horizontal' },
         { id: 'apresentador', nome: 'Corretor apresentando o imóvel', desc: 'Roteiro de fala e direção na gravação', valor: 300 },
         { id: 'entardecer', nome: 'Fotos ao entardecer', desc: 'Visita extra no horário dourado, com o imóvel iluminado', valor: 350 },
         { id: 'expressa', nome: 'Entrega expressa em 72 horas', desc: 'Material editado em até 72 horas após a captação', valor: 400 },
@@ -517,10 +504,10 @@
 
       // Modelos prontos (atalhos que só preenchem as quantidades)
       const MODELOS = {
-        imovel: { nome: 'Essencial', desc: 'corretores', qtd: { horizontal: 1, vertical: 3, fotos: 20, aereoFoto: 5, aereoVideo: 1 }, extras: [] },
-        alto: { nome: 'Alto Padrão', desc: 'frente mar e coberturas', qtd: { horizontal: 1, vertical: 4, fotos: 20, aereoFoto: 10, aereoVideo: 1 }, extras: ['cinema', 'entardecer'] },
-        redes: { nome: 'Só redes sociais', desc: 'Reels', qtd: { horizontal: 0, vertical: 4, fotos: 10, aereoFoto: 0, aereoVideo: 1 }, extras: [] },
-        fotos: { nome: 'Só fotos', desc: 'portais', qtd: { horizontal: 0, vertical: 0, fotos: 20, aereoFoto: 5, aereoVideo: 0 }, extras: [] },
+        imovel: { nome: 'Essencial', desc: 'corretores', qtd: { horizontal: 1, vertical: 3, fotos: 20, aereoFoto: 1, aereoVideo: 1 }, extras: [] },
+        alto: { nome: 'Alto Padrão', desc: 'frente mar e coberturas', qtd: { horizontal: 1, vertical: 4, fotos: 20, aereoFoto: 1, aereoVideo: 1 }, extras: ['cinema', 'entardecer'] },
+        verticais: { nome: 'Só vídeos verticais', desc: 'Reels', qtd: { horizontal: 0, vertical: 4, fotos: 0, aereoFoto: 0, aereoVideo: 1 }, extras: [] },
+        fotos: { nome: 'Só fotos', desc: 'portais', qtd: { horizontal: 0, vertical: 0, fotos: 20, aereoFoto: 1, aereoVideo: 0 }, extras: [] },
       };
 
       // Acréscimo pelo tamanho do imóvel
@@ -573,20 +560,17 @@
         `<button type="button" class="q-preset" data-modelo="${id}">${m.nome}</button>`).join('');
 
       $('#q-items').innerHTML = ITENS.map((it) => {
-        const sub = it.id === 'aereoFoto' ? ' q-sub' : '';
-        const cab = '';
-        // Drone: uma linha com 4 opções (no lugar do item "vídeo aéreo")
+        const sub = '';
+        // Drone: uma linha só com 4 opções (no lugar dos itens aéreos)
+        if (it.id === 'aereoFoto') return '';
         if (it.id === 'aereoVideo') return `
         <div class="q-item q-drone" data-drone>
           <span class="q-item-text"><b>Drone</b><span id="q-drone-desc"></span></span>
           <span class="q-seg" role="group" aria-label="Drone">
             ${MODOS_DRONE.map((m) => `<button type="button" data-drone-modo="${m.id}">${m.nome}</button>`).join('')}
           </span>
-        </div>
-        <div class="q-item q-sub q-sub-video on">
-          <span class="q-item-text"><b>Vídeos aéreos</b>Imagens do drone editadas dentro dos vídeos</span>
-          <span class="q-incluso">Incluso no voo</span>
         </div>`;
+        const cab = '';
         if (it.fixo) return `
         <label class="q-item on is-locked" data-item="${it.id}">
           <span class="q-item-text"><b>${it.nome}</b>${it.desc}</span>
@@ -651,7 +635,7 @@
           if (modoBtn.disabled) return;
           const m = MODOS_DRONE.find((x) => x.id === modoBtn.dataset.droneModo);
           setQtd('aereoVideo', m.video ? 1 : 0);
-          setQtd('aereoFoto', m.fotos ? Math.max(5, qtd.aereoFoto || 0) : 0);
+          setQtd('aereoFoto', m.fotos ? 1 : 0);
           document.querySelectorAll('.q-preset').forEach((b) => b.classList.remove('active'));
           atualizar();
           return;
@@ -701,11 +685,10 @@
         const algum = true;
         const voo = vooDrone();
         itens.push({ nome: CAPTACAO.nome, desc: CAPTACAO.desc, qtd: 1, unit: CAPTACAO.valor, valor: CAPTACAO.valor });
-        const modo = MODOS_DRONE.find((m) => m.id === modoDrone());
         ITENS.forEach((it) => {
           if (it.id === 'aereoVideo') {
             if (voo) itens.push({ nome: VOO_DRONE.nome, desc: VOO_DRONE.desc, qtd: 1, unit: VOO_DRONE.valor, valor: VOO_DRONE.valor });
-            if (modo.video) itens.push({ nome: 'Vídeos aéreos', desc: 'Imagens do drone editadas dentro dos vídeos', qtd: 1, unit: null, valor: 0, incluso: true, sub: true });
+            if (modoDrone() === 'video' || modoDrone() === 'ambos') itens.push({ nome: it.nome, desc: it.desc, qtd: 1, unit: it.valor, valor: it.valor, sub: true });
             return;
           }
           const n = qtd[it.id] || 0;
@@ -770,8 +753,8 @@
         if (n('fotos')) partes.push(`${n('fotos')} fotos`);
         const md = modoDrone();
         if (md === 'video') partes.push('vídeo aéreo');
-        if (md === 'fotos') partes.push(`${n('aereoFoto')} fotos aéreas`);
-        if (md === 'ambos') partes.push(`vídeo aéreo e ${n('aereoFoto')} fotos aéreas`);
+        if (md === 'fotos') partes.push('fotos aéreas');
+        if (md === 'ambos') partes.push('vídeo aéreo e fotos aéreas');
         if (!partes.length) partes.push('só material bruto');
         return (imoveis > 1 ? `${imoveis} imóveis, cada um com ` : '') + partes.join(' · ');
       }
@@ -786,10 +769,8 @@
           b.setAttribute('aria-pressed', m.id === md);
           b.disabled = !!m.video && !temVideo();
         });
-        $('#q-drone-desc').textContent = temVideo() ? 'Voo com planejamento, autorização e piloto' : 'Vídeo aéreo precisa de pelo menos 1 vídeo no pedido';
+        $('#q-drone-desc').textContent = md === 'nao' && !temVideo() ? 'Vídeo aéreo precisa de pelo menos 1 vídeo no pedido' : MODOS_DRONE.find((m) => m.id === md).desc;
         $('[data-drone]').classList.toggle('on', md !== 'nao');
-        $('#q-items').classList.toggle('drone-fotos', md === 'fotos' || md === 'ambos');
-        $('#q-items').classList.toggle('drone-video', md === 'video' || md === 'ambos');
         ITENS.forEach((it) => {
           const el = document.querySelector(`[data-item="${it.id}"]`);
           const n = qtd[it.id] || 0;
@@ -829,7 +810,6 @@
         $('#q-alert').textContent = motivo || '';
         document.querySelector('[data-imoveis="-1"]').disabled = imoveis <= 1;
         document.querySelector('[data-imoveis="1"]').disabled = imoveis >= MAX_IMOVEIS;
-        $('#q-summary').textContent = resumoEscolha();
       }
       form.addEventListener('change', (e) => { if (!e.target.closest('[data-toggle]')) atualizar(); });
 
@@ -847,7 +827,6 @@
       // os itens já estão definidos, então pula "Entregas" e "Adicionais" (dá para abrir depois).
       const etapas = [...form.querySelectorAll('.q-block')];
       const NOMES = ['Imóveis', 'Entregas', 'Adicionais', 'Seus dados'];
-      const PROXIMO = ['sobre os imóveis', 'o que cada imóvel recebe', 'adicionais', 'seus dados'];
       const modoPacote = pre !== 'lancamento' && !!MODELOS[pre];
       let ordem = modoPacote ? [0, 3] : [0, 1, 2, 3];
       let etapa = 0;
@@ -871,7 +850,6 @@
         });
         form.classList.toggle('is-last', ultima);
         form.classList.toggle('is-first', etapa === 0);
-        if (!ultima) $('#q-next-hint').textContent = 'Próximo: ' + PROXIMO[ordem[etapa + 1]];
         $('#q-back').classList.toggle('q-hidden', etapa === 0);
         $('#q-next').classList.toggle('q-hidden', ultima);
         $('#q-submit').classList.toggle('q-hidden', !ultima);
